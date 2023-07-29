@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 //importar usuario 
 import {getAuth} from 'firebase/auth';
+import { getDatabase } from "firebase/database";
 
 //datos de configuraion de firebase
 const firebaseConfig = {
@@ -18,3 +19,5 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 // Inicializar Usuario
 export const auth = getAuth(app);
+
+export const db = getDatabase()

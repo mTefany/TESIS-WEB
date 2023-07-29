@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Sensorlist from './components/Sensore'
 import Login from './components/Login';
 import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
@@ -12,11 +13,13 @@ function App() {
         <Routes>
           <Route path='/' element={
             <ProtectedRoute>
-              <Home />
+              <Sensorlist />
+
             </ProtectedRoute>
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          {/* <Route path="/sensores" element={<Sensorlist />} /> */}
         </Routes>
       </AuthProvider>
     </div>
