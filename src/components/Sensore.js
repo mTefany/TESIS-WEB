@@ -8,56 +8,60 @@ import Nav from "./Nav";
 export default function SensorList() {
 
   const { user } = useAuth(); // Obtenemos el uid del contexto de autenticación
-  const uidUser = user.uid;
+  const uidUser = user?.uid;
   const dbPath = 'UsersData/' + uidUser + "/readings";
   const dbRef = ref(db, dbPath);
 
   const [data, setData] = useState([]);
   const [datas, setTodos] = useState([]);
 
-
-  
-
   useEffect(() => {
-    onValue(dbRef, (snapshot) => {
-      setTodos([]);
-      const data = snapshot.val();
-      if (data !== null) {
-        // Convert data object into an array and sort by timestamp in descending order
-        const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-        setData(sortedData);
-        // setData(Object.values(data)); // Convert data object into an array
-        // console.log(data)
-      }
-    });
-
-  }, [])
+    if (uidUser){
+      onValue(dbRef, (snapshot) => {
+        setTodos([]);
+        const data = snapshot.val();
+        if (data !== null) {
+          // Convert data object into an array and sort by timestamp in descending order
+          const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+          setData(sortedData);
+          // setData(Object.values(data)); // Convert data object into an array
+          // console.log(data)
+        }
+        setTodos(false)
+      }); 
+    }else{
+      setTodos(false)
+    }
+  }, [uidUser])
 
 
   return (
-    <div >
-      <Nav/>
-      <table>
-        <thead>
-          <tr>
-            <th>Timestamp</th>
-            <th>Sensor 1</th>
-            <th>Sensor 2</th>
-            <th>Sensor 3</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((reading, index) => (
-            <tr key={index}>
-              <td>{epochToDateTime(reading.timestamp)}</td>
-              <td></td>
-              <td>{reading.sensor1Value}</td>
-              <td>{reading.sensor2Value}</td>
-              <td>{reading.sensor3Value}</td>
+    <div>
+      <Nav />
+      {datas ? (
+        <div>Cargando...</div> // Muestra un mensaje de carga mientras se obtienen los datos
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Sensor 1</th>
+              <th>Sensor 2</th>
+              <th>Sensor 3</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((reading, index) => (
+              <tr key={index}>
+                <td>{epochToDateTime(reading.timestamp)}</td>
+                <td>{reading.sensor1Value}</td>
+                <td>{reading.sensor2Value}</td>
+                <td>{reading.sensor3Value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
