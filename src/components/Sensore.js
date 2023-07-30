@@ -3,7 +3,8 @@ import { db } from "../firebase.config";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
-import Nav from "./Nav";
+import Nav from "../partials/Nav";
+import Footer from '../partials/footer';
 
 export default function SensorList() {
 
@@ -62,6 +63,7 @@ export default function SensorList() {
           </tbody>
         </table>
       )}
+      <Footer />
     </div>
   );
 }

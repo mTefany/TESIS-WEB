@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 function Nav() {
 
-
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#cff5fc" }}>
       <div className="container-fluid">
