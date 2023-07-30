@@ -1,9 +1,8 @@
 import {  ref, onValue } from 'firebase/database'
-
 import { db } from "../firebase.config";
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
+import { epochToDateTime } from '../context/dateTime';
 
 export default function SensorList() {
 
@@ -20,8 +19,11 @@ export default function SensorList() {
       setTodos([]);
       const data = snapshot.val();
       if (data !== null) {
-        setData(Object.values(data)); // Convert data object into an array
-        console.log(data)
+         // Convert data object into an array and sort by timestamp in descending order
+         const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+         setData(sortedData);
+        // setData(Object.values(data)); // Convert data object into an array
+        // console.log(data)
       }
     });
 
@@ -42,7 +44,7 @@ export default function SensorList() {
         <tbody>
           {data.map((reading, index) => (
             <tr key={index}>
-              <td>{reading.timestamp}</td>
+              <td>{epochToDateTime(reading.timestamp)}</td>
               <td></td>
               <td>{reading.sensor1Value}</td>
               <td>{reading.sensor2Value}</td>
