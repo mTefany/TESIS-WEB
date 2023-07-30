@@ -17,7 +17,7 @@ export default function SensorList() {
   const [datas, setTodos] = useState([]);
 
   useEffect(() => {
-    if (uidUser){
+    if (uidUser) {
       onValue(dbRef, (snapshot) => {
         setTodos([]);
         const data = snapshot.val();
@@ -29,8 +29,8 @@ export default function SensorList() {
           // console.log(data)
         }
         setTodos(false)
-      }); 
-    }else{
+      });
+    } else {
       setTodos(false)
     }
   }, [uidUser])
@@ -64,6 +64,7 @@ export default function SensorList() {
         </table>
       )}
       <Footer />
+      
     </div>
   );
 }

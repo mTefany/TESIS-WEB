@@ -25,6 +25,7 @@ const Home = () => {
         <h1 className="text-x1 mb-4">Bienvenido {user.displayName || user.email}</h1>
         <button onClick={handleLogout} className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black">Logout</button>
         <Link to="/sensores">Ver Sensores</Link>
+        <Link to="/tarjeta">Tarjetas</Link>
       </div>
       <Footer />
     </div>

@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './components/ProtectedRoute';
+import Tarjeta from './hook/tarjetas';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/sensores" element={<Sensorlist />} /> 
+          <Route path="/tarjeta" element={<Tarjeta />} /> 
         </Routes>
       </AuthProvider>
     </div>
