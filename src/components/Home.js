@@ -12,7 +12,6 @@ const Home = () => {
     navigate("/login")
   }
 
-
   if (loading) return <h1>Loading</h1>
 
   return (
@@ -20,6 +19,7 @@ const Home = () => {
       <div className="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
         <h1 className="text-x1 mb-4">Bienvenido {user.displayName || user.email}</h1>
         <button onClick={handleLogout} className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black">Logout</button>
+        
       </div>
     </div>
   )

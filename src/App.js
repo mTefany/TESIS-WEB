@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
+// import Home from './components/Home';
 import Sensorlist from './components/Sensore'
 import Login from './components/Login';
 import Register from './components/Resgister';
