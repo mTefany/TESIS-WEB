@@ -6,10 +6,11 @@ import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './components/ProtectedRoute';
 import Tarjeta from './hook/tarjetas';
+import Tablero from './components/Tablero';
 
 function App() {
   return (
-    <div className='bg-slate-300 h-screen text-black flex'>
+    <div >
       
       <AuthProvider>
         <Routes>
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/sensores" element={<Sensorlist />} /> 
           <Route path="/tarjeta" element={<Tarjeta />} /> 
+          <Route path="/tablero" element={<Tablero />} /> 
         </Routes>
       </AuthProvider>
     </div>
