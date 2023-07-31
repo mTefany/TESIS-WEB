@@ -42,22 +42,22 @@ export default function SensorList() {
       {datas ? (
         <div>Cargando...</div> // Muestra un mensaje de carga mientras se obtienen los datos
       ) : (
-        <table>
+        <table class="container table table-hover bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
           <thead>
             <tr>
-              <th>Timestamp</th>
-              <th>Sensor 1</th>
-              <th>Sensor 2</th>
-              <th>Sensor 3</th>
+              <th scope="col">Timestamp</th>
+              <th scope="col"> Sensor 1</th>
+              <th scope="col">Sensor 2</th>
+              <th scope="col">Sensor 3</th>
             </tr>
           </thead>
           <tbody>
             {data.map((reading, index) => (
               <tr key={index}>
-                <td>{epochToDateTime(reading.timestamp)}</td>
-                <td>{reading.sensor1Value}</td>
-                <td>{reading.sensor2Value}</td>
-                <td>{reading.sensor3Value}</td>
+                <td scope="row">{epochToDateTime(reading.timestamp)}</td>
+                <td scope="row">{reading.sensor1Value}</td>
+                <td scope="row">{reading.sensor2Value}</td>
+                <td scope="row">{reading.sensor3Value}</td>
               </tr>
             ))}
           </tbody>

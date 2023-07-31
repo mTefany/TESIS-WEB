@@ -19,10 +19,10 @@ const Home = () => {
   return (
     <div>
       <Nav />
-      <div className="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4">
-        <h1 className="text-x1 mb-4">
+      <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
+        <h4 className="text-xl mb-4 text-uppercase">
           Bienvenido {user.displayName || user.email}
-        </h1>
+        </h4>
         <Link className="nav-link" to="/tablero">
           <Area />
         </Link>

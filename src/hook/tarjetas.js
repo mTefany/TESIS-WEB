@@ -36,8 +36,9 @@ export default function Tarjeta() {
     return (
         <div>
             <Nav />
-            <div className="cards">
-            <p><span className="reading"> Ultima atualizacion {data.length > 0 ? epochToDateTime(data[0].timestamp)  : 0} </span></p>
+            
+            <div className="cards container mt-3">
+            <p><span className="reading text-xl mb-4 text-uppercase"> Ultima atualizacion {data.length > 0 ? epochToDateTime(data[0].timestamp)  : 0} </span></p>
                 <div className="card">
                     <center>
                         <p><i className="fas fa-tint" style={{ color: '#059e8a' }}></i> Humedad Zona 1</p>

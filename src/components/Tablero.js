@@ -10,14 +10,15 @@ function Tablero() {
     return(
         <div>
             <Nav/>
-            <h1>
-                Bienvenido al tablero de control.
-            </h1>
-            <Barras />  
-            <Area /> 
-            <Pastel />
-            <Radial />
-
+            <div class="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
+                <h4 class="text-xl mb-4 text-uppercase">
+                    Bienvenido al tablero de control.
+                </h4>
+                <Barras />  
+                <Area /> 
+                <Pastel />
+                <Radial />
+            </div>
         </div>
     );
 
