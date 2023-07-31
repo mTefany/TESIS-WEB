@@ -1,33 +1,39 @@
 import { Link } from "react-router-dom";
 
 function Nav() {
-
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#cff5fc" }}>
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">Home</Link>
-        <Link className="navbar-brand" to="/sensores">Sensor</Link>
-        <Link className="nav-link" to="/tarjeta">Tarjetas</Link>
-        <Link className="nav-link" to="/tablero">Tablero</Link>
-        <Link className="navbar-brand" to="/login">Logout</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/sensores">Lista de Sensores</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/tarjeta">Tarjetas</Link>
-            </li>
-          </ul>
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
+            <Link className="navbar-brand navtex" to="/">
+              Home
+            </Link>
+          </a>
+          <div className="nav justify-content-cente">
+            <Link className="nav-link" to="/tarjeta">
+              Tarjetas
+            </Link>
+            <Link className="nav-link" to="/tablero">
+              Tablero
+            </Link>
+            <Link className="nav-link" to="/sensores">
+              Sensores
+            </Link>
+          </div>
+
+          <div className="d-flex">
+            <span id="user-details" className="nav-link">
+              e-mail
+            </span>
+            <Link className="navbar-brand" to="/login">
+              Logout
+            </Link>
+            {/* <img className="salirimg" src="img/salir.png" alt="Salir de la pagina"></a> */}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 

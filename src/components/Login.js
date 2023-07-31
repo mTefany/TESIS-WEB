@@ -1,38 +1,38 @@
 import { useState } from "react";
-import { useAuth } from '../context/authContext'
+import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../image/logo.jpeg";
 import Alert from "./Alert";
 
 function Login() {
-
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const { login, loginWithGoogle, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
-  //actualizar el estado 
+  //actualizar el estado
   const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value })
+    setUser({ ...user, [name]: value });
     //console.log(name, value);
-  }
+  };
   //mostrar lo que tiene
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError("");
     try {
-      await login(user.email, user.password)
-      navigate('/')
+      await login(user.email, user.password);
+      navigate("/");
       // console.log(user);
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/wrong-password") {
-        setError('Contraseña invalida.')
+        setError("Contraseña invalida.");
       } else {
         if (error.code === "auth/user-not-found") {
-          setError("Usuario no registrado.")
+          setError("Usuario no registrado.");
         }
       }
     }
@@ -41,47 +41,87 @@ function Login() {
   const handleGoogleSignin = async () => {
     try {
       await loginWithGoogle();
-      navigate('/');
+      navigate("/");
     } catch {
-      console.log(error.code)
-      setError(error.message)
+      console.log(error.code);
+      setError(error.message);
     }
-  }
+  };
 
-  const handleResetPassword = async () =>{
-    if (!user.email) return setError("Por favor ingresa tu email")
-    try{
+  const handleResetPassword = async () => {
+    if (!user.email) return setError("Por favor ingresa tu email");
+    try {
       await resetPassword(user.email);
-      setError('Hemos enviado un email para que restablezcas tu contraseña')
-    }catch(error){
-      setError(error.message)
+      setError("Hemos enviado un email para que restablezcas tu contraseña");
+    } catch (error) {
+      setError(error.message);
     }
-  }
+  };
 
   return (
-    <div className="w-full max-w-xs m-auto">
-      {error && <Alert message={error} />}
+    <div className="containerform">
+      <div className="form-container">
+        {error && <Alert message={error} />}
+        <div className="text-center">
+          <img src={logo} alt="Logo" width="250x" />
+        </div>
+        <h3 className="form-title">Formulario de ingreso</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Su email@gmail.com.ec"
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="***********"
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <a
+              href="#"
+              className="forgot-password"
+              onClick={handleResetPassword}
+            >
+              Olvidaste tu contraseña?
+            </a>
+          </div>
+          <div className="d-grid gap-2">
+            <button type="submit" className="btn btn-primary">
+              Iniciar sesión
+            </button>
+          </div>
 
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-fold mb-2">Email</label>
-          <input type="email" name="email" placeholder="Su email@gmail.com.ec" onChange={handleChange} className="shadow apperance-none border rounder w-full py-2 px-3 text-gray-700 leaading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-fold mb-2">Password</label>
-          <input type="password" name="password" id="password" placeholder="***********" onChange={handleChange} className="shadow apperance-none border rounder w-full py-2 px-3 text-gray-700 leaading-tight focus:outline-none focus:shadow-outline" />
-        </div>
-        <div className="flex items-center justify-between">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Iniciar sesión</button>
-          <a href="#" className=" inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" onClick={handleResetPassword}>Olvidaste tu contraseña? </a>
-        </div>
-      </form>
-      <Link to='/register' >
-        <button className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full">Registro</button>
-      </Link>
-      <button onClick={handleGoogleSignin} className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full">Google</button>
+          <div className="text-center">
+            <p>Si no tienes una cuenta!
+            <Link to="/register">
+               <br></br> Registrate aqui
+            </Link> <br></br>
+            O con Google Aqui</p>
+            <button onClick={handleGoogleSignin} className="btn btn-success">
+              Google
+            </button>
+          </div>
+          
+        </form>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Login;

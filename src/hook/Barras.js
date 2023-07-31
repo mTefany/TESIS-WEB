@@ -42,7 +42,7 @@ const Barras = () => {
 
     return (
 
-        <ResponsiveContainer width="100%" aspect={2}>
+        <ResponsiveContainer width="50%" aspect={2}>
             <BarChart
                 data={lastTenData}
                 width={500}

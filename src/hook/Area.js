@@ -41,8 +41,8 @@ const Area = () => {
 
     return (
 
-        <ResponsiveContainer width="100%" aspect={2}>
-            <ComposedChart width={730} height={250} data={lastTenData}>
+        <ResponsiveContainer width="50%" aspect={2}>
+            <ComposedChart width={230} height={150} data={lastTenData}>
                 <XAxis dataKey="timestamp" />
                 <YAxis />
                 <Tooltip />
