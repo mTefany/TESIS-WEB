@@ -8,12 +8,11 @@ import Footer from "../partials/footer";
 const Home = () => {
 
   const { user, logout, loading } = useAuth();
-  const navigate = useNavigate()
-  // console.log(user);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout()
-    navigate("/login")
+    await logout();
+    navigate("/login");
   }
 
   if (loading) return <h1>Loading</h1>
