@@ -21,6 +21,17 @@
     margin-bottom: 30px;
 }
 
+.opcionregistro{
+    color:rgb(42, 106, 165);
+    text-decoration: none;
+    font-weight: bold;
+
+}
+
+.navbar{
+    background-color: rgb(175, 226, 209) !important;
+}
+
 .d-grid{
     margin-bottom: 30px;
 }
@@ -37,21 +48,19 @@
     font-weight: bold;
 }
 
-
- /* Personalizar los colores de los botones */
- .btn-custom {
-    background-color: #62a7e0; /* Verde */
-    border-color: #774caf;
-    color:white;
+.material-icons{
+    color: rgb(30, 133, 173);
 }
 
-.btn-custom:focus {
-    background-color: #4592a0; /* Verde oscuro cuando enfocado */
-    border-color: #da9dec;
-    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5); /* Sombra cuando enfocado */
+.btn-primary{
+    background-color: rgb(30, 133, 173);
+    border-color: rgb(255, 255, 255);
+    font-weight: bold;
 }
 
-.btn-custom:hover {
-    background-color: #83148d; /* Verde oscuro al pasar el ratón */
-    border-color: #7745a0;
-}
+.btn-primary:hover {
+    background-color: #99b7d4; /* Cambiar el color al pasar el mouse */
+    border-color: #ffffff; /* También puedes cambiar el color del borde si lo deseas */
+    color:black;
+    font-weight: bold;
+  }

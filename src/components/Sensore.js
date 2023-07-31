@@ -45,10 +45,10 @@ export default function SensorList() {
         <table class="container table table-hover bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
           <thead>
             <tr>
-              <th scope="col">Timestamp</th>
-              <th scope="col"> Sensor 1</th>
-              <th scope="col">Sensor 2</th>
-              <th scope="col">Sensor 3</th>
+              <th scope="col" className='text-uppercase'>Timestamp</th>
+              <th scope="col" className='text-uppercase'> Sensor 1</th>
+              <th scope="col" className='text-uppercase'>Sensor 2</th>
+              <th scope="col" className='text-uppercase'>Sensor 3</th>
             </tr>
           </thead>
           <tbody>

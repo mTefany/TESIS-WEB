@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import logo from '../image/logohome.png'
 
 
 
@@ -22,7 +23,7 @@ function Nav() {
         <div className="container-fluid f-flex justify-content-around align-items-center">
           <a className="navbar-brand" href="/">
             <Link className="navbar-brand navtex text-uppercase" to="/">
-              -logo-
+            <img src={logo} alt="Logo" width="250x" />
             </Link>
           </a>
           <div className="nav justify-content-cente">

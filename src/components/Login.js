@@ -108,16 +108,21 @@ function Login() {
           </div>
 
           <div className="text-center">
-            <p>Si no tienes una cuenta!
-            <Link to="/register">
-               <br></br> Registrate aqui
-            </Link> <br></br>
-            O con Google Aqui</p>
-            <button onClick={handleGoogleSignin} className="btn btn-success">
-              Google
-            </button>
+            <p className="btn-sm">
+              Si no tienes una cuenta!
+              <div className="  card-group">
+                <div className=" card ">
+                  <Link to="/register" className="opcionregistro">
+                  <i class="material-icons">note_add</i>
+                  </Link>
+                </div>
+                <div className=" card opcionregistro">
+                  <a href="#" onClick={handleGoogleSignin}>
+                  <i className="material-icons">mail</i></a>
+                </div>
+              </div>
+            </p>
           </div>
-          
         </form>
       </div>
     </div>
