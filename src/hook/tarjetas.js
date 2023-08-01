@@ -1,10 +1,9 @@
 import { ref, onValue } from 'firebase/database'
-import { db } from "../firebase.config";
+import { db } from "../firebase";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
-import Nav from "../partials/Nav";
 import Footer from '../partials/footer';
-import {epochToDateTime} from '../context/dateTime'
+import { epochToDateTime } from '../context/dateTime'
 
 export default function Tarjeta() {
 
@@ -35,34 +34,41 @@ export default function Tarjeta() {
 
     return (
         <div>
-            <Nav />
             
             <div className="cards container mt-3">
-            <p><span className="reading text-xl mb-4 text-uppercase"> Ultima atualizacion {data.length > 0 ? epochToDateTime(data[0].timestamp)  : 0} </span></p>
-                <div className="card">
-                    <center>
-                        <p><i className="fas fa-tint" style={{ color: '#059e8a' }}></i> Humedad Zona 1</p>
-                        <p><span className="reading">{data.length > 0 ? data[0].sensor1Value : 0} %</span></p>
-                    </center>
-                    {/* <img className="zonas" src="img/Zona1.jpeg" alt="Zona 1" /> */}
+                <p><span className="reading text-xl mb-4 text-uppercase"> Ultima atualizacion {data.length > 0 ? epochToDateTime(data[0].timestamp) : 0} </span></p>
+                <div className='row' id="cards-div">
+                    <div class="col-sm-4">
+                        <div className="card">
+                            <center>
+                                <p> 
+                                    <i className="material-icons" style={{ color: '#059e8a' }}>egg</i>Humedad Zona 1</p>
+                                <p><span className="reading">{data.length > 0 ? data[0].sensor1Value : 0} %</span></p>
+                            </center>
+                            {/* <img className="zonas" src="img/Zona1.jpeg" alt="Zona 1" /> */}
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div className="card">
+                            <center>
+                                <p><i className="material-icons" style={{ color: '#087e8a' }}>egg</i>Humedad Zona 2</p>
+                                <p><span className="reading">{data.length > 0 ? data[0].sensor2Value : 0} %</span></p>
+                            </center>
+                            {/* <img className="zonas" src="img/Zona2.jpeg" alt="Zona 2" /> */}
+                        </div>
+                        </div>
+                        <div class="col-sm-4">
+                        <div className="card">
+                            <center>
+                                <p><i className="material-icons" style={{ color: '#1eee8a' }}>egg</i> Humedad Zona 3</p>
+                                <p><span className="reading">{data.length > 0 ? data[0].sensor3Value : 0} %</span></p>
+                            </center>
+                            {/* <img className="zonas" src="img/Zona3.jpeg" alt="Zona 3" /> */}
+                        </div>
+                    </div>
                 </div>
-                <div className="card">
-                    <center>
-                        <p><i className="fas fa-tint" style={{ color: '#00add6' }}></i> Humedad Zona 2</p>
-                        <p><span className="reading">{data.length > 0 ? data[0].sensor2Value : 0} %</span></p>
-                    </center>
-                    {/* <img className="zonas" src="img/Zona2.jpeg" alt="Zona 2" /> */}
-                </div>
-                <div className="card">
-                    <center>
-                        <p><i className="fas fa-tint" style={{ color: '#e1e437' }}></i> Humedad Zona 3</p>
-                        <p><span className="reading">{data.length > 0 ? data[0].sensor3Value : 0} %</span></p>
-                    </center>
-                    {/* <img className="zonas" src="img/Zona3.jpeg" alt="Zona 3" /> */}
-                </div>
-            </div>
 
-            <Footer />
+            </div>
         </div>
     );
 }

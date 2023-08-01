@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ref, onValue } from 'firebase/database'
-import { db } from "../firebase.config";
+import { db } from "../firebase";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
@@ -42,7 +42,7 @@ const Barras = () => {
 
     return (
 
-        <ResponsiveContainer width="50%" aspect={2}>
+        <ResponsiveContainer width="40%"  height={300} >
             <BarChart
                 data={lastTenData}
                 width={500}
@@ -62,9 +62,9 @@ const Barras = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="sensor1Value" fill="#6b48ff" />
-                <Bar dataKey="sensor2Value" fill="#1ee3cf" />
-                <Bar dataKey="sensor3Value" fill="#6b484f" />
+                <Bar dataKey="sensor1Value" fill="#ffb6c1" />
+                <Bar dataKey="sensor2Value" fill="#20b2aa" />
+                <Bar dataKey="sensor3Value" fill="#87ceeb" />
             </BarChart>
         </ResponsiveContainer>
     )

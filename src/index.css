@@ -29,7 +29,7 @@
 }
 
 .navbar{
-    background-color: rgb(175, 226, 209) !important;
+    background-color: rgb(243, 243, 220) !important;
 }
 
 .d-grid{
@@ -63,4 +63,18 @@
     border-color: #ffffff; /* También puedes cambiar el color del borde si lo deseas */
     color:black;
     font-weight: bold;
+  }
+
+  .nav-link {
+    color: rgb(126, 100, 17)!important;
+    font-weight: bold;
+  }
+
+  .logout{
+    color: rgb(126, 100, 17)!important;
+  }
+
+  .text-uppercase{
+    font-size: 14px;
+    text-align: center;
   }

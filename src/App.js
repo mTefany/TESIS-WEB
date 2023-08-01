@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './components/ProtectedRoute';
-import Tarjeta from './hook/tarjetas';
 import Tablero from './components/Tablero';
 
 function App() {
@@ -22,8 +21,7 @@ function App() {
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/sensores" element={<Sensorlist />} /> 
-          <Route path="/tarjeta" element={<Tarjeta />} /> 
+          <Route path="/sensores" element={<Sensorlist />} />  
           <Route path="/tablero" element={<Tablero />} /> 
         </Routes>
       </AuthProvider>

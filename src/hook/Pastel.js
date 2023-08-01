@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ref, onValue } from 'firebase/database'
-import { db } from "../firebase.config";
+import { db } from "../firebase";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';

@@ -20,35 +20,51 @@ function Nav() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg  navbar-dark bg-primary">
-        <div className="container-fluid f-flex justify-content-around align-items-center">
-          <a className="navbar-brand" href="/">
-            <Link className="navbar-brand navtex text-uppercase" to="/">
+        <div className="container">
+            <Link className="navbar-brand" to="/">
             <img src={logo} alt="Logo" width="250x" />
             </Link>
-          </a>
-          <div className="nav justify-content-cente">
-            <Link className="nav-link text-uppercase text-reset fw-bold" to="/">
-              Home
-            </Link>
-            <Link className="nav-link text-uppercase text-reset fw-bold" to="/tarjeta">
-              Tarjetas
-            </Link>
-            <Link className="nav-link text-uppercase text-reset fw-bold" to="/tablero">
-              Tablero
-            </Link>
-            <Link className="nav-link text-uppercase text-reset fw-bold" to="/sensores">
-              Sensores
-            </Link>
+            <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+             <span className="navbar-toggler-icon"></span>
+          </button>
+         
+          <div className="collapse navbar-collapse" id="navbarNav">
+
+           <ul className="navbar-nav ms-auto ">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Inicio
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/tablero">
+                  Tablero
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sensores">
+                  Sensores
+                </Link>
+              </li>
+            </ul>
           </div>
 
           <div className="d-flex">
-            <span id="user-details" className="nav-link text-uppercase text-reset fw-bold">
+            <span id="user-details" className="nav-link">
               {user.email}
             </span>
-            <Link className="navbar-brand text-uppercase fw-bold" to="/login">
-              Logout
+            <Link className="nav-link" to="/login" onClick={handleLogout}>
+              
+              <i className="material-icons logout">logout</i>
             </Link>
-            {/* <img className="salirimg" src="img/salir.png" alt="Salir de la pagina"></a> */}
           </div>
         </div>
       </nav>

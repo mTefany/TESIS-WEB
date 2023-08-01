@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ref, onValue } from 'firebase/database'
-import { db } from "../firebase.config";
+import { db } from "../firebase";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
@@ -41,16 +41,19 @@ const Area = () => {
 
     return (
 
-        <ResponsiveContainer width="50%" aspect={2}>
+        <ResponsiveContainer width="40%" height={300}>
             <ComposedChart width={230} height={150} data={lastTenData}>
-                <XAxis dataKey="timestamp" />
+                <XAxis dataKey="timestamp" 
+                tickFormatter={(epoch) => epochToDateTime(epoch)} 
+                />
                 <YAxis />
                 <Tooltip />
                 <Legend />
                 <CartesianGrid stroke="#f5f5f5" />
-                <Area type="monotone" dataKey="sensor1Value" fill="#8884d8" stroke="#8884d8" />
-                <Bar dataKey="sensor2Value" barSize={20} fill="#413ea0" />
-                <Line type="monotone" dataKey="sensor3Value" stroke="#ff7300" />
+                {/* <Area type="monotone" dataKey="sensor1Value" fill="#8884d8" stroke="#8884d8" /> */}
+                <Bar dataKey="sensor2Value" barSize={20} fill="#915ea9" />
+                <Line type="monotone" dataKey="sensor3Value" stroke="#ff9300" />
+                <Line type="monotone" dataKey="sensor1Value" stroke="#f15361" />
             </ComposedChart>
         </ResponsiveContainer>
     )
