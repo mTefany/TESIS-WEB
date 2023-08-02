@@ -54,10 +54,10 @@ export default function SensorList() {
           <tbody>
             {data.map((reading, index) => (
               <tr key={index}>
-                <td scope="row">{epochToDateTime(reading.timestamp)}</td>
-                <td scope="row">{reading.sensor1Value}</td>
-                <td scope="row">{reading.sensor2Value}</td>
-                <td scope="row">{reading.sensor3Value}</td>
+                <td scope="row" className='filas'>{epochToDateTime(reading.timestamp)}</td>
+                <td scope="row"className='filas'>{reading.sensor1Value}</td>
+                <td scope="row"className='filas'>{reading.sensor2Value}</td>
+                <td scope="row"className='filas'>{reading.sensor3Value}</td>
               </tr>
             ))}
           </tbody>

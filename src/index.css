@@ -29,9 +29,12 @@
 }
 
 .navbar{
-    background-color: rgb(243, 243, 220) !important;
+    background-color: rgb(243, 243, 220) ;
+    
 }
-
+.navbar-toggler-icon {
+    background-color: rgb(242, 242, 247) !important;
+}
 .d-grid{
     margin-bottom: 30px;
 }
@@ -48,8 +51,14 @@
     font-weight: bold;
 }
 
+.filas {
+    text-align: center;
+
+
+}
 .material-icons{
-    color: rgb(30, 133, 173);
+    color:  rgb(126, 100, 17);
+    
 }
 
 .btn-primary{
