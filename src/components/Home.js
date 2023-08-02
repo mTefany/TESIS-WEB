@@ -5,6 +5,8 @@ import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
 import Area from "../hook/Area";
 import Tarjeta from "../hook/tarjetas";
+// gráfico de prueba
+import Prueba from "../hook/Prueba";
 
 import Barras from '../hook/Barras'
 
@@ -42,7 +44,8 @@ const Home = () => {
                 <Link className="nav-link" to="/tablero">
                   <Barras />
                 </Link>
-
+                {/* gráfico de Highcharts */}
+                <Prueba/>
               </div>
               </div>
             </div>
