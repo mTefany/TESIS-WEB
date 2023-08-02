@@ -39,7 +39,7 @@ const Pastel = () => {
 
     return (
         // <ResponsiveContainer>
-            <LineChart width={730} height={250} data={lastTenData}
+            <LineChart width={530} height={250} data={lastTenData}
                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="sensor3Value" />
