@@ -5,8 +5,9 @@ import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
 import Area from "../hook/Area";
 import Tarjeta from "../hook/tarjetas";
-
+// import Alerta from './AlertaMensaje'
 import Barras from '../hook/Barras'
+import Notify from "./Notificacion";
 
 const Home = () => {
   const { user, logout, loading } = useAuth();
@@ -21,6 +22,7 @@ const Home = () => {
   return (
     <div>
       <Nav />
+      <Notify />
       <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
         <h4 className=" mb-4 text-uppercase">
           Bienvenido {user.displayName || user.email}

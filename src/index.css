@@ -9,6 +9,24 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.gota{
+    width:50px;
+}
+
+.boton-alerta{
+    background-color: rgb(19, 94, 180);
+    color: white;
+    width: 150px;
+
+
+}
+.boton-alerta:hover {
+    background-color: #69a3d3; /* Cambiar el color al pasar el mouse */
+    border-color: #ffffff; /* También puedes cambiar el color del borde si lo deseas */
+    color:black;
+    font-weight: bold;
+  }
+
 .form-title{
     padding: 14px;
     font-size:20px;

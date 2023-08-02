@@ -5,6 +5,7 @@ import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
 import Nav from "../partials/Nav";
 import Footer from '../partials/footer';
+import Notify from './Notificacion';
 
 export default function SensorList() {
 
@@ -38,7 +39,9 @@ export default function SensorList() {
 
   return (
     <div>
+      
       <Nav />
+      <Notify />
       {datas ? (
         <div>Cargando...</div> // Muestra un mensaje de carga mientras se obtienen los datos
       ) : (
