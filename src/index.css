@@ -9,6 +9,24 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.gota{
+    width:50px;
+}
+
+.boton-alerta{
+    background-color: rgb(19, 94, 180);
+    color: white;
+    width: 150px;
+
+
+}
+.boton-alerta:hover {
+    background-color: #69a3d3; /* Cambiar el color al pasar el mouse */
+    border-color: #ffffff; /* También puedes cambiar el color del borde si lo deseas */
+    color:black;
+    font-weight: bold;
+  }
+
 .form-title{
     padding: 14px;
     font-size:20px;
@@ -29,9 +47,12 @@
 }
 
 .navbar{
-    background-color: rgb(243, 243, 220) !important;
+    background-color: rgb(243, 243, 220) ;
+    
 }
-
+.navbar-toggler-icon {
+    background-color: rgb(242, 242, 247) !important;
+}
 .d-grid{
     margin-bottom: 30px;
 }
@@ -48,8 +69,14 @@
     font-weight: bold;
 }
 
+.filas {
+    text-align: center;
+
+
+}
 .material-icons{
-    color: rgb(30, 133, 173);
+    color:  rgb(126, 100, 17);
+    
 }
 
 .btn-primary{

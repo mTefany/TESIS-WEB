@@ -41,7 +41,7 @@ const Area = () => {
 
     return (
 
-        <ResponsiveContainer width="40%" height={300}>
+        <ResponsiveContainer width="100%" height={300}>
             <ComposedChart width={230} height={150} data={lastTenData}>
                 <XAxis dataKey="timestamp" 
                 tickFormatter={(epoch) => epochToDateTime(epoch)} 

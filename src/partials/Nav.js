@@ -19,7 +19,7 @@ function Nav() {
   
   return (
     <div>
-      <nav className="navbar navbar-expand-lg  navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg   ">
         <div className="container">
             <Link className="navbar-brand" to="/">
             <img src={logo} alt="Logo" width="250x" />
@@ -33,7 +33,7 @@ function Nav() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-             <span className="navbar-toggler-icon"></span>
+             <span > <i className="material-icons">menu</i> </span>
           </button>
          
           <div className="collapse navbar-collapse" id="navbarNav">

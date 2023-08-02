@@ -5,6 +5,7 @@ import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
 import Nav from "../partials/Nav";
 import Footer from '../partials/footer';
+import Notify from './Notificacion';
 
 export default function SensorList() {
 
@@ -38,26 +39,28 @@ export default function SensorList() {
 
   return (
     <div>
+      
       <Nav />
+      <Notify />
       {datas ? (
         <div>Cargando...</div> // Muestra un mensaje de carga mientras se obtienen los datos
       ) : (
         <table class="container table table-hover bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
           <thead>
             <tr>
-              <th scope="col" className='text-uppercase'>Timestamp</th>
-              <th scope="col" className='text-uppercase'> Sensor 1</th>
-              <th scope="col" className='text-uppercase'>Sensor 2</th>
-              <th scope="col" className='text-uppercase'>Sensor 3</th>
+              <th scope="col" className='text-uppercase'>Fecha</th>
+              <th scope="col" className='text-uppercase'> Area 1</th>
+              <th scope="col" className='text-uppercase'>Area 2</th>
+              <th scope="col" className='text-uppercase'>Area 3</th>
             </tr>
           </thead>
           <tbody>
             {data.map((reading, index) => (
               <tr key={index}>
-                <td scope="row">{epochToDateTime(reading.timestamp)}</td>
-                <td scope="row">{reading.sensor1Value}</td>
-                <td scope="row">{reading.sensor2Value}</td>
-                <td scope="row">{reading.sensor3Value}</td>
+                <td scope="row" className='filas'>{epochToDateTime(reading.timestamp)}</td>
+                <td scope="row"className='filas'>{reading.sensor1Value}</td>
+                <td scope="row"className='filas'>{reading.sensor2Value}</td>
+                <td scope="row"className='filas'>{reading.sensor3Value}</td>
               </tr>
             ))}
           </tbody>
