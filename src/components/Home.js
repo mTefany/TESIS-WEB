@@ -9,6 +9,8 @@ import Tarjeta from "../hook/tarjetas";
 import Barras from '../hook/Barras'
 import Notify from "./Notificacion";
 
+import Prueba from "../hook/Prueba"
+
 const Home = () => {
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
