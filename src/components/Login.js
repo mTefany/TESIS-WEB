@@ -3,6 +3,7 @@ import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../image/logo.jpeg";
 import Alert from "./Alert";
+import 'material-icons/iconfont/material-icons.css';
 
 function Login() {
   const [user, setUser] = useState({
@@ -68,6 +69,13 @@ function Login() {
         <h3 className="form-title">Formulario de ingreso</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Seleccione el rol</option>
+              <option value="1">Usuario</option>
+              <option value="3">Administrador</option>
+            </select>
+          </div>
+          <div className="form-group">
             <label htmlFor="email" className="form-label">
               Email
             </label>
@@ -107,22 +115,22 @@ function Login() {
             </button>
           </div>
 
-          <div className="text-center">
+          {/* <div className="text-center">
             <p className="btn-sm">
               Si no tienes una cuenta!
               <div className="  card-group">
                 <div className=" card ">
                   <Link to="/register" className="opcionregistro">
-                  <i class="material-icons">note_add</i>
+                    <i class="material-icons">note_add</i>
                   </Link>
                 </div>
                 <div className=" card opcionregistro">
                   <a href="#" onClick={handleGoogleSignin}>
-                  <i className="material-icons">mail</i></a>
+                    <i className="material-icons">mail</i></a>
                 </div>
               </div>
             </p>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

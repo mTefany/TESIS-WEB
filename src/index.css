@@ -9,6 +9,66 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+h4{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.usuarios-container {
+    margin: 20px;
+  }
+  
+  .agregar-button {
+    background-color: rgb(126, 100, 17);
+    color: white;
+    border: none;
+    padding: 1px 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .botonnuevo{
+    background-color: white;
+    color: white;
+    border: none;
+    padding: 1px 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    float: right;
+  }
+  
+  .usuarios-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .usuarios-table th, .usuarios-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .usuarios-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .editar-button, .eliminar-button {
+    background-color: #268588;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .eliminar-button {
+    background-color: #c42e42;
+  }
+  
+
 .gota{
     width:50px;
 }

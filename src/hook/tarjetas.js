@@ -42,7 +42,7 @@ export default function Tarjeta() {
                         <div className="card">
                             <center>
                                 <p> 
-                                    <i className="material-icons" style={{ color: '#059e8a' }}>egg</i>Humedad Zona 1</p>
+                                    <i className="material-icons" style={{ color: '#A25e8a' }}>egg</i>Humedad Area 1</p>
                                 <p><span className="reading">{data.length > 0 ? data[0].sensor1Value : 0} %</span></p>
                             </center>
                             {/* <img className="zonas" src="img/Zona1.jpeg" alt="Zona 1" /> */}
@@ -51,7 +51,7 @@ export default function Tarjeta() {
                     <div class="col-sm-4">
                         <div className="card">
                             <center>
-                                <p><i className="material-icons" style={{ color: '#087e8a' }}>egg</i>Humedad Zona 2</p>
+                                <p><i className="material-icons" style={{ color: '#087e8a' }}>egg</i>Humedad Area 2</p>
                                 <p><span className="reading">{data.length > 0 ? data[0].sensor2Value : 0} %</span></p>
                             </center>
                             {/* <img className="zonas" src="img/Zona2.jpeg" alt="Zona 2" /> */}
@@ -60,7 +60,7 @@ export default function Tarjeta() {
                         <div class="col-sm-4">
                         <div className="card">
                             <center>
-                                <p><i className="material-icons" style={{ color: '#1eee8a' }}>egg</i> Humedad Zona 3</p>
+                                <p><i className="material-icons" style={{ color: '#1eee8a' }}>egg</i> Humedad Area 3</p>
                                 <p><span className="reading">{data.length > 0 ? data[0].sensor3Value : 0} %</span></p>
                             </center>
                             {/* <img className="zonas" src="img/Zona3.jpeg" alt="Zona 3" /> */}

@@ -10,6 +10,7 @@ import Barras from '../hook/Barras'
 import Notify from "./Notificacion";
 
 import Prueba from "../hook/Prueba"
+import Pastel from "../hook/Pastel";
 
 const Home = () => {
   const { user, logout, loading } = useAuth();
@@ -35,7 +36,7 @@ const Home = () => {
           <div class=" mb-3">
             <div className="card-body">
               <Link className="nav-link" to="/tablero">
-                <Area />
+                <Barras />
               </Link>
 
             </div>
@@ -44,7 +45,7 @@ const Home = () => {
             <div class=" mb-3">
               <div className="card-body">
                 <Link className="nav-link" to="/tablero">
-                  <Barras />
+                  <Pastel />
                 </Link>
                 {/* gráfico de Highcharts */}
                 <Prueba/>

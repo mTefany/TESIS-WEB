@@ -26,8 +26,11 @@ const Pastel = () => {
                 setTodos([]);
                 const data = snapshot.val();
                 if (data !== null) {
-                    const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-                    setLastTenData(sortedData.slice(0, 10)); // Seleccionar los últimos 10 datos
+                    const sortedData = Object.values(data)
+                        .filter(item => item.sensor1Value < 60 && item.sensor2Value < 60 && item.sensor3Value < 60)
+                        .sort((a, b) => b.timestamp - a.timestamp);
+                    setLastTenData(sortedData.slice(0, 5)); // Seleccionar los últimos 10 datos
+                    //setLastTenData(sortedData); 
                 }
                 setTodos(false)
             });
@@ -38,19 +41,25 @@ const Pastel = () => {
 
 
     return (
-        // <ResponsiveContainer>
-            <LineChart width={530} height={250} data={lastTenData}
+        <div style={{flex:1}}>
+            <h6 className='text-center mb-3'>Humedad en áreas de la Finca Catagua</h6>
+            <ResponsiveContainer width="100%" height={300}> 
+            <LineChart 
+                data={lastTenData}
                 margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="sensor3Value" />
+                <XAxis dataKey="timestamp" 
+                tickFormatter={(epoch) => epochToDateTime(epoch)} />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="sensor1Value" stroke="#8884d8" />
-                <Line type="monotone" dataKey="sensor2Value" stroke="#82ca9d" />
-                <Line type="monotone" dataKey="sensor3Value" stroke="#82459d" />
+                <Line type="monotone" dataKey="sensor1Value" stroke="#FFA500" />
+                <Line type="monotone" dataKey="sensor2Value" stroke="#C71585" />
+                <Line type="monotone" dataKey="sensor3Value" stroke="#228B22" />
             </LineChart>
-        // </ResponsiveContainer>
+        </ResponsiveContainer>
+        </div>
+        
 
 
     )

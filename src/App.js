@@ -6,6 +6,7 @@ import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './components/ProtectedRoute';
 import Tablero from './components/Tablero';
+import Usuarios from './components/Usuarios';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/sensores" element={<Sensorlist />} />  
           <Route path="/tablero" element={<Tablero />} /> 
+          <Route path="/usuarios" element={<Usuarios />} /> 
         </Routes>
       </AuthProvider>
     </div>

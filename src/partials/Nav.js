@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import logo from '../image/logohome.png'
+import 'material-icons/iconfont/material-icons.css';
 
 
 
@@ -54,6 +55,11 @@ function Nav() {
                   Sensores
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/usuarios">
+                  Usuarios
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -63,7 +69,7 @@ function Nav() {
             </span>
             <Link className="nav-link" to="/login" onClick={handleLogout}>
               
-              <i className="material-icons logout">logout</i>
+              <i className="material-icons">logout</i>
             </Link>
           </div>
         </div>

@@ -29,7 +29,9 @@ const Barras = () => {
                     const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
                     // console.log(sortedData)
                     // setData(sortedData);
-                    setLastTenData(sortedData.slice(0, 5)); // Seleccionar los últimos 10 datos
+                    
+                    setLastTenData(sortedData.slice(0, 10)); // Seleccionar los últimos 10 datos
+                    
                 }
 
                 setTodos(false)
@@ -42,7 +44,9 @@ const Barras = () => {
 
     return (
 
-        <ResponsiveContainer width="100%"  height={300} >
+        <div style={{flex:1}}>
+            <h6 className='text-center mb-3'>Valores de área 1, área 2 y área 3</h6>
+            <ResponsiveContainer width="100%"  height={300} >
             <BarChart
                 data={lastTenData}
                 width={500}
@@ -62,11 +66,12 @@ const Barras = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="sensor1Value" fill="#ffb6c1" />
-                <Bar dataKey="sensor2Value" fill="#20b2aa" />
-                <Bar dataKey="sensor3Value" fill="#87ceeb" />
+                <Bar dataKey="sensor1Value" fill="#006400" />
+                <Bar dataKey="sensor2Value" fill="#9ACD32" />
+                <Bar dataKey="sensor3Value" fill="#CD853F" />
             </BarChart>
         </ResponsiveContainer>
+        </div>
     )
 }
 

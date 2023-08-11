@@ -7,7 +7,7 @@ import { epochToDateTime } from '../context/dateTime';
 import { ref, onValue } from 'firebase/database'
 import { db } from "../firebase";
 
-const Prueba = () => {
+const BarraBasica = () => {
     const { user } = useAuth(); // Obtenemos el uid del contexto de autenticación
     const uidUser = user?.uid;
     const dbPath = 'UsersData/' + uidUser + "/readings";
@@ -26,7 +26,7 @@ const Prueba = () => {
                     const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
                     // console.log(sortedData)
                     // setData(sortedData);
-                    setLastTenData(sortedData.slice(0, 8)); // Seleccionar los últimos 10 datos
+                    setLastTenData(sortedData.slice(0, 5)); // Seleccionar los últimos 10 datos
                 }
 
                 setTodos(false)
@@ -42,29 +42,71 @@ const Prueba = () => {
       // Configuración de Highcharts
     }, [uidUser]);
   
-
-    // Configuración del gráfico
-    const options = {
+    const options={
       chart: {
-        type: 'column'
+          type: 'bar'
       },
       title: {
-        text: 'Humedad en la Finca Catagua'
+          text: 'Historic World Population by Region',
+          align: 'left'
       },
-      series: [
-        {
-          name: 'Area 1',
-          data:[51, 50, 49, 50, 51, 52, 53, 53, 52]
-        },
-        {
-          name: 'Area 2',
-          data:[45, 48, 50, 53, 58, 59, 56, 52, 51]
-        },{
-          name: 'Area 3',
-          data:[46, 48, 51, 57, 53, 54, 52, 50, 51]
-        }
-      ]
-    };
+      xAxis: {
+          categories: ['Africa', 'America', 'Asia', 'Europe'],
+          title: {
+              text: null
+          },
+          gridLineWidth: 1,
+          lineWidth: 0
+      },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Population (millions)',
+              align: 'high'
+          },
+          labels: {
+              overflow: 'justify'
+          },
+          gridLineWidth: 0
+      },
+      tooltip: {
+          valueSuffix: ' millions'
+      },
+      plotOptions: {
+          bar: {
+              borderRadius: '50%',
+              dataLabels: {
+                  enabled: true
+              },
+              groupPadding: 0.1
+          }
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'top',
+          x: -40,
+          y: 80,
+          floating: true,
+          borderWidth: 1,
+          shadow: true
+      },
+      credits: {
+          enabled: false
+      },
+      series: [{
+          name: 'Year 1990',
+          data: [631, 727, 3202, 721]
+      }, {
+          name: 'Year 2000',
+          data: [814, 841, 3714, 726]
+      }, {
+          name: 'Year 2018',
+          data: [1276, 1007, 4561, 746]
+      }
+    ]
+  };
+  
   
     return (
       <div style={{flex:1}}>
@@ -73,4 +115,4 @@ const Prueba = () => {
     );
   };
   
-  export default Prueba;
+  export default BarraBasica;

@@ -5,7 +5,7 @@ import { db } from "../firebase";
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
-import { ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend ,Bar , Line} from 'recharts'
+import { ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Line } from 'recharts'
 
 const Area = () => {
     const { user } = useAuth(); // Obtenemos el uid del contexto de autenticación
@@ -27,7 +27,7 @@ const Area = () => {
                 const data = snapshot.val();
                 if (data !== null) {
                     const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-                    setLastTenData(sortedData.slice(0, 5)); // Seleccionar los últimos 10 datos
+                    setLastTenData(sortedData.slice(0, 10)); // Seleccionar los últimos 10 datos
                     console.log(lastTenData)
                 }
 
@@ -40,7 +40,8 @@ const Area = () => {
 
 
     return (
-
+        <div>
+        <h6 className='text-center mb-3'>Valores del área 2 en la Finca Catagua</h6>
         <ResponsiveContainer width="100%" height={300}>
             <ComposedChart width={230} height={150} data={lastTenData}>
                 <XAxis dataKey="timestamp" 
@@ -51,11 +52,12 @@ const Area = () => {
                 <Legend />
                 <CartesianGrid stroke="#f5f5f5" />
                 {/* <Area type="monotone" dataKey="sensor1Value" fill="#8884d8" stroke="#8884d8" /> */}
-                <Bar dataKey="sensor2Value" barSize={20} fill="#915ea9" />
-                <Line type="monotone" dataKey="sensor3Value" stroke="#ff9300" />
-                <Line type="monotone" dataKey="sensor1Value" stroke="#f15361" />
+                <Bar dataKey="sensor2Value" barSize={20} fill="#F4A460" />
+                <Line type="monotone" dataKey="sensor3Value" stroke="#2B5138" />
+                <Line type="monotone" dataKey="sensor1Value" stroke="#8B4513" />
             </ComposedChart>
         </ResponsiveContainer>
+        </div>
     )
 }
 

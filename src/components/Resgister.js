@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from '../context/authContext'
 import { Link, useNavigate } from "react-router-dom";
 import Alert from "./Alert";
+import logo from '../image/logo.jpeg'
 
 function Register() {
 
@@ -42,25 +43,67 @@ function Register() {
     }
   };
   return (
-    <div className="w-full max-w-xs m-auto">
-
-      {error && <Alert message={error} />}
-
-     
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 text-sm font-fold mb-2">Email</label>
-          <input type="email" name="email" placeholder="Su email@gmail.com.ec" onChange={handleChange} className="shadow apperance-none border rounder w-full py-2 px-3 text-gray-700 leaading-tight focus:outline-none focus:shadow-outline"/>
+    <div className="containerform">
+      <div className="form-container">
+        {error && <Alert message={error} />}
+        <div className="text-center">
+          <img src={logo} alt="Logo" width="250x" />
         </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-fold mb-2">Password</label>
-          <input type="password" name="password" id="password" placeholder="***********" onChange={handleChange} className="shadow apperance-none border rounder w-full py-2 px-3 text-gray-700 leaading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Registro</button>
-      </form>
-      <Link to='/login' >
-        <button className="bg-slate-50 hover:bg-slate-200 text-black shadow-md rounded border-2 border-gray-300 py-2 px-4 w-full">Iniciar sesión</button>
-      </Link>
+        <h3 className="form-title">Nuevo usuario</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Seleccione el rol</option>
+              <option value="1">Usuario</option>
+              <option value="3">Administrador</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Su email@gmail.com.ec"
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="***********"
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="text" className="form-label">
+              Cargo
+            </label>
+            <input
+              type="text"
+              name="cargo"
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+          
+          <div className="d-grid gap-2">
+            <button type="submit" className="btn btn-primary">
+            <Link className="nav-link" to="/usuarios">
+            Nuevo usuario
+              </Link>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

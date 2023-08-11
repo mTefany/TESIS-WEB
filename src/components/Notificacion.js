@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { db } from '../firebase';
 import { useAuth } from '../context/authContext';
+import 'material-icons/iconfont/material-icons.css';
 
 export default function Notify() {
 
@@ -62,10 +63,10 @@ export default function Notify() {
                 notify2();
             }
 
-            if (sensor3Value >= 40 && sensor3Value <= 50) {
+            if (sensor3Value >= 49 && sensor3Value <= 56) {
                 console.log("Sensor 3 está bien"+ sensor3Value);
             } else {
-                console.log("Sensor 3 esta mal"+sensor3Value)
+                console.log("Sensor 3 esta fuera de rango"+sensor3Value)
                 notify3();
             }
         
@@ -163,7 +164,8 @@ export default function Notify() {
                                 src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
                                 alt=""></img>
 
-                            Sensor 3 No esta  no esta funcionando
+                            Area 3 cuenta con el sueño muy seco
+
                         </p>
                     </div>
                 </div>
