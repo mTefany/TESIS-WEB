@@ -13,6 +13,7 @@ import Linea from "../hook/Linea";
 
 const Home = () => {
   const { user, loading } = useAuth();
+  const navigate = useNavigate();
   const graphStyle = {
     flex: '1',
   };
