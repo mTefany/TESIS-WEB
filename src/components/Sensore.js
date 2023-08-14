@@ -11,7 +11,8 @@ export default function SensorList() {
 
   const { user } = useAuth();
   const uidUser = user?.uid;
-  const dbPath = 'UsersData/' + uidUser + "/readings";
+  //const dbPath = 'UsersData/' + uidUser + "/readings";
+  const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
   const dbRef = ref(db, dbPath);
 
   const [data, setData] = useState([]);

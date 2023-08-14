@@ -7,6 +7,7 @@ import { AuthProvider } from './context/authContext'
 import ProtectedRoute from './components/ProtectedRoute';
 import Tablero from './components/Tablero';
 import Usuarios from './components/Usuarios';
+import EditarUsuario from "./components/EditarUsuario";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/sensores" element={<Sensorlist />} />  
           <Route path="/tablero" element={<Tablero />} /> 
-          <Route path="/usuarios" element={<Usuarios />} /> 
+          <Route path="/usuarios" element={<Usuarios />} />
+          <Route path="/editar-usuario/:userId" element={<EditarUsuario />} />
         </Routes>
       </AuthProvider>
     </div>

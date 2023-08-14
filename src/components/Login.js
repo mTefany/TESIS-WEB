@@ -39,15 +39,7 @@ function Login() {
     }
   };
 
-  const handleGoogleSignin = async () => {
-    try {
-      await loginWithGoogle();
-      navigate("/");
-    } catch {
-      console.log(error.code);
-      setError(error.message);
-    }
-  };
+
 
   const handleResetPassword = async () => {
     if (!user.email) return setError("Por favor ingresa tu email");
@@ -108,6 +100,12 @@ function Login() {
               Iniciar sesión
             </button>
           </div>
+
+          {/* <div className="d-grid gap-2">
+            <Link to={'/register'} className="btn btn-outline-secondary">
+              Registrate
+            </Link>
+          </div> */}
 
           {/* <div className="text-center">
             <p className="btn-sm">

@@ -40,13 +40,18 @@ function Nav() {
               <NavItem to="/" label="Inicio" />
               <NavItem to="/tablero" label="Tablero" />
               <NavItem to="/sensores" label="Sensores" />
-              <NavItem to="/usuarios" label="Usuarios" />
+              {user?.firestoreData?.rol === "admin" && (
+                <li className="nav-item">
+                  <NavItem to="/usuarios" label="Usuarios" />
+                </li>
+              )}
+              
             </ul>
           </div>
 
           <div className="d-flex">
             <span id="user-details" className="nav-link">
-              {user.email}
+              {user?.email}
             </span>
             <Link className="nav-link" to="/login" onClick={handleLogout}>
               <i className="material-icons">logout</i>

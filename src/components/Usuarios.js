@@ -1,28 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Nav from '../partials/Nav';
-import { Link } from 'react-router-dom';
+import { auth, firestore } from '../firebase'
 
 function Usuarios() {
-    const [usuarios, setUsuarios] = useState([
-        { id: 1, correo: 'monitoreo-humedad@iot.pi.ec', cargo: 'Gerente', rol: 'Administrador' },
-        { id: 2, correo: 'villamarpilosolisseth@gmail.com', cargo: 'Encargada', rol: 'Usuario' },
-        // Agrega más usuarios aquí según sea necesario
-    ]);
+    const navigate = useNavigate();
+    const usuariosCollection = collection(firestore, "usuarios");
+
+    const [usuarios, setUsuarios] = useState([]);
 
     const handleEditarUsuario = (id) => {
         // Lógica para editar el usuario con el ID proporcionado
         // Puedes abrir un formulario de edición o navegar a otra página, por ejemplo
+        navigate(`/editar-usuario/${id}`);
     };
 
-    const handleEliminarUsuario = (id) => {
-        // Lógica para eliminar el usuario con el ID proporcionado
-        // Puedes mostrar un mensaje de confirmación antes de eliminar
+    const handleEliminarUsuario = async (uid) => {
+        try {
+            const usuarioRef = doc(usuariosCollection, uid);
+            await deleteDoc(usuarioRef);
+
+            const nuevosUsuarios = usuarios.filter((usuario) => usuario.uid !== uid);
+            setUsuarios(nuevosUsuarios);
+        } catch (error) {
+            console.error("Error al eliminar el usuario:", error);
+        }
     };
 
-    const handleNuevoUsuario = () => {
-        // Lógica para agregar un nuevo usuario
-        // Puedes abrir un formulario de creación o navegar a otra página, por ejemplo
-    };
+    useEffect(() => {
+        getDocs(usuariosCollection)
+            .then((querySnapshot) => {
+                let _usuarios = [];
+
+                querySnapshot.forEach((doc) => {
+                    const userData = doc.data();
+                    _usuarios.push({
+                        cargo: userData.cargo,
+                        rol: userData.rol,
+                        email: userData.email,
+                        uid: userData.uid,
+                    });
+                });
+
+                setUsuarios(_usuarios);
+            })
+            .catch((error) => {
+                console.error("Error obteniendo datos de usuarios:", error);
+            });
+    }, []);
 
     return (
 
@@ -46,14 +72,14 @@ function Usuarios() {
                             </tr>
                         </thead>
                         <tbody>
-                            {usuarios.map((usuario) => (
-                                <tr key={usuario.id}>
-                                    <td>{usuario.correo}</td>
+                            {usuarios.map((usuario, index) => (
+                                <tr key={index}>
+                                    <td>{usuario.email}</td>
                                     <td>{usuario.cargo}</td>
                                     <td>{usuario.rol}</td>
                                     <td>
-                                        <button onClick={() => handleEditarUsuario(usuario.id)} className="editar-button">Editar</button>
-                                        <button onClick={() => handleEliminarUsuario(usuario.id)} className="eliminar-button">Eliminar</button>
+                                        <button onClick={() => handleEditarUsuario(usuario.uid)} className="editar-button">Editar</button>
+                                        <button onClick={() => handleEliminarUsuario(usuario.uid)} className="eliminar-button">Eliminar</button>
                                     </td>
                                 </tr>
                             ))}
