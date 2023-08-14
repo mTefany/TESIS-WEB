@@ -5,6 +5,9 @@ import {getAuth} from 'firebase/auth';
 //importar base de datos
 import { getDatabase } from "firebase/database";
 
+//importar firestore
+import { getFirestore } from "firebase/firestore";
+
 //datos de configuraion de firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAKy23WZonQ_dU9mtUAo9Of-mB3wse_4d8",
@@ -22,3 +25,5 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 // Iniciarlizar Base de datos
 export const db = getDatabase()
+// Inicializar Firestore
+export const firestore = getFirestore(app);

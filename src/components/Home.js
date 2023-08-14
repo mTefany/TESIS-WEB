@@ -33,7 +33,7 @@ const Home = () => {
         <Tarjeta />
 
         <div className='row' id="cards-div">
-          <div class=" mb-3">
+          <div className=" mb-3">
             <div className="card-body">
               <Link className="nav-link" to="/tablero">
                 <Barras />
@@ -42,7 +42,7 @@ const Home = () => {
             </div>
             <div />
 
-            <div class=" mb-3">
+            <div className=" mb-3">
               <div className="card-body">
                 <Link className="nav-link" to="/tablero">
                   <Pastel />

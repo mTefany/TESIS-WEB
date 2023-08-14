@@ -9,7 +9,8 @@ export default function Tarjeta() {
 
     const { user } = useAuth(); // Obtenemos el uid del contexto de autenticación
     const uidUser = user?.uid;
-    const dbPath = 'UsersData/' + uidUser + "/readings";
+    //const dbPath = 'UsersData/' + uidUser + "/readings";NOnpj85jxhdS3SZw7dTXdLyLqz82
+    const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
     const dbRef = ref(db, dbPath);
 
     const [data, setData] = useState([]);
@@ -38,7 +39,7 @@ export default function Tarjeta() {
             <div className="cards container mt-3">
                 <p><span className="reading text-xl mb-4 text-uppercase"> Ultima atualizacion {data.length > 0 ? epochToDateTime(data[0].timestamp) : 0} </span></p>
                 <div className='row' id="cards-div">
-                    <div class="col-sm-4">
+                    <div className="col-sm-4">
                         <div className="card">
                             <center>
                                 <p> 
@@ -48,7 +49,7 @@ export default function Tarjeta() {
                             {/* <img className="zonas" src="img/Zona1.jpeg" alt="Zona 1" /> */}
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div className="col-sm-4">
                         <div className="card">
                             <center>
                                 <p><i className="material-icons" style={{ color: '#087e8a' }}>egg</i>Humedad Area 2</p>
@@ -57,7 +58,7 @@ export default function Tarjeta() {
                             {/* <img className="zonas" src="img/Zona2.jpeg" alt="Zona 2" /> */}
                         </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div className="col-sm-4">
                         <div className="card">
                             <center>
                                 <p><i className="material-icons" style={{ color: '#1eee8a' }}>egg</i> Humedad Area 3</p>

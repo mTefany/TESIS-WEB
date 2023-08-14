@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth'
-import { auth } from '../firebase'
+import { collection, doc, getDoc } from "firebase/firestore";
+import { auth, firestore } from '../firebase'
 
 const authContext = createContext();
 
@@ -11,6 +12,7 @@ const useAuth = () => {
 };
 
 function AuthProvider({ children }) {
+    const usuariosCollection = collection(firestore, "usuarios");
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -18,17 +20,40 @@ function AuthProvider({ children }) {
     const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
     const login = async (email, password) => signInWithEmailAndPassword(auth, email, password);
     const logout = () => signOut(auth)
-    const loginWithGoogle = () =>{
+    const loginWithGoogle = () => {
         const googleProvider = new GoogleAuthProvider();
-        return signInWithPopup (auth, googleProvider)
+        return signInWithPopup(auth, googleProvider)
     }
-    const resetPassword = (email)=> sendPasswordResetEmail(auth, email)
- 
+    const resetPassword = (email) => sendPasswordResetEmail(auth, email)
+
 
 
     useEffect(() => {
         onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
+            const userRef = doc(usuariosCollection, currentUser?.uid);
+
+            getDoc(userRef)
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        setUser({
+                            ...currentUser,
+                            firestoreData: userData
+                        })
+                    } else {
+                        setUser({
+                            ...currentUser,
+                            firestoreData: null
+                        })
+                    }
+                })
+                .catch((error) => {
+                    setUser({
+                        ...currentUser,
+                        firestoreData: null
+                    });
+                });
+
             setLoading(false);
         })
     }, [])

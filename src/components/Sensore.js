@@ -11,7 +11,8 @@ export default function SensorList() {
 
   const { user } = useAuth(); // Obtenemos el uid del contexto de autenticación
   const uidUser = user?.uid;
-  const dbPath = 'UsersData/' + uidUser + "/readings";
+  //const dbPath = 'UsersData/' + uidUser + "/readings";
+  const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
   const dbRef = ref(db, dbPath);
 
   const [data, setData] = useState([]);
@@ -44,7 +45,7 @@ export default function SensorList() {
       {datas ? (
         <div>Cargando...</div> // Muestra un mensaje de carga mientras se obtienen los datos
       ) : (
-        <table class="container table table-hover bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
+        <table className="container table table-hover bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
           <thead>
             <tr>
               <th scope="col" className='text-uppercase'>Fecha</th>

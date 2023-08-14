@@ -10,7 +10,8 @@ import { RadialBar, RadialBarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend
 const Radial = () => {
     const { user } = useAuth(); // Obtenemos el uid del contexto de autenticación
     const uidUser = user?.uid;
-    const dbPath = 'UsersData/' + uidUser + "/readings";
+    //const dbPath = 'UsersData/' + uidUser + "/readings";
+    const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
     const dbRef = ref(db, dbPath);
 
     const [data, setData] = useState([]);

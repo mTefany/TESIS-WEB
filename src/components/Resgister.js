@@ -1,16 +1,22 @@
 import { useState } from "react";
-import { useAuth } from '../context/authContext'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import logo from '../image/logo.jpeg'
 
+import { firestore, auth } from '../firebase';
+import { createUserWithEmailAndPassword} from 'firebase/auth'
+import { collection, doc, setDoc } from "firebase/firestore";
+
 function Register() {
+  const usuariosCollection = collection(firestore, "usuarios");
 
   const [user, setUser] = useState({
+    rol: '',
+    cargo: '',
     email: '',
     password: '',
   });
-  const { signup } = useAuth();
+
   const navigate = useNavigate();
   const [error, setError] = useState();
 
@@ -19,29 +25,58 @@ function Register() {
     setUser({ ...user, [name]: value })
     //console.log(name, value);
   }
+
   //mostrar lo que tiene
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+
+    if (!user.rol.trim()) {
+      setError('Por favor ingresa tu rol')
+      return
+    }
+    if (!user.cargo.trim()) {
+      setError('Por favor ingresa tu cargo')
+      return
+    }
+    if (!user.email.trim()) {
+      setError('Por favor ingresa tu email')
+      return
+    }
+    if (!user.password.trim()) {
+      setError('Por favor ingresa tu contraseña')
+      return
+    }
+
     try {
-      await signup(user.email, user.password)
-      navigate('/')
-      // console.log(user);
+      const infoUsuario = await createUserWithEmailAndPassword(auth, user.email, user.password);
+      const docuRef = doc(usuariosCollection, infoUsuario.user.uid);
+      setDoc(docuRef, {
+        rol: user.rol,
+        cargo: user.cargo,
+        email: user.email,
+        password: user.password,
+        uid: infoUsuario.user.uid
+      });
+
+      navigate('/login')
     } catch (error) {
-      console.log(error.code);
-      if (error.code === "auth/weak-password") {
-        setError('Contraseña invalida.')
-      } else {
-        if (error.code === "auth/invalid-email") {
-          setError("Correo invalido.")
-        }else{
-          if(error.code === "auth/email-already-in-use"){
-            setError("Este correo ya esta registrado.")
-          }
-        }
+      if (error.code === "auth/invalid-email") {
+        setError("Correo invalido.")
+        return
       }
+      if (error.code === "auth/email-already-in-use") {
+        setError("Este correo ya esta registrado.")
+        return
+      }
+      if (error.code === "auth/weak-password") {
+        setError('La contraseña debe tener\n al menos 6 caracteres.')
+        return
+      }
+      setError('Error al crear el usuario.')
     }
   };
+
   return (
     <div className="containerform">
       <div className="form-container">
@@ -52,10 +87,10 @@ function Register() {
         <h3 className="form-title">Nuevo usuario</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Seleccione el rol</option>
-              <option value="1">Usuario</option>
-              <option value="3">Administrador</option>
+            <select className="form-select" aria-label="Default select example" name="rol" onChange={handleChange}>
+              <option defaultValue={''}>Seleccione el rol</option>
+              <option value="usuario">Usuario</option>
+              <option value="admin">Administrador</option>
             </select>
           </div>
           <div className="form-group">
@@ -94,12 +129,10 @@ function Register() {
               className="form-control"
             />
           </div>
-          
-          <div className="d-grid gap-2">
+
+          <div className="d-grid">
             <button type="submit" className="btn btn-primary">
-            <Link className="nav-link" to="/usuarios">
-            Nuevo usuario
-              </Link>
+              Nuevo usuario
             </button>
           </div>
         </form>
