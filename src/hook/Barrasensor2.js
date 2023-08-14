@@ -8,7 +8,7 @@ import { ResponsiveContainer, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, A
 const BarraSensor2 = () => {
     const { user } = useAuth();
     const uidUser = user?.uid;
-    const dbPath = 'UsersData/' + uidUser + "/readings";
+    const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
     const dbRef = ref(db, dbPath);
 
     const [data, setData] = useState([]);

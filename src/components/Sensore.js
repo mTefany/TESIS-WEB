@@ -6,6 +6,9 @@ import { epochToDateTime } from '../context/dateTime';
 import Nav from "../partials/Nav";
 import Footer from '../partials/footer';
 import Notify from './Notificacion';
+import { saveAs } from "file-saver";
+import { csvFormat } from "d3-dsv";
+
 
 export default function SensorList() {
 
@@ -98,6 +101,23 @@ export default function SensorList() {
     return buttons;
   }
 
+  const handleDownloadCSV = () => {
+    // Convertir los datos a formato CSV
+    const csvData = csvFormat(data, [
+      "timestamp",
+      "sensor1Value",
+      "sensor2Value",
+      "sensor3Value",
+    ]);
+
+    // Crear un blob con el contenido CSV
+    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8" });
+
+    // Guardar el archivo CSV en el navegador
+    saveAs(blob, "sensor_data.csv");
+  };
+
+
   return (
     <div>
       <Nav />
@@ -106,7 +126,10 @@ export default function SensorList() {
         <div>Cargando...</div>
       ) : (
         <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-           <table className="table table-hover">
+           <button onClick={handleDownloadCSV} className="btn btn-primary">
+            Descargar CSV
+          </button>
+          <table className="table table-hover">
             <thead>
               <tr>
                 <th scope="col" className='text-uppercase'>Fecha</th>
@@ -129,6 +152,7 @@ export default function SensorList() {
           <div className="pagination">
             {renderPaginationButtons()}
           </div>
+         
         </div>
       )}
       <Footer />

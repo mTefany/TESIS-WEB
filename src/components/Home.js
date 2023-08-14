@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
 import Tarjeta from "../hook/tarjetas";
-import Barras from '../hook/Barras'
 import Notify from "./Notificacion";
-import Pastel from "../hook/Pastel";
 import BarraBasica from "../hook/barraBasica";
 import Prueba from "../hook/Prueba";
 import LinePastelBarra from "../hook/LineBarraPastel";

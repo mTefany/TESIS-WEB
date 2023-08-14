@@ -8,7 +8,7 @@ import { ResponsiveContainer, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, A
 const BarraSensor1 = () => {
     const { user } = useAuth();
     const uidUser = user?.uid;
-    const dbPath = 'UsersData/' + uidUser + "/readings";
+    const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
     const dbRef = ref(db, dbPath);
 
     const [data, setData] = useState([]);
@@ -28,7 +28,7 @@ const BarraSensor1 = () => {
 
     return (
         <div style={{ flex: 1 }}>
-            <h6 className='text-center mb-3'>Valores de humedad en el área 2 </h6>
+            <h6 className='text-center mb-3'>Valores de humedad en el área 1 </h6>
             <ResponsiveContainer width="100%" height={300}>
                 <AreaChart
                     data={lastTenData}

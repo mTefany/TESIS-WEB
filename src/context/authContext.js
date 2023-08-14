@@ -20,10 +20,7 @@ function AuthProvider({ children }) {
     const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
     const login = async (email, password) => signInWithEmailAndPassword(auth, email, password);
     const logout = () => signOut(auth)
-    const loginWithGoogle = () => {
-        const googleProvider = new GoogleAuthProvider();
-        return signInWithPopup(auth, googleProvider)
-    }
+   
     const resetPassword = (email) => sendPasswordResetEmail(auth, email)
 
 
@@ -59,7 +56,7 @@ function AuthProvider({ children }) {
     }, [])
 
     return (
-        <authContext.Provider value={{ signup, login, user, logout, loading, loginWithGoogle, resetPassword }}>
+        <authContext.Provider value={{ signup, login, user, logout, loading, resetPassword }}>
             {children}
         </authContext.Provider>
     )
