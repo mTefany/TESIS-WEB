@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /usuarios/{documentId} {
+      allow read: if true; // Permite lectura a todos los usuarios (puedes ajustar esto según tus necesidades)
+      allow create, update, delete: if request.auth != null; // Permite crear, actualizar y eliminar si el usuario está autenticado
+    }
+  }
+}
