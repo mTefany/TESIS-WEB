@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
@@ -21,7 +22,12 @@ const Home = () => {
     navigate("/login");
   };
 
-  if (loading) return <h1>Loading</h1>;
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
+
   return (
     <div>
       <Nav />

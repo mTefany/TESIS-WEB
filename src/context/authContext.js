@@ -30,6 +30,11 @@ function AuthProvider({ children }) {
 
     useEffect(() => {
         onAuthStateChanged(auth, currentUser => {
+            if(!currentUser) {
+                setUser(null);
+                setLoading(false);
+                return;
+            }
             const userRef = doc(usuariosCollection, currentUser?.uid);
 
             getDoc(userRef)
