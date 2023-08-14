@@ -9,6 +9,14 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.containertarjeta{
+  padding: 10px 10px 30px 
+}
+
+.containergrafico{
+  padding: 20px 20px;
+}
+
 h4{
     text-align: center;
     font-size: 18px;
@@ -107,14 +115,42 @@ h4{
 }
 
 .navbar{
-    background-color: rgb(243, 243, 220) ;
+  background: linear-gradient(to right, #c9ecf3,#92c0eb , #2e517c,#253f70, #1d326d);
     
 }
 .navbar-toggler-icon {
     background-color: rgb(242, 242, 247) !important;
 }
+
+
 .d-grid{
     margin-bottom: 30px;
+}
+
+
+.degraded-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.degraded-nav ul li {
+  margin: 0 15px;
+}
+
+.degraded-nav ul li a {
+  text-decoration: none;
+  color: rgb(243, 200, 200);
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.degraded-nav ul li a:hover {
+  color: #e2379b;
 }
 
 .form-container {
@@ -131,12 +167,55 @@ h4{
 
 .filas {
     text-align: center;
-
-
 }
-.material-icons{
-    color:  rgb(126, 100, 17);
-    
+
+
+/* Agregamos un estilo para el fondo degradado */
+.card1 {
+  background: linear-gradient(to right, #94b1ca, #4b579b, #116f8b);
+  color:white;
+  font-weight: bold;
+}
+
+/* Agregamos un estilo para el fondo degradado */
+.card2 {
+  background: linear-gradient(to right, #94b1ca, #4b579b, #116f8b);
+  color:white;
+  font-weight: bold;
+}
+
+/* Agregamos un estilo para el fondo degradado */
+.card3 {
+  background: linear-gradient(to right, #94b1ca, #4b579b, #116f8b);
+  color:white;
+  font-weight: bold;
+}
+/* Estilos para los botones de paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination button {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination span {
+  padding: 5px 10px;
+  margin: 0 5px;
 }
 
 .btn-primary{
@@ -153,12 +232,13 @@ h4{
   }
 
   .nav-link {
-    color: rgb(126, 100, 17)!important;
+    color: rgb(255, 255, 255)!important;
     font-weight: bold;
+    font-size: 17px;
   }
 
   .logout{
-    color: rgb(126, 100, 17)!important;
+    color: rgb(255, 255, 255)!important;
   }
 
   .text-uppercase{

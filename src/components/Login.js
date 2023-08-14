@@ -68,13 +68,7 @@ function Login() {
         </div>
         <h3 className="form-title">Formulario de ingreso</h3>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Seleccione el rol</option>
-              <option value="1">Usuario</option>
-              <option value="3">Administrador</option>
-            </select>
-          </div>
+          
           <div className="form-group">
             <label htmlFor="email" className="form-label">
               Email

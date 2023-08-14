@@ -6,6 +6,10 @@ import Prueba from '../hook/Prueba';
 import Nav from '../partials/Nav';
 import Notify from './Notificacion';
 import BarraBasica from '../hook/barraBasica';
+import BarraSensor1 from '../hook/Barrasensor1';
+import BarraSensor2 from '../hook/Barrasensor2';
+import BarraSensor3 from '../hook/Barrasensor3';
+
 
 function Tablero() {
   const graphStyle = {
@@ -41,13 +45,13 @@ function Tablero() {
           <div className='col-md-12'>
             <div className="d-md-flex gap-4">
               <div style={graphStyle}>
-                <Barras />
+                <BarraSensor1 />
               </div>
               <div style={graphStyle}>
-                <Area />
+                <BarraSensor2 />
               </div>
               <div style={graphStyle}>
-                <Barras />
+                <BarraSensor3 />
               </div>
             </div>
           </div>

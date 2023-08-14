@@ -3,27 +3,27 @@ import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
-import Area from "../hook/Area";
 import Tarjeta from "../hook/tarjetas";
-
 import Barras from '../hook/Barras'
 import Notify from "./Notificacion";
-
-import Prueba from "../hook/Prueba"
 import Pastel from "../hook/Pastel";
+import BarraBasica from "../hook/barraBasica";
+import Prueba from "../hook/Prueba";
+import LinePastelBarra from "../hook/LineBarraPastel";
+import Linea from "../hook/Linea";
 
 const Home = () => {
-  const { user, logout, loading } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await logout();
-    navigate("/login");
+  const { user, loading } = useAuth();
+  const graphStyle = {
+    flex: '1',
   };
+
+
+
 
   if (loading) return <h1>Loading</h1>;
   return (
-    <div>
+    <div >
       <Nav />
       <Notify />
       <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
@@ -31,32 +31,36 @@ const Home = () => {
           Bienvenido {user.displayName || user.email}
         </h4>
         <Tarjeta />
-
-        <div className='row' id="cards-div">
-          <div class=" mb-3">
-            <div className="card-body">
-              <Link className="nav-link" to="/tablero">
-                <Barras />
-              </Link>
-
-            </div>
-            <div />
-
-            <div class=" mb-3">
-              <div className="card-body">
-                <Link className="nav-link" to="/tablero">
-                  <Pastel />
-                </Link>
-                {/* gráfico de Highcharts */}
-                <Prueba/>
+        <div className="row container">
+          {/* Contenedor de Area y Barras */}
+          <div className='col-md-16'>
+            <div className="d-md-flex gap-4">
+              <div style={graphStyle}>
+                <LinePastelBarra />
               </div>
+              <div style={graphStyle}>
+                <Linea />
               </div>
             </div>
           </div>
         </div>
-        <Footer />
-      </div>
-      );
+        <div className="row container">
+          {/* Contenedor de Area y Barras */}
+          <div className='col-md-16'>
+            <div className="d-md-flex gap-4">
+              <div style={graphStyle}>
+                <BarraBasica />
+              </div>
+              <div style={graphStyle}>
+                <Prueba />
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+    <Footer />
+    </div >
+  );
 };
 
-      export default Home;
+export default Home;

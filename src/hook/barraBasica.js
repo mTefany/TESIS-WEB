@@ -13,106 +13,78 @@ const BarraBasica = () => {
     const dbPath = 'UsersData/' + uidUser + "/readings";
     const dbRef = ref(db, dbPath);
 
-    const [data, setData] = useState([]);
-    const [datas, setTodos] = useState([]);
     const [lastTenData, setLastTenData] = useState([]);
 
     useEffect(() => {
         if (uidUser) {
             onValue(dbRef, (snapshot) => {
-                setTodos([]);
                 const data = snapshot.val();
                 if (data !== null) {
                     const sortedData = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-                    // console.log(sortedData)
-                    // setData(sortedData);
-                    setLastTenData(sortedData.slice(0, 5)); // Seleccionar los últimos 10 datos
+                    setLastTenData(sortedData.slice(0, 10)); // Seleccionar los últimos 10 datos
                 }
-
-                setTodos(false)
-
-                Highcharts.setOptions({
-                    // Configuración global de Highcharts, si es necesario
-                });
-                console.log(data)
             });
-        } else {
-            setTodos(false)
         }
-      // Configuración de Highcharts
     }, [uidUser]);
-  
-    const options={
-      chart: {
-          type: 'bar'
-      },
-      title: {
-          text: 'Historic World Population by Region',
-          align: 'left'
-      },
-      xAxis: {
-          categories: ['Africa', 'America', 'Asia', 'Europe'],
-          title: {
-              text: null
-          },
-          gridLineWidth: 1,
-          lineWidth: 0
-      },
-      yAxis: {
-          min: 0,
-          title: {
-              text: 'Population (millions)',
-              align: 'high'
-          },
-          labels: {
-              overflow: 'justify'
-          },
-          gridLineWidth: 0
-      },
-      tooltip: {
-          valueSuffix: ' millions'
-      },
-      plotOptions: {
-          bar: {
-              borderRadius: '50%',
-              dataLabels: {
-                  enabled: true
-              },
-              groupPadding: 0.1
-          }
-      },
-      legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'top',
-          x: -40,
-          y: 80,
-          floating: true,
-          borderWidth: 1,
-          shadow: true
-      },
-      credits: {
-          enabled: false
-      },
-      series: [{
-          name: 'Year 1990',
-          data: [631, 727, 3202, 721]
-      }, {
-          name: 'Year 2000',
-          data: [814, 841, 3714, 726]
-      }, {
-          name: 'Year 2018',
-          data: [1276, 1007, 4561, 746]
-      }
-    ]
-  };
-  
-  
+
+    const categories = lastTenData.map(item => epochToDateTime(item.timestamp)); // Obtener las fechas de los datos
+    const seriesData1 = lastTenData.map(item => parseFloat(item.sensor1Value)); // Obtener los valores de los datos
+    const seriesData2 = lastTenData.map(item => parseFloat(item.sensor2Value)); // Obtener los valores de los datos
+    const seriesData3 = lastTenData.map(item => parseFloat(item.sensor3Value)); // Obtener los valores de los datos
+
+    console.log(seriesData1)
+    console.log(seriesData2)
+    console.log(seriesData3)
+
+
+    const options = {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Lecturas de Sensores'
+        },
+        xAxis: {
+            categories: categories,
+            title: {
+                text: 'Fechas'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Valores'
+            }
+        },
+        tooltip: {
+            pointFormat: 'Valor: <b>{point.y}</b>'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        series: [{
+            name: 'Area 1',
+            data: seriesData1
+        },{
+            name: 'Area 2',
+            data: seriesData2
+        },{
+            name: 'Area 3',
+            data: seriesData3
+        }
+
+        ]
+    };
+
     return (
-      <div style={{flex:1}}>
-        <HighchartsReact highcharts={Highcharts} options={options} />
-      </div>
+        <div style={{ flex: 1 }}>
+            <HighchartsReact highcharts={Highcharts} options={options} />
+        </div>
     );
-  };
-  
-  export default BarraBasica;
+};
+
+export default BarraBasica;
