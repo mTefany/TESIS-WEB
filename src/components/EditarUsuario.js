@@ -42,25 +42,35 @@ function EditarUsuario() {
       });
   }, []);
 
+  const handleCancelar = async () => {
+    navigate("/usuarios");
+  };
+
   return (
-    <div>
-      <h2>Editar Usuario</h2>
-      <p>
-        <strong>Email:</strong> {user?.email}
-      </p>
-      <div>
-        <label>Cargo:</label>
-        <input type="text" value={cargo} onChange={(e) => setCargo(e.target.value)} />
+    <div className="EditarUsuarioContainer">
+      <div className="form-container">
+        <h3 className="form-title">Editar usuario</h3>
+        <p className="center">
+          <label className="form-label" >Email:</label> {user?.email}
+        </p>
+        <div className="form-group">
+          <label className="form-label">Cargo:</label>
+          <input type="text" value={cargo} onChange={(e) => setCargo(e.target.value)} className="form-control" />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Rol:</label>
+          <select className="form-select" name="rol" id="rol" onChange={(e) => setRol(e.target.value)} value={rol}>
+            <option defaultValue={''}>Seleccione el rol</option>
+            <option value="usuario">Usuario</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+        <div class="d-grid gap-2">
+          <button onClick={handleGuardarCambios} className="btn btn-success">Guardar</button>
+          <button onClick={handleCancelar}  className="btn btn-secondary">Cancelar</button>
+        </div>
       </div>
-      <div className="form-group">
-        <label>Rol:</label>
-        <select className="form-select" name="rol" id="rol" onChange={(e) => setRol(e.target.value)}value={rol}>
-          <option defaultValue={''}>Seleccione el rol</option>
-          <option value="usuario">Usuario</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
-      <button onClick={handleGuardarCambios}>Guardar Cambios</button>
+
     </div>
   );
 }

@@ -62,22 +62,22 @@ function Usuarios() {
                         </Link>
 
                     </button>
-                    <table className="usuarios-table">
+                    <table className="table table-hover">
                         <thead>
                             <tr>
-                                <th>Correo</th>
-                                <th>Cargo</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
+                                <th scope="col" className='text-uppercase'>Correo</th> 
+                                <th scope="col" className='text-uppercase'>Cargo</th>
+                                <th scope="col" className='text-uppercase'>Rol</th>
+                                <th scope="col" className='text-uppercase'>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {usuarios.map((usuario, index) => (
                                 <tr key={index}>
-                                    <td>{usuario.email}</td>
-                                    <td>{usuario.cargo}</td>
-                                    <td>{usuario.rol}</td>
-                                    <td>
+                                    <td scope="row" className='filas'>{usuario.email}</td>
+                                    <td scope="row" className='filas'>{usuario.cargo}</td>
+                                    <td scope="row" className='filas'>{usuario.rol}</td>
+                                    <td scope="row" className='filas'>
                                         <button onClick={() => handleEditarUsuario(usuario.uid)} className="editar-button">Editar</button>
                                         <button onClick={() => handleEliminarUsuario(usuario.uid)} className="eliminar-button">Eliminar</button>
                                     </td>

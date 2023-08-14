@@ -21,12 +21,38 @@ function App() {
 
             </ProtectedRoute>
           } />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/sensores" element={<Sensorlist />} />  
-          <Route path="/tablero" element={<Tablero />} /> 
-          <Route path="/usuarios" element={<Usuarios />} />
-          <Route path="/editar-usuario/:userId" element={<EditarUsuario />} />
+          <Route path='/register' element={
+            <ProtectedRoute>
+              <Register />
+
+            </ProtectedRoute>
+          } />
+          <Route path='/sensores' element={
+            <ProtectedRoute>
+              <Sensorlist />
+
+            </ProtectedRoute>
+          } />
+          <Route path='/tablero' element={
+            <ProtectedRoute>
+              <Tablero />
+
+            </ProtectedRoute>
+          } />
+          <Route path='/usuarios' element={
+            <ProtectedRoute>
+              <Usuarios />
+
+            </ProtectedRoute>
+          } />
+          <Route path='/editar-usuario/:userId' element={
+            <ProtectedRoute>
+              <EditarUsuario />
+
+            </ProtectedRoute>
+          } />
+
+          <Route path="/login" element={<Login />} />  
         </Routes>
       </AuthProvider>
     </div>

@@ -39,15 +39,7 @@ function Login() {
     }
   };
 
-  const handleGoogleSignin = async () => {
-    try {
-      await loginWithGoogle();
-      navigate("/");
-    } catch {
-      console.log(error.code);
-      setError(error.message);
-    }
-  };
+
 
   const handleResetPassword = async () => {
     if (!user.email) return setError("Por favor ingresa tu email");
@@ -68,13 +60,7 @@ function Login() {
         </div>
         <h3 className="form-title">Formulario de ingreso</h3>
         <form onSubmit={handleSubmit}>
-          {/* <div className="form-group">
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Seleccione el rol</option>
-              <option value="1">Usuario</option>
-              <option value="3">Administrador</option>
-            </select>
-          </div> */}
+          
           <div className="form-group">
             <label htmlFor="email" className="form-label">
               Email
@@ -115,11 +101,11 @@ function Login() {
             </button>
           </div>
 
-          <div className="d-grid gap-2">
+          {/* <div className="d-grid gap-2">
             <Link to={'/register'} className="btn btn-outline-secondary">
               Registrate
             </Link>
-          </div>
+          </div> */}
 
           {/* <div className="text-center">
             <p className="btn-sm">
