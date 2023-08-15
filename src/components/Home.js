@@ -14,6 +14,7 @@ import Linea from "../hook/Linea";
 const Home = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const nombre =user.firestoreData.nombre
   const graphStyle = {
     flex: '1',
   };
@@ -30,7 +31,7 @@ const Home = () => {
       <Notify />
       <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
         <h4 className=" mb-4 text-uppercase">
-          Bienvenido {user.displayName || user.email}
+          Bienvenido {nombre}
         </h4>
         <Tarjeta />
         <div className="row container">

@@ -37,6 +37,7 @@ function Usuarios() {
                     const userData = doc.data();
                     _usuarios.push({
                         cargo: userData.cargo,
+                        nombre: userData.nombre,
                         rol: userData.rol,
                         email: userData.email,
                         uid: userData.uid,
@@ -65,7 +66,8 @@ function Usuarios() {
                     <table className="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col" className='text-uppercase'>Correo</th> 
+                                <th scope="col" className='text-uppercase'>Nombre</th>
+                                <th scope="col" className='text-uppercase'>Correo</th>
                                 <th scope="col" className='text-uppercase'>Cargo</th>
                                 <th scope="col" className='text-uppercase'>Rol</th>
                                 <th scope="col" className='text-uppercase'>Acciones</th>
@@ -74,6 +76,7 @@ function Usuarios() {
                         <tbody>
                             {usuarios.map((usuario, index) => (
                                 <tr key={index}>
+                                    <td scope="row" className='filas'>{usuario.nombre}</td>
                                     <td scope="row" className='filas'>{usuario.email}</td>
                                     <td scope="row" className='filas'>{usuario.cargo}</td>
                                     <td scope="row" className='filas'>{usuario.rol}</td>

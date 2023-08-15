@@ -15,6 +15,7 @@ function Register() {
     cargo: '',
     email: '',
     password: '',
+    nombre:'',
   });
 
   const navigate = useNavigate();
@@ -47,12 +48,17 @@ function Register() {
       setError('Por favor ingresa tu contraseña')
       return
     }
+    if (!user.nombre.trim()){
+      setError("Por favor ingrese su Nombre")
+      return;
+    }
 
     try {
       const infoUsuario = await createUserWithEmailAndPassword(auth, user.email, user.password);
       const docuRef = doc(usuariosCollection, infoUsuario.user.uid);
       setDoc(docuRef, {
         rol: user.rol,
+        nombre: user.nombre,
         cargo: user.cargo,
         email: user.email,
         password: user.password,
@@ -92,6 +98,17 @@ function Register() {
               <option value="usuario">Usuario</option>
               <option value="admin">Administrador</option>
             </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="text" className="form-label">
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="nombre"
+              onChange={handleChange}
+              className="form-control"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="email" className="form-label">
