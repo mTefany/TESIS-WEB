@@ -164,8 +164,7 @@ function Tablero() {
     <div>
       <Nav />
       <Notify />
-      <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-
+      <div className="container bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
         <div>
           <p className="horaactual">
             <span className="reading text-xl mb-4 text-uppercase">
@@ -173,7 +172,7 @@ function Tablero() {
             </span></p>
             <div className="container2">
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-lg-6 col-md-6">
               <div class="card border-light  mb-3" >
                 <div class="card-header">
                   <h5>Área 1</h5>
@@ -185,7 +184,7 @@ function Tablero() {
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-6 col-md-6">
               <div class="card border-light  mb-3" >
                 <div class="card-header">
                   <h5>Área 2</h5>
@@ -198,7 +197,7 @@ function Tablero() {
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-6 col-md-6">
               <div class="card border-light  mb-3" >
                 <div class="card-header">
                   <h5>Área 3</h5>
