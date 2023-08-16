@@ -21,12 +21,12 @@ function App() {
 
             </ProtectedRoute>
           } />
-          <Route path='/register' element={
+          {/* <Route path='/register' element={
             <ProtectedRoute>
               <Register />
 
             </ProtectedRoute>
-          } />
+          } /> */}
           <Route path='/sensores' element={
             <ProtectedRoute>
               <Sensorlist />
@@ -53,6 +53,7 @@ function App() {
           } />
 
           <Route path="/login" element={<Login />} />  
+          <Route path="/register" element={<Register />} /> 
         </Routes>
       </AuthProvider>
     </div>

@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.center{
+.center {
   text-align: center;
 }
 
@@ -21,122 +21,128 @@
   border-radius: 5px;
 }
 
-.containertarjeta{
-  padding: 10px 10px 30px 
+.containertarjeta {
+  padding: 10px 10px 30px
 }
 
-.containergrafico{
+.containergrafico {
   padding: 20px 20px;
 }
 
-h4{
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+h4 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .usuarios-container {
-    margin: 20px;
-  }
-  
-  .agregar-button {
-    background-color: rgb(126, 100, 17);
-    color: white;
-    border: none;
-    padding: 1px 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    float: right;
-  }
-
-  .botonnuevo{
-    background-color: white;
-    color: white;
-    border: none;
-    padding: 1px 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    text-decoration: none;
-    float: right;
-  }
-  
-  .usuarios-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .usuarios-table th, .usuarios-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .usuarios-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .editar-button, .eliminar-button {
-    background-color: #268588;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .eliminar-button {
-    background-color: #c42e42;
-  }
-  
-
-.gota{
-    width:50px;
+  margin: 20px;
 }
 
-.boton-alerta{
-    background-color: rgb(19, 94, 180);
-    color: white;
-    width: 150px;
+.agregar-button {
+  background-color: rgb(126, 100, 17);
+  color: white;
+  border: none;
+  padding: 1px 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  float: right;
+}
+
+.botonnuevo {
+  background-color: white;
+  color: white;
+  border: none;
+  padding: 1px 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  float: right;
+}
+
+.usuarios-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.usuarios-table th,
+.usuarios-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.usuarios-table th {
+  background-color: #f2f2f2;
+}
+
+.editar-button,
+.eliminar-button {
+  background-color: #268588;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.eliminar-button {
+  background-color: #c42e42;
+}
+
+
+.gota {
+  width: 50px;
+}
+
+.boton-alerta {
+  background-color: rgb(19, 94, 180);
+  color: white;
+  width: 150px;
 
 
 }
+
 .boton-alerta:hover {
-    background-color: #69a3d3; /* Cambiar el color al pasar el mouse */
-    border-color: #ffffff; /* También puedes cambiar el color del borde si lo deseas */
-    color:black;
-    font-weight: bold;
-  }
-
-.form-title{
-    padding: 14px;
-    font-size:20px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
+  background-color: #69a3d3;
+  /* Cambiar el color al pasar el mouse */
+  border-color: #ffffff;
+  /* También puedes cambiar el color del borde si lo deseas */
+  color: black;
+  font-weight: bold;
 }
 
-.form-group{
-    margin-bottom: 30px;
+.form-title {
+  padding: 14px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.opcionregistro{
-    color:rgb(42, 106, 165);
-    text-decoration: none;
-    font-weight: bold;
+.form-group {
+  margin-bottom: 30px;
+}
+
+.opcionregistro {
+  color: rgb(42, 106, 165);
+  text-decoration: none;
+  font-weight: bold;
 
 }
 
-.navbar{
-  background: linear-gradient(to right, #c9ecf3,#92c0eb , #2e517c,#253f70, #1d326d);
-    
+.navbar {
+  background: linear-gradient(to right, #c9ecf3, #92c0eb, #2e517c, #253f70, #1d326d);
+
 }
+
 .navbar-toggler-icon {
-    background-color: rgb(242, 242, 247) !important;
+  background-color: rgb(242, 242, 247) !important;
 }
 
 
-.d-grid{
-    margin-bottom: 30px;
+.d-grid {
+  margin-bottom: 30px;
 }
 
 
@@ -166,43 +172,41 @@ h4{
 }
 
 .form-container {
-    padding: 20px;
-    border-radius: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.form-label{
-    font-weight: bold;
+.form-label {
+  font-weight: bold;
 }
 
 .filas {
-    text-align: center;
+  text-align: center;
 }
 
-
-/* Agregamos un estilo para el fondo degradado */
-.card1 {
-  background: linear-gradient(to right, #94b1ca, #4b579b, #116f8b);
-  color:white;
-  font-weight: bold;
+.reading{
+  text-align: center;
 }
 
-/* Agregamos un estilo para el fondo degradado */
-.card2 {
-  background: linear-gradient(to right, #94b1ca, #4b579b, #116f8b);
-  color:white;
-  font-weight: bold;
+.imageniconohumedad {
+  max-width: 40%;
+  padding: 10px 0px;
+  height: auto;
+  display: block;
+  /* Asegura que la imagen mantenga su espacio incluso si cambia de tamaño */
+  margin: 0 auto;
+  /* Centra horizontalmente la imagen en su contenedor */
 }
 
-/* Agregamos un estilo para el fondo degradado */
-.card3 {
-  background: linear-gradient(to right, #94b1ca, #4b579b, #116f8b);
-  color:white;
-  font-weight: bold;
+.container2{
+ padding: 20px 0px;
+ display: flex;
 }
+
 /* Estilos para los botones de paginación */
 .pagination {
   display: flex;
@@ -231,30 +235,61 @@ h4{
   margin: 0 5px;
 }
 
-.btn-primary{
-    background-color: rgb(30, 133, 173);
-    border-color: rgb(255, 255, 255);
-    font-weight: bold;
+.btn-primary {
+  background-color: rgb(30, 133, 173);
+  border-color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 
+.horaactual{
+  text-align: center;
+}
+
+
 .btn-primary:hover {
-    background-color: #99b7d4; /* Cambiar el color al pasar el mouse */
-    border-color: #ffffff; /* También puedes cambiar el color del borde si lo deseas */
-    color:black;
-    font-weight: bold;
-  }
+  background-color: #99b7d4;
+  /* Cambiar el color al pasar el mouse */
+  border-color: #ffffff;
+  /* También puedes cambiar el color del borde si lo deseas */
+  color: black;
+  font-weight: bold;
+}
 
-  .nav-link {
-    color: rgb(255, 255, 255)!important;
-    font-weight: bold;
-    font-size: 17px;
-  }
+.nav-link {
+  color: rgb(255, 255, 255) !important;
+  font-weight: bold;
+  font-size: 17px;
+}
 
-  .logout{
-    color: rgb(255, 255, 255)!important;
-  }
+.logout {
+  color: rgb(255, 255, 255) !important;
+}
 
-  .text-uppercase{
-    font-size: 14px;
-    text-align: center;
-  }
+.text-uppercase {
+  font-size: 14px;
+  text-align: center;
+}
+
+.nombrenav{
+  padding: 10px 1px 8px 4px;
+}
+.logonav{
+  padding: 12px 1px 10px 20px;
+}
+
+.iconocuadro1{
+  background-color: #20AD8D;
+  color: #20AD8D;
+}
+
+.iconocuadro2{
+  background-color: #396ABF;
+  color: #396ABF;
+}
+
+.iconocuadro3{
+ 
+  background-color: #7839BF;
+  color: #7839BF;
+}
+

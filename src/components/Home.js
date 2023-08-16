@@ -9,12 +9,12 @@ import Notify from "./Notificacion";
 import BarraBasica from "../hook/barraBasica";
 import Prueba from "../hook/Prueba";
 import LinePastelBarra from "../hook/LineBarraPastel";
-import Linea from "../hook/Linea";
+import Pastel from "../hook/Pie";
 
 const Home = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
-  const nombre =user.firestoreData.nombre
+  const nombre =(user.firestoreData.nombre);
   const graphStyle = {
     flex: '1',
   };
@@ -34,32 +34,6 @@ const Home = () => {
           Bienvenido {nombre}
         </h4>
         <Tarjeta />
-        <div className="row container">
-          {/* Contenedor de Area y Barras */}
-          <div className='col-md-16'>
-            <div className="d-md-flex gap-4">
-              <div style={graphStyle}>
-                <LinePastelBarra />
-              </div>
-              <div style={graphStyle}>
-                <Linea />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row container">
-          {/* Contenedor de Area y Barras */}
-          <div className='col-md-16'>
-            <div className="d-md-flex gap-4">
-              <div style={graphStyle}>
-                <BarraBasica />
-              </div>
-              <div style={graphStyle}>
-                <Prueba />
-              </div>
-            </div>
-          </div>
-        </div>
        </div>
     <Footer />
     </div >

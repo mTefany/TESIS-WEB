@@ -83,18 +83,7 @@ export default function Alerta() {
             return false;
         });
 
-        // // Show the alert only once if any sensor is outside the range
-        // if (isOutsideRange || isAlertShown) {
-        //     alert('¡Valor fuera del rango en el: ' + problemSensors.join(", ") + '!');
-        //     setIsAlertShown(true);
-        // }
-
-
-        // // Wait for 5 minutes before checking again
-        // const fiveMinutesInMilliseconds = 5 * 60 * 1000;
-        // setTimeout(() => {
-        //     setIsAlertShown(false); // Reset the state after 5 minutes to show the alert again if needed
-        // }, fiveMinutesInMilliseconds);
+       
     };
     return (
         <div>

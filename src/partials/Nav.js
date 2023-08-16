@@ -8,7 +8,7 @@ import 'material-icons/iconfont/material-icons.css';
 function Nav() {
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
-  const nombre =user.firestoreData.nombre
+  const nombre = user.firestoreData.nombre
 
   console.log(nombre)
 
@@ -48,14 +48,16 @@ function Nav() {
                   <NavItem to="/usuarios" label="Usuarios" />
                 </li>
               )}
-              
             </ul>
           </div>
 
           <div className="d-flex">
-            <span id="user-details" className="nav-link">
+            <a className="nav-link logonav">
+              <i className="material-icons">person_3</i>
+            </a>
+            <a className="nav-link nombrenav">
               {nombre}
-            </span>
+            </a>
             <Link className="nav-link" to="/login" onClick={handleLogout}>
               <i className="material-icons">logout</i>
             </Link>

@@ -26,6 +26,10 @@ const BarraSensor3 = () => {
         }
     }, [uidUser]);
 
+    const graphStyle = {
+        flex: '1',
+    };
+
     return (
         <div style={{ flex: 1 }}>
             <h6 className='text-center mb-3'>Valores de humedad en el área 3 </h6>
