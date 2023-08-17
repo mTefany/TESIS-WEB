@@ -13,6 +13,39 @@
   text-align: center;
 }
 
+.input-group-text{
+  background: linear-gradient(to right,  #dce3e6,#becdd3, #a2c0c5,#7d95c0);
+  color: rgb(0, 0, 0);
+   font-weight: bold;
+
+}
+.confirmarfecha {
+  background: linear-gradient(to right,  #eaf0f7, #7999d4);
+ color: black;
+ font-weight: bold;
+  
+}
+
+.confirmarfecha:hover {
+  background: linear-gradient(to right,  rgb(58, 98, 104), #303d66);
+  color: white;
+  font-weight: bold;
+}
+
+.descargardato {
+  background: linear-gradient(to right,  #eaf0f7, #7999d4);
+
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.descargardato:hover {
+  background: linear-gradient(to right,  rgb(58, 98, 104), #303d66);
+  color: white;
+  font-weight: bold;
+}
+
+
 .EditarUsuarioContainer {
   display: flex;
   justify-content: center;
@@ -133,8 +166,24 @@ h4 {
 
 .navbar {
   background: linear-gradient(to right, #c9ecf3, #92c0eb, #2e517c, #253f70, #1d326d);
-
 }
+
+.download-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#pdf-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .navbar-toggler-icon {
   background-color: rgb(242, 242, 247) !important;
@@ -206,6 +255,29 @@ h4 {
  padding: 20px 0px;
  display: flex;
 }
+
+.datetime-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.datetime-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.confirm-button {
+  padding: 8px 12px;
+  background-color: #4396c7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 
 /* Estilos para los botones de paginación */
 .pagination {

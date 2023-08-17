@@ -1,15 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-import { Link } from "react-router-dom";
 import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
 import Tarjeta from "../hook/tarjetas";
 import Notify from "./Notificacion";
-import BarraBasica from "../hook/barraBasica";
-import Prueba from "../hook/Prueba";
-import LinePastelBarra from "../hook/LineBarraPastel";
-import Pastel from "../hook/Pie";
 
 const Home = () => {
   const { user, loading } = useAuth();

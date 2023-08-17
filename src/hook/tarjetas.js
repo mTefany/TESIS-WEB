@@ -19,7 +19,7 @@ export default function Tarjeta() {
     const [lastData, setLastData] = useState({});
     const [lastTenData, setLastTenData] = useState([]);
 
-    
+
 
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function Tarjeta() {
     };
 
 
-   
+
 
     const categories = lastTenData.map(item => epochToDateTime(item.timestamp)); // Obtener las fechas de los datos
     const seriesData1 = lastTenData.map(item => parseFloat(item.sensor1Value)); // Obtener los valores de los datos
@@ -168,10 +168,11 @@ export default function Tarjeta() {
                 <span className="reading text-xl mb-4 text-uppercase">
                     <strong> última atualización {epochToDateTime(lastData.timestamp || 0)}</strong>
                 </span></p>
+
             <div className="container2">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card">
+                <div className="row">
+                    <div className="col-sm-4">
+                        <div className="card">
                             <div className="row g-0">
                                 <div className="col-md-6 iconoagua">
                                     <img className='imageniconohumedad img-fluid' src={humedad} alt="" />
@@ -185,8 +186,8 @@ export default function Tarjeta() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="card">
+                    <div className="col-sm-4">
+                        <div className="card">
                             <div className="row g-0">
                                 <div className="col-md-6">
                                     <img className='imageniconohumedad img-fluid' src={humedad} alt="" />
@@ -200,8 +201,8 @@ export default function Tarjeta() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="card">
+                    <div className="col-sm-4">
+                        <div className="card">
                             <div className="row g-0">
                                 <div className="col-md-6">
                                     <img className='imageniconohumedad img-fluid' src={humedad} alt="" />
@@ -220,34 +221,34 @@ export default function Tarjeta() {
             </div>
 
             <div className="container2">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card border-light  mb-3" >
-                            <div class="card-header">
-                                <h5>Promedio Total de Humedad en Áreas</h5>
+                <div className="row ">
+                    <div className="col-sm-6">
+                        <div className="card border-light  mb-2" >
+                            <div className="card-header">
+                                <h5>Promedio Total de Humedad Relativa en Áreas</h5>
                             </div>
                             <div style={graphStyle}>
                                 <HighchartsReact highcharts={Highcharts} options={completo} />
                             </div>
-                            <div class="card-footer bg-transparent border-light">Promedio total de la humedad durante los últimos 10 valores.</div>
+                            <div className="card-footer bg-transparent border-light">Promedio total de la humedad relativa durante los últimos 10 valores.</div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="card border-light  mb-3" >
-                            <div class="card-header">
-                                <h5>Valor Actual de Humedad en Áreas</h5>
+                    <div className="col-sm-6">
+                        <div className="card border-light  mb-2" >
+                            <div className="card-header">
+                                <h5>Valor Actual de Humedad Relativa en Áreas</h5>
                             </div>
                             <div style={graphStyle}>
                                 <HighchartsReact highcharts={Highcharts} options={ultimosdatos} />
                             </div>
-                            <div class="card-footer bg-transparent border-light">
-                                Valor actual de sensores: 
+                            <div className="card-footer bg-transparent border-light">
+                                Humedad relativa:
                                 Área 1: ({lastData.sensor1Value}% )
-                                <i className="material-icons iconocuadro1"> <span class="material-symbols-outlined">check_box_outline_blank</span> </i>
+                                <i className="material-icons iconocuadro1"> <span className="material-symbols-outlined">check_box_outline_blank</span> </i>
                                 ,Área 2:  ({lastData.sensor2Value}% )
-                                <i className="material-icons iconocuadro2"> <span class="material-symbols-outlined">check_box_outline_blank</span> </i>
+                                <i className="material-icons iconocuadro2"> <span className="material-symbols-outlined">check_box_outline_blank</span> </i>
                                 ,Área 3: ({lastData.sensor3Value}% )
-                                <i className="material-icons iconocuadro3"> <span class="material-symbols-outlined">check_box_outline_blank</span> </i>  
+                                <i className="material-icons iconocuadro3"> <span className="material-symbols-outlined">check_box_outline_blank</span> </i>
                             </div>
                         </div>
                     </div>
