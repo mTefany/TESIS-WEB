@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../image/logo.jpeg";
 import Alert from "./Alert";
 import 'material-icons/iconfont/material-icons.css';
@@ -10,14 +10,13 @@ function Login() {
     email: "",
     password: "",
   });
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
   //actualizar el estado
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
-    //console.log(name, value);
   };
   //mostrar lo que tiene
   const handleSubmit = async (e) => {
@@ -26,7 +25,6 @@ function Login() {
     try {
       await login(user.email, user.password);
       navigate("/");
-      // console.log(user);
     } catch (error) {
       console.log(error.code);
       if (error.code === "auth/wrong-password") {
@@ -84,6 +82,7 @@ function Login() {
               placeholder="***********"
               onChange={handleChange}
               className="form-control"
+              autoComplete="off" // Agrega esta línea
             />
           </div>
           <div className="form-group">

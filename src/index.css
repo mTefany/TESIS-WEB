@@ -39,6 +39,10 @@
   font-weight: bold;
 }
 
+.container.graficainicio{
+  padding: 0px;
+}
+
 .descargardato:hover {
   background: linear-gradient(to right,  rgb(58, 98, 104), #303d66);
   color: white;
@@ -132,9 +136,22 @@ h4 {
   background-color: rgb(19, 94, 180);
   color: white;
   width: 150px;
-
-
 }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
 
 .boton-alerta:hover {
   background-color: #69a3d3;
@@ -166,6 +183,11 @@ h4 {
 
 .navbar {
   background: linear-gradient(to right, #c9ecf3, #92c0eb, #2e517c, #253f70, #1d326d);
+}
+
+.footerfinal {
+  background: linear-gradient(to right, #c9ecf3, #92c0eb, #2e517c, #253f70, #1d326d);
+  color: white;
 }
 
 .download-button {
@@ -365,3 +387,21 @@ h4 {
   color: #7839BF;
 }
 
+/* Estilo para el footer */
+.footer {
+  background-color: #f5f5f5;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el alto completo del viewport */
+}
+
+/* Estilo para el contenido principal */
+.usuarios-container {
+  flex-grow: 1; /* Permite que el contenido principal crezca y ocupe el espacio restante */
+  padding: 20px; /* Agrega un espacio de padding alrededor del contenido principal */
+}

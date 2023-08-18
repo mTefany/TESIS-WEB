@@ -13,7 +13,7 @@ import html2canvas from 'html2canvas';
 import 'jspdf-autotable'; // Importa el complemento
 
 import Nav from '../partials/Nav';
-import Notify from './Notificacion';
+import Footer from "../partials/footer";
 
 
 
@@ -30,8 +30,10 @@ function Tablero() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [displayHeaderDateTime, setDisplayHeaderDateTime] = useState('');
   const itemsPerPage = 7;
   const paginationToShow = 3; // Número de botones de paginación para mostrar
+
 
 
 
@@ -42,17 +44,33 @@ function Tablero() {
         if (data !== null) {
           const sortedData = Object.values(data)
             .sort((a, b) => b.timestamp - a.timestamp);
+
+          // Obtener los últimos 7 datos por defecto
+          const lastSevenData = sortedData.slice(0, 7);
+
+          let displayedData = lastSevenData; // Datos que se mostrarán en la tabla
+          let displayHeaderDateTime = ''; // Fecha y hora para mostrar en el encabezado
+
+          // Si hay un filtro de fecha seleccionado, aplicar el filtro
+          if (selectedTimestamp.start && selectedTimestamp.end) {
+            displayedData = sortedData.filter(
+              item =>
+                item.timestamp >= selectedTimestamp.start && item.timestamp <= selectedTimestamp.end
+            );
+            displayHeaderDateTime = `${epochToDateTime(selectedTimestamp.start)} - ${epochToDateTime(selectedTimestamp.end)}`;
+          } else {
+            // Si no hay filtro, usar la fecha y hora de los últimos 7 datos
+            displayHeaderDateTime = `${epochToDateTime(lastSevenData[6]?.timestamp)} - ${epochToDateTime(lastSevenData[0]?.timestamp)}`;
+          }
+
           setLastData(sortedData[0] || {});
-          const filteredData = sortedData.filter(
-            item =>
-              item.timestamp >= selectedTimestamp.start && item.timestamp <= selectedTimestamp.end
-          );
-          setLastData(sortedData[0] || {});
-          setLastTenData(filteredData);
+          setLastTenData(displayedData);
+          setDisplayHeaderDateTime(displayHeaderDateTime);
         }
       });
     }
   }, [uidUser, selectedTimestamp]);
+
 
   const captureChartImage = async (chartId) => {
     const chartElement = document.getElementById(chartId);
@@ -74,8 +92,8 @@ function Tablero() {
       item.sensor2Value,
       item.sensor3Value
     ]);
- // Agregar encabezado de la página
- pdf.text("Reporte de Datos", 10, 10);
+    // Agregar encabezado de la página
+    pdf.text("Reporte de Datos", 10, 10);
 
     // Agregar tabla
     pdf.autoTable({
@@ -288,7 +306,6 @@ function Tablero() {
   return (
     <div>
       <Nav />
-      <Notify />
 
       <div className="container bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
         <div>
@@ -316,6 +333,12 @@ function Tablero() {
                 className="btn btn-sm confirmarfecha"
                 onClick={() => {
                   setSelectedTimestamp({ start: startDate, end: endDate });
+                  // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
+                  const filteredData = lastTenData.filter(
+                    item =>
+                      item.timestamp >= startDate && item.timestamp <= endDate
+                  );
+                  setLastTenData(filteredData);
                 }}
               >
                 Confirmar
@@ -368,7 +391,7 @@ function Tablero() {
                 <div className="col-lg-6 col-md-6">
                   <div className="card border-light  mb-3" id="data-table">
                     <div className="card-header">
-                      <p>Datos obtenidos desde <strong>{epochToDateTime(startDate)}</strong> hasta <strong>{epochToDateTime(endDate)}</strong> </p>
+                      <p>Datos obtenidos desde <strong>{displayHeaderDateTime}</strong></p>
                     </div>
                     <div className="table-container">
                       <table className="table table-hover">
@@ -402,7 +425,7 @@ function Tablero() {
           </div>
         </div>
       </div>
-      <footer />
+      <Footer />
     </div>
   );
 }

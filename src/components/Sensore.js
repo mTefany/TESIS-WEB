@@ -5,7 +5,6 @@ import { useAuth } from '../context/authContext';
 import { epochToDateTime } from '../context/dateTime';
 import Nav from "../partials/Nav";
 import Footer from '../partials/footer';
-import Notify from './Notificacion';
 import { saveAs } from "file-saver";
 import { csvFormat } from "d3-dsv";
 
@@ -121,7 +120,6 @@ export default function SensorList() {
   return (
     <div>
       <Nav />
-      <Notify />
       {loading ? (
         <div>Cargando...</div>
       ) : (

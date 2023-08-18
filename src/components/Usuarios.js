@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Nav from '../partials/Nav';
 import { auth, firestore } from '../firebase'
+import Footer from '../partials/footer'
 
 function Usuarios() {
     const navigate = useNavigate();
@@ -53,7 +54,7 @@ function Usuarios() {
 
     return (
 
-        <div >
+        <div className="page-container">
             <Nav />
             <div className="usuarios-container">
                 <div className="container">
@@ -90,6 +91,7 @@ function Usuarios() {
                     </table>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

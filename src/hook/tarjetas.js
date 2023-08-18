@@ -167,8 +167,8 @@ export default function Tarjeta() {
             <p className="horaactual">
                 <span className="reading text-xl mb-4 text-uppercase">
                     <strong> última atualización {epochToDateTime(lastData.timestamp || 0)}</strong>
-                </span></p>
-
+                </span>
+            </p>
             <div className="container2">
                 <div className="row">
                     <div className="col-sm-4">
@@ -219,11 +219,10 @@ export default function Tarjeta() {
                 </div>
 
             </div>
-
-            <div className="container2">
-                <div className="row ">
-                    <div className="col-sm-6">
-                        <div className="card border-light  mb-2" >
+            <div className="container graficainicio">
+                <div className="row">
+                    <div className="col-lg-6 col-md-6" >
+                        <div className="card border-light  mb-3" id="sensor2-chart">
                             <div className="card-header">
                                 <h5>Promedio Total de Humedad Relativa en Áreas</h5>
                             </div>
@@ -233,8 +232,8 @@ export default function Tarjeta() {
                             <div className="card-footer bg-transparent border-light">Promedio total de la humedad relativa durante los últimos 10 valores.</div>
                         </div>
                     </div>
-                    <div className="col-sm-6">
-                        <div className="card border-light  mb-2" >
+                    <div className="col-lg-6 col-md-6">
+                        <div className="card border-light  mb-3" id="sensor1-chart" >
                             <div className="card-header">
                                 <h5>Valor Actual de Humedad Relativa en Áreas</h5>
                             </div>

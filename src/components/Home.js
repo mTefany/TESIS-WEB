@@ -4,15 +4,12 @@ import { useAuth } from "../context/authContext";
 import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
 import Tarjeta from "../hook/tarjetas";
-import Notify from "./Notificacion";
 
 const Home = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const nombre =(user.firestoreData.nombre);
-  const graphStyle = {
-    flex: '1',
-  };
+
 
   useEffect(() => {
     if (!user) {
@@ -23,7 +20,6 @@ const Home = () => {
   return (
     <div >
       <Nav />
-      <Notify />
       <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
         <h4 className=" mb-4 text-uppercase">
           Bienvenido {nombre}

@@ -65,7 +65,7 @@ function Register() {
         uid: infoUsuario.user.uid
       });
 
-      navigate('/login')
+      navigate('/usuarios')
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido.")

@@ -53,22 +53,42 @@ export default function Notify() {
             if (sensor1Value > 49 && sensor1Value < 56) {
                 console.log("Sensor 1 está bien"+ sensor1Value);
             } else {
-                console.log("Sensor 1 esta mal"+sensor1Value)
-                notify();
+                if (sensor1Value > 56) {
+                    console.log("Mucha humedad en el Área 1"+ sensor1Value);
+                    notify()
+                }else{
+                    if (sensor1Value <48) {
+                        console.log("Poca humedad en el Área 1"+ sensor1Value);
+                        notify2()
+                    }
+                }
             }
-
-            if (sensor2Value >= 49 && sensor2Value <= 56) {
+            if (sensor2Value > 49 && sensor2Value < 56) {
                 console.log("Sensor 2 está bien"+ sensor2Value);
             } else {
-                console.log("Sensor 2 esta mal"+sensor2Value)
-                notify2();
+                if (sensor2Value > 56) {
+                    console.log("Mucha humedad en el Área 2"+ sensor2Value);
+                    notify3()
+                }else{
+                    if (sensor2Value <48) {
+                        console.log("Poca humedad en el Área 2"+ sensor2Value);
+                        notify4()
+                    }
+                }
             }
 
-            if (sensor3Value >= 49 && sensor3Value <= 56) {
-                console.log("Sensor 3 está bien"+ sensor3Value);
+            if (sensor3Value > 49 && sensor3Value < 56) {
+                console.log("Sensor 3 está bien"+ sensor2Value);
             } else {
-                console.log("Sensor 3 esta fuera de rango"+sensor3Value)
-                notify3();
+                if (sensor3Value > 56) {
+                    console.log("Mucha humedad en el Área 3"+ sensor3Value);
+                    notify5()
+                }else{
+                    if (sensor3Value <48) {
+                        console.log("Poca humedad en el Área 3"+ sensor3Value);
+                        notify6()
+                    }
+                }
             }
         
     };
@@ -89,7 +109,7 @@ export default function Notify() {
                                 src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
                                 alt=""></img>
 
-                            Sensor 1 No esta  no esta funcionando
+                            El área 1 cuenta con la humedad alta
                         </p>
                     </div>
                 </div>
@@ -127,7 +147,7 @@ export default function Notify() {
                                 src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
                                 alt=""></img>
 
-                            Sensor 2 No esta  no esta funcionando
+                            Área 1 cuenta con poca humedad
                         </p>
                     </div>
                 </div>
@@ -165,8 +185,125 @@ export default function Notify() {
                                 src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
                                 alt=""></img>
 
-                            Area 3 cuenta con el sueño muy seco
+                            El área 2 se encuentra con mucha humedad 
 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="border-l border-gray-200 ">
+                <button
+                    onClick={() => toast.dismiss(t.id)}
+                    className="btn boton-alerta"
+                >
+                    Close
+                </button>
+            </div>
+        </div>),
+        {
+            icon: '💧',
+            position: "top-center",
+            autoClose: 5000,
+            style: {
+                background: "#80DAEB",
+                color: "black",
+            }
+        }
+    )
+
+    const notify4 = () => toast.custom((t) => (
+        <div
+            className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        >
+            <div className="flex-1 w-0 p-4">
+                <div className="flex items-start">
+                    <div className="flex-shrink-0 pt-0.5">
+                        <p className="mt-1 text-sm text-gray-500">
+                            <img
+                                className="gota"
+                                src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
+                                alt=""></img>
+
+                            El área 2 se encuentra con poca humedad 
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="border-l border-gray-200 ">
+                <button
+                    onClick={() => toast.dismiss(t.id)}
+                    className="btn boton-alerta"
+                >
+                    Close
+                </button>
+            </div>
+        </div>),
+        {
+            icon: '💧',
+            position: "top-center",
+            autoClose: 5000,
+            style: {
+                background: "#80DAEB",
+                color: "black",
+            }
+        }
+    )
+
+    const notify5 = () => toast.custom((t) => (
+        <div
+            className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        >
+            <div className="flex-1 w-0 p-4">
+                <div className="flex items-start">
+                    <div className="flex-shrink-0 pt-0.5">
+                        <p className="mt-1 text-sm text-gray-500">
+                            <img
+                                className="gota"
+                                src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
+                                alt=""></img>
+
+                            El área 3 cuenta con la humedad alta
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="border-l border-gray-200 ">
+                <button
+                    onClick={() => toast.dismiss(t.id)}
+                    className="btn boton-alerta"
+                >
+                    Close
+                </button>
+            </div>
+        </div>),
+        {
+            icon: '💧',
+            position: "top-center",
+            autoClose: 5000,
+            style: {
+                background: "#80DAEB",
+                color: "black",
+            }
+        }
+    )
+    const notify6 = () => toast.custom((t) => (
+        <div
+            className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        >
+            <div className="flex-1 w-0 p-4">
+                <div className="flex items-start">
+                    <div className="flex-shrink-0 pt-0.5">
+                        <p className="mt-1 text-sm text-gray-500">
+                            <img
+                                className="gota"
+                                src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
+                                alt=""></img>
+
+                            El Área 3 cuenta con poca humedad
                         </p>
                     </div>
                 </div>
