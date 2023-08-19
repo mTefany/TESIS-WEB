@@ -4,6 +4,7 @@ import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import logo from '../image/logohome.png'
 import 'material-icons/iconfont/material-icons.css';
+import Notify from "../components/Notificacion";
 
 function Nav() {
   const { user, logout, loading } = useAuth();
@@ -21,6 +22,7 @@ function Nav() {
 
   return (
     <div>
+      <Notify />
       <nav className="navbar navbar-expand-lg">
         <div className="container">
           <Link className="navbar-brand" to="/">
@@ -43,6 +45,7 @@ function Nav() {
               <NavItem to="/" label="Inicio" />
               <NavItem to="/tablero" label="Tablero" />
               <NavItem to="/sensores" label="Sensores" />
+              <NavItem to="/iot" label="IoT" />
               {user?.firestoreData?.rol === "admin" && (
                 <li className="nav-item">
                   <NavItem to="/usuarios" label="Usuarios" />

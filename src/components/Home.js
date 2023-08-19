@@ -8,7 +8,7 @@ import Tarjeta from "../hook/tarjetas";
 const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const nombre =(user.firestoreData.nombre);
+  const nombre = (user.firestoreData.nombre);
 
 
   useEffect(() => {
@@ -21,12 +21,12 @@ const Home = () => {
     <div >
       <Nav />
       <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-        <h4 className=" mb-4 text-uppercase">
-          Bienvenido {nombre}
+        <h4>
+          <strong>Bienvenido {nombre}</strong>
         </h4>
         <Tarjeta />
-       </div>
-    <Footer />
+      </div>
+      <Footer />
     </div >
   );
 };

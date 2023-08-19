@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-
 import { ref, onValue } from 'firebase/database';
 import { db } from "../firebase";
 import { useAuth } from '../context/authContext';
@@ -14,8 +13,6 @@ import 'jspdf-autotable'; // Importa el complemento
 
 import Nav from '../partials/Nav';
 import Footer from "../partials/footer";
-
-
 
 function Tablero() {
 
@@ -31,11 +28,9 @@ function Tablero() {
   const [endDate, setEndDate] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [displayHeaderDateTime, setDisplayHeaderDateTime] = useState('');
+
   const itemsPerPage = 7;
   const paginationToShow = 3; // Número de botones de paginación para mostrar
-
-
-
 
   useEffect(() => {
     if (uidUser) {
@@ -202,7 +197,7 @@ function Tablero() {
     xAxis: {
       // categories: categories,
       title: {
-        text: 'Datos de humedad relativa '
+        text: 'Total de datos de humedad relativa '
       }
     },
     yAxis: {
@@ -237,7 +232,7 @@ function Tablero() {
     xAxis: {
       // categories: categories,
       title: {
-        text: 'Datos de humedad relativa '
+        text: 'Total de datos de humedad relativa '
       }
     },
     yAxis: {
@@ -274,7 +269,7 @@ function Tablero() {
     xAxis: {
       // categories: categories,
       title: {
-        text: 'Datos de humedad relativa '
+        text: 'Total de datos de humedad relativa '
       }
     },
     yAxis: {
@@ -309,10 +304,14 @@ function Tablero() {
 
       <div className="container bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
         <div>
-          <p className="horaactual">
-            <span className="reading text-xl mb-4 text-uppercase">
-              <strong> última atualización {epochToDateTime(lastData.timestamp || 0)}</strong>
-            </span></p>
+          <div className="superior">
+
+            <div class="card">
+              <div class="card-body tarjetaflex text-center text-uppercase ">
+                ÚLTIMA ACTUALIZACIÓN<strong>{epochToDateTime(lastData.timestamp || 0)}</strong>
+              </div>
+            </div>
+          </div>
           <div id="pdf-content">
             {/* Add date and time picker here */}
             <div class="input-group">

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-
 import { ref, onValue } from 'firebase/database'
 import { db } from "../firebase";
 import { useAuth } from '../context/authContext';
@@ -18,9 +17,6 @@ export default function Tarjeta() {
 
     const [lastData, setLastData] = useState({});
     const [lastTenData, setLastTenData] = useState([]);
-
-
-
 
     useEffect(() => {
         if (uidUser) {
@@ -110,7 +106,7 @@ export default function Tarjeta() {
         seriesData2.reduce((sum, value) => sum + value, 0) +
         seriesData3.reduce((sum, value) => sum + value, 0)) / (3 * seriesData1.length);
     // Configuración de los gráficos
-    const completo = {
+    const options = {
         title: {
             text: ' '
         },
@@ -158,17 +154,31 @@ export default function Tarjeta() {
                     lineWidth: 2,
                     lineColor: Highcharts.getOptions().colors[7],
                     fillColor: 'white'
+                },
+                center: [75, 65],
+                size: 100,
+                innerSize: '70%',
+                showInLegend: false,
+                dataLabels: {
+                    enabled: false
                 }
             },
+
         ]
     };
     return (
         <div>
-            <p className="horaactual">
-                <span className="reading text-xl mb-4 text-uppercase">
-                    <strong> última atualización {epochToDateTime(lastData.timestamp || 0)}</strong>
-                </span>
-            </p>
+
+            <div className="superior">
+
+                <div class="card">
+                    <div class="card-body tarjetaflex text-center text-uppercase ">
+                        ÚLTIMA ACTUALIZACIÓN<strong>{epochToDateTime(lastData.timestamp || 0)}</strong>
+                    </div>
+                </div>
+            </div>
+
+
             <div className="container2">
                 <div className="row">
                     <div className="col-sm-4">
@@ -180,7 +190,7 @@ export default function Tarjeta() {
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title"><span className="reading">{lastData.sensor1Value} %</span></h5>
-                                        <p className="card-text">Humedad área 1</p>
+                                        <p className="card-text">Humedad Área 1</p>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +205,7 @@ export default function Tarjeta() {
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title "><span >{lastData.sensor2Value} %</span></h5>
-                                        <p className="card-text">Humedad área 2</p>
+                                        <p className="card-text">Humedad Área 2</p>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +220,7 @@ export default function Tarjeta() {
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title"><span className="reading">{lastData.sensor3Value} %</span></h5>
-                                        <p className="card-text">Humedad área 3</p>
+                                        <p className="card-text">Humedad Área 3</p>
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +237,7 @@ export default function Tarjeta() {
                                 <h5>Promedio Total de Humedad Relativa en Áreas</h5>
                             </div>
                             <div style={graphStyle}>
-                                <HighchartsReact highcharts={Highcharts} options={completo} />
+                                <HighchartsReact highcharts={Highcharts} options={options} />
                             </div>
                             <div className="card-footer bg-transparent border-light">Promedio total de la humedad relativa durante los últimos 10 valores.</div>
                         </div>

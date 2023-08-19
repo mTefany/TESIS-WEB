@@ -119,7 +119,7 @@ const LinePastelBarra = () => {
         size: 100,
         innerSize: '70%',
         showInLegend: false,
-        dataLabels: {
+        dataLabels: { 
           enabled: false
         }
       }
