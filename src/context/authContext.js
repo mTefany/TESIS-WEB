@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth'
 import { collection, doc, getDoc } from "firebase/firestore";
+import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { auth, firestore } from '../firebase'
 
 const authContext = createContext();
@@ -18,21 +19,33 @@ function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
-    const login = async (email, password) => signInWithEmailAndPassword(auth, email, password);
+    const login = async (email, password) => {
+        setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                return signInWithEmailAndPassword(auth, email, password);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
     const logout = () => signOut(auth)
-   
-    const resetPassword = (email) => sendPasswordResetEmail(auth, email)
 
+    const resetPassword = (email) => sendPasswordResetEmail(auth, email)
 
 
     useEffect(() => {
         onAuthStateChanged(auth, currentUser => {
-            if(!currentUser) {
+            const user = localStorage.getItem('user__app') || null;
+            const userJson = user ? JSON.parse(user) : null;
+
+            if (!currentUser?.uid && !userJson?.uid) {
                 setUser(null);
                 setLoading(false);
                 return;
             }
-            const userRef = doc(usuariosCollection, currentUser?.uid);
+
+            const userRef = doc(usuariosCollection, currentUser?.uid || userJson?.uid);
+            localStorage.setItem('user__app', JSON.stringify(currentUser));
 
             getDoc(userRef)
                 .then((docSnapshot) => {

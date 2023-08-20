@@ -10,9 +10,11 @@ const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    if (!user) {
+    const userLocal = localStorage.getItem("user__app") || null;
+    const userJson = userLocal ? JSON.parse(userLocal) : null;
+
+    if (!user && !userJson) {
       navigate("/login");
     }
   }, [user]);
@@ -22,7 +24,6 @@ const Home = () => {
       <Nav />
       <Notify />
       <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-        
         <Tarjeta />
       </div>
       <Footer />

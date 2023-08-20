@@ -10,7 +10,7 @@ import humedad from '../image/icono-humedad.png'
 
 export default function Tarjeta() {
     const { user } = useAuth();
-    const nombre = (user.firestoreData.nombre);
+    const nombre = (user?.firestoreData?.nombre) ?? "";
     const uidUser = user?.uid;
     const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
     const dbRef = ref(db, dbPath);

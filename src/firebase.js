@@ -1,7 +1,7 @@
 //importar firebase
 import { initializeApp } from "firebase/app";
 //importar usuario 
-import {getAuth} from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 //importar base de datos
 import { getDatabase } from "firebase/database";
 

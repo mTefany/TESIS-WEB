@@ -8,7 +8,7 @@ import 'material-icons/iconfont/material-icons.css';
 function Nav() {
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
-  const nombre = user.firestoreData.nombre
+  const nombre = user?.firestoreData?.nombre ?? "";
 
   console.log(nombre)
 
