@@ -352,7 +352,7 @@ function Tablero() {
                 <center>
                   <button
                     type="button"
-                    className="btn btn-sm confirmarfecha"
+                    className="btn btn-sm col-sm-2 descargardato"
                     onClick={() => {
                       setSelectedTimestamp({ start: startDate, end: endDate });
                       // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
@@ -363,10 +363,20 @@ function Tablero() {
                       setLastTenData(filteredData);
                     }}
                   >
-                    Consultar
+                    <div className="input-group ">
+                      Consultar
+                      <i className="material-icons pdf">search</i>
+                    </div>
                   </button>
-                  <button type="button" className="btn btn-sm descargardato" onClick={handleDownloadPDF}>
-                    Descargar PDF
+
+
+
+                  <button type="button" className="btn btn-sm col-sm-2 descargardato" onClick={handleDownloadPDF}>
+                    <div className="input-group ">
+                      Descargar
+                      <i className="material-icons pdf">picture_as_pdf</i>
+                    </div>
+
                   </button>
                 </center>
               </div>
@@ -417,7 +427,7 @@ function Tablero() {
                 <div className="col-lg-6 col-md-6">
                   <div className="card border-light  mb-3" id="data-table">
                     <div className="card-header">
-                      <p>Datos obtenidos desde <strong>{displayHeaderDateTime}</strong></p>
+                      <p>Datos obtenidos desde {displayHeaderDateTime}</p>
                     </div>
                     <div className="table-container">
                       <table className="table table-hover">

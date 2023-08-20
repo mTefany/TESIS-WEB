@@ -220,7 +220,7 @@ export default function SensorList() {
 
 
   return (
-    <div className="page-container">
+    <div >
       <Nav />
       {loading ? (
         <div>Cargando...</div>
@@ -229,83 +229,127 @@ export default function SensorList() {
         <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
           <div className="superior">
             <div class="card">
-              <div class="card-body text-center text-uppercase">
-                Datos obtenidos desde <strong>{displayHeaderDateTime}</strong>
+              <div class="card-body tarjetaflex text-center ">
+                <h5>Datos obtenidos desde {displayHeaderDateTime}</h5>
+              </div>
+
+            </div>
+          </div>
+
+          <div className="container3">
+            <div class="row">
+              <div class="col-sm-6 ">
+                <div >
+                  <div class="card-body inicio">
+                    <div className="input-group">
+                      <span class="input-group-text">Inicio</span>
+                      <input
+                        className="datetime-input form-control"
+                        type="datetime-local"
+                        onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
+                      />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div>
+                  <div class="card-body fin">
+                    <div className="input-group">
+                      <span class="input-group-text">Fin</span>
+                      <input
+                        className="datetime-input form-control"
+                        type="datetime-local"
+                        onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
+                      />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-body">
+                <div className="button-container">
+                  <center>
+                    <button
+                      type="button"
+                      className="btn btn-sm col-sm-2 descargardato"
+                      onClick={() => {
+                        setSelectedTimestamp({ start: startDate, end: endDate });
+                        // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
+                        const filteredData = lastTenData.filter(
+                          item =>
+                            item.timestamp >= startDate && item.timestamp <= endDate
+                        );
+                        setLastTenData(filteredData);
+                      }}
+                    >
+                      <div className="input-group ">
+                        Consultar
+                        <i className="material-icons pdf">search</i>
+                      </div>
+                    </button>
+                    <button type="button" className="btn btn-sm descargardato " onClick={handleDownloadExcel} >
+                      <div className="input-group ">
+                        Descargar Excel
+                        <i className="material-icons pdf">download</i>
+                      </div>
+                    </button>
+                    <button type="button" className="btn btn-sm col-sm-2 descargardato" onClick={handleDownloadPDF}>
+                      <div className="input-group ">
+                        Descargar
+                        <i className="material-icons pdf">picture_as_pdf</i>
+                      </div>
+
+                    </button>
+                  </center>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+          <div className="container3 ">
+            <div class="row superior">
+              <div class="col-sm-3">
+                <div class="card  color1">
+                  <div className="card-body">
+                    Valores Normales.
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card color2">
+                  <div className="card-body">
+                    Valores medios.
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card color3">
+                  <div className="header">
+
+                  </div>
+                  <div className="card-body">
+                    Valores altos.
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card color4">
+                  <div className="header">
+
+                  </div>
+                  <div className="card-body">
+                    Valores preocupantes.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="input-group superior">
-            <span class="input-group-text">Inicio</span>
-            <input
-              className="datetime-input form-control"
-              type="datetime-local"
-              onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
-            />
-            <span class="input-group-text">Fin</span>
-            <input
-              className="datetime-input form-control"
-              type="datetime-local"
-              onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
-            />
-            <button
-              type="button"
-              className="btn btn-sm confirmarfecha"
-              onClick={() => {
-                setSelectedTimestamp({ start: startDate, end: endDate });
-                const filteredData = lastTenData.filter(
-                  item =>
-                    item.timestamp >= startDate && item.timestamp <= endDate
-                );
-                setLastTenData(filteredData);
-              }}
-            >
-              Confirmar
-            </button>
-            <button type="button" className="btn btn-sm descargardato " onClick={handleDownloadExcel} >
-              Descargar Excel
-            </button>
-            <button type="button" className="btn btn-sm descargardato " onClick={handleDownloadPDF} >
-              Descargar  Pdf
-            </button>
-          </div>
-
-          <div class="row superior">
-            <div class="col-sm-3">
-              <div class="card  color1">
-                <div className="card-body">
-                  Valores Normales.
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card color2">
-                <div className="card-body">
-                  Valores medios.
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card color3">
-                <div className="header">
-
-                </div>
-                <div className="card-body">
-                  Valores altos.
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card color4">
-                <div className="header">
-
-                </div>
-                <div className="card-body">
-                Valores preocupantes.
-                </div>
-              </div>
-            </div>
-          </div>
 
           <table className="table table-hover">
             <thead>
@@ -367,10 +411,11 @@ export default function SensorList() {
             </table>
           </div>
 
-        </div>
+        </div >
 
-      )}
+      )
+      }
       <Footer />
-    </div>
+    </div >
   );
 }

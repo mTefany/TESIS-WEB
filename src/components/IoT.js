@@ -7,11 +7,11 @@ import Transmision from '../image/Transmision.png'
 
 function IoT() {
   return (
-    <div className="page-container">
+    <div >
       <Nav />
-      <div className="container completo bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-        <div class="row containerfooter">
-          <div className="containertransmision">
+      <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
+        <div class="row ">
+          <div className="superior">
             <div class="card text-center">
               <center>
                 <div class="card-header">
@@ -21,11 +21,7 @@ function IoT() {
               </center>
 
               <div class="card-body">
-                <h5 class="card-title">
-                  Los datos son transmitidos entre módulo emisor y 
-                  módulo receptor por medio <br /> de LoRa para poder 
-                  comunicarse en largo alcance. 
-                  </h5> <br />
+                <h6>Valores de transmisión</h6>
                 <div className="containertabla">
                   <table className="table table-hover ">
                     <thead>
@@ -63,7 +59,7 @@ function IoT() {
                   <img className='emisorimagen img-fluid' src={Emisor} alt="" />
                 </div>
                 <div class="col-md-6">
-                  <div class="card-body">
+                  <div class="card-body info-card">
                     <p class="card-text">
                       El módulo emisor cuenta con tres sensores ubicados en tres áreas diferentes dentro de los cultivos de pitahaya.
                     </p>
@@ -80,7 +76,7 @@ function IoT() {
                   <img className=' img-fluid' src={Receptor} alt="" />
                 </div>
                 <div class="col-md-6">
-                  <div class="card-body">
+                  <div class="card-body info-card">
                     <p class="card-text">
                       El módulo receptor recibe los datos cada <strong>30 segundos</strong>. Este módulo se encuentra a 50 m del módulo emisor 
                     </p>

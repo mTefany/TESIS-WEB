@@ -9,6 +9,19 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10px 15px 10px 5px;
+}
+
+.card-text{
+  padding: 0px 20px;
+}
+
 .center {
   text-align: center;
 }
@@ -36,32 +49,41 @@
 
 }
 .confirmarfecha {
-  background: linear-gradient(to right,  #c1d3d6,#a2acbe);
+  background: #a2acbe;
  color: black;
  font-weight: bold;
   
 }
 
 .confirmarfecha:hover {
-  background: linear-gradient(to right,  #c1d3d6,#a2acbe);
-  color: white;
+  background: linear-gradient(to left,  #c1d3d6,#a2acbe);
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
 .descargardato {
-  background: linear-gradient(to right, #c1d3d6,#a2acbe);
+  background:  #c1d3d6;
 
   color: rgb(0, 0, 0);
   font-weight: bold;
+}
+
+.descargardato{
+  padding: 0px 5px;
 }
 
 .container.graficainicio{
   padding: 0px;
 }
 
+.material-icons.pdf{
+  padding: 0px 3px 0px 7px;
+  height: 5px !important;
+}
+
 .descargardato:hover {
-  background: linear-gradient(to right,  rgb(58, 98, 104), #303d66);
-  color: white;
+  background: linear-gradient(to left,  #c1d3d6,#a2acbe);
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
@@ -96,6 +118,7 @@
 
 .button-container button {
   margin-right: 25px; /* Ajusta este valor para establecer el espacio entre los botones */
+
 }
 
 .EditarUsuarioContainer {
