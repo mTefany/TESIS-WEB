@@ -20,6 +20,8 @@ export default function Notify() {
 
     const [data, setData] = useState([]);
     const [alerts, setAlerts] = useState([]);
+    const [notificationShown, setNotificationShown] = useState(false);
+
 
     useEffect(() => {
         if (uidUser) {
@@ -36,6 +38,7 @@ export default function Notify() {
                     console.log(sensor1Value + " " + sensor2Value + " " + sensor3Value)
                     setData(lastData);
                     checkSensorValues(sensor1Value, sensor2Value, sensor3Value);
+                    setNotificationShown(true)
                 } else {
                     setData(null);
                 }
@@ -46,9 +49,6 @@ export default function Notify() {
     }, [uidUser]);
 
     const checkSensorValues = (sensor1Value, sensor2Value, sensor3Value) => {
-
-        let bandera = false
-
 
         if (sensor1Value > 42 && sensor1Value < 49) {
             console.log("Humedad normal")
@@ -103,7 +103,7 @@ export default function Notify() {
         } else {
             if (sensor2Value > 52 && sensor2Value < 70) {
                 mensajeárea2 = "Poco exceso de humedad en el Área 2"
-                addAlert("Poco exceso de humedad en el Área 2")
+                addAlert(mensajeárea2)
                 notify2()
             }
             else {
@@ -201,144 +201,174 @@ export default function Notify() {
 
 
     const notify = (message) => {
-        const currentTimestamp = new Date().toLocaleString();
-        setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
-        toast.custom((t) => (
-            <div
-                className={`${t.visible ? 'animate-enter' : 'animate-leave'
-                    } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-            >
-                <div className="flex-1 w-0 p-4">
-                    <div className="flex items-start">
-                        <div className="flex-shrink-0 pt-0.5">
-                            <p className="mt-1 text-sm text-gray-500">
-                                <img
-                                    className="gota"
-                                    src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
-                                    alt=""></img>
+        if (notificationShown) {
+            const currentTimestamp = new Date().toLocaleString();
+            setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
+            toast.custom((t) => (
+                <div
+                    className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+                >
+                    <div className="flex-1 w-0 p-4">
+                        <div className="flex items-start">
+                            <div className="flex-shrink-0 pt-0.5">
+                                <p className="mt-1 text-sm text-gray-500">
+                                    <img
+                                        className="gota"
+                                        src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
+                                        alt=""></img>
 
-                                 
-                                Fecha: {currentTimestamp}
-                                <br />
-                                {mensajeárea1}
-                               
-                              
-                            </p>
+
+                                    Fecha: {currentTimestamp}
+                                    <br />
+                                    <center>
+                                        {mensajeárea1}
+
+                                    </center>
+
+
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="border-l border-gray-200 ">
-                    <center>
-                        <button
-                            onClick={() => toast.dismiss(t.id)}
-                            className="btn boton-alerta"
-                        >
-                            Close
-                        </button>
-                    </center>
+                    <div className="border-l border-gray-200 ">
+                        <center>
+                            <button
+                                onClick={() => toast.dismiss(t.id)}
+                                className="btn boton-alerta"
+                            >
+                                Close
+                            </button>
+                        </center>
 
-                </div>
-            </div>),
-            {
-                icon: '💧',
-                position: "top-center",
-                autoClose: 5000,
-                style: {
-                    background: "#80DAEB",
-                    color: "black",
+                    </div>
+                </div>),
+                {
+                    icon: '💧',
+                    position: "top-center",
+                    autoClose: 5000,
+                    style: {
+                        background: "#80DAEB",
+                        color: "black",
+                    }
                 }
-            }
 
-        )
+            )
+            setNotificationShown(false);
+        }
+
     }
     const notify2 = (message) => {
-        const currentTimestamp = new Date().toLocaleString();
-        setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
-        toast.custom((t) => (
-            <div
-                className={`${t.visible ? 'animate-enter' : 'animate-leave'
-                    } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-            >
-                <div className="flex-1 w-0 p-4">
-                    <div className="flex items-start">
-                        <div className="flex-shrink-0 pt-0.5">
-                            <p className="mt-1 text-sm text-gray-500">
-                                <img
-                                    className="gota"
-                                    src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
-                                    alt=""></img>
-
-                                {mensajeárea2}
-                                <br />
-                                <small>Fecha: {currentTimestamp}</small>
-                            </p>
+        if(notificationShown){
+            const currentTimestamp = new Date().toLocaleString();
+            setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
+            toast.custom((t) => (
+                <div
+                    className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+                >
+                    <div className="flex-1 w-0 p-4">
+                        <div className="flex items-start">
+                            <div className="flex-shrink-0 pt-0.5">
+                                <p className="mt-1 text-sm text-gray-500">
+                                    <img
+                                        className="gota"
+                                        src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
+                                        alt=""></img>
+    
+    
+                                    Fecha: {currentTimestamp}
+                                    <br />
+                                    <center>
+                                        {mensajeárea2}
+                                    </center>
+    
+    
+    
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="border-l border-gray-200 ">
-                    <button
-                        onClick={() => toast.dismiss(t.id)}
-                        className="btn boton-alerta"
-                    >
-                        Close
-                    </button>
-                </div>
-            </div>),
-            {
-                icon: '💧',
-                position: "top-center",
-                autoClose: 5000,
-                style: {
-                    background: "#80DAEB",
-                    color: "black",
+                    <div className="border-l border-gray-200 ">
+                        <center>
+                            <button
+                                onClick={() => toast.dismiss(t.id)}
+                                className="btn boton-alerta"
+                            >
+                                Close
+                            </button>
+                        </center>
+    
+                    </div>
+                </div>),
+                {
+                    icon: '💧',
+                    position: "top-center",
+                    autoClose: 5000,
+                    style: {
+                        background: "#80DAEB",
+                        color: "black",
+                    }
                 }
-            }
-        )
+            )
+            setNotificationShown(false)
+        }
+       
     }
     const notify3 = (message) => {
-        const currentTimestamp = new Date().toLocaleString();
-        setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
-        toast.custom((t) => (
-            <div
-                className={`${t.visible ? 'animate-enter' : 'animate-leave'
-                    } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
-            >
-                <div className="flex-1 w-0 p-4">
-                    <div className="flex items-start">
-                        <div className="flex-shrink-0 pt-0.5">
-                            <p className="mt-1 text-sm text-gray-500">
-                                <img
-                                    className="gota"
-                                    src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
-                                    alt=""></img>
-
-                                {mensajeárea3}
-                                <br />
-                                <small>Fecha: {currentTimestamp}</small>
-
-                            </p>
+        if(notificationShown){
+            const currentTimestamp = new Date().toLocaleString();
+            setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
+            toast.custom((t) => (
+                <div
+                    className={`${t.visible ? 'animate-enter' : 'animate-leave'
+                        } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+                >
+                    <div className="flex-1 w-0 p-4">
+                        <div className="flex items-start">
+                            <div className="flex-shrink-0 pt-0.5">
+                                <p className="mt-1 text-sm text-gray-500">
+                                    <img
+                                        className="gota"
+                                        src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
+                                        alt=""></img>
+    
+    
+                                    Fecha: {currentTimestamp}
+                                    <br />
+                                    <center>
+                                        {mensajeárea3}
+                                    </center>
+    
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="border-l border-gray-200 ">
-                    <button
-                        onClick={() => toast.dismiss(t.id)}
-                        className="btn boton-alerta"
-                    >
-                        Close
-                    </button>
-                </div>
-            </div>),
-            {
-                icon: '💧',
-                position: "top-center",
-                autoClose: 5000,
-                style: {
-                    background: "#80DAEB",
-                    color: "black",
+                    <div className="border-l border-gray-200 ">
+                        <center>
+                            <button
+                                onClick={() => toast.dismiss(t.id)}
+                                className="btn boton-alerta"
+                            >
+                                Close
+                            </button>
+                        </center>
+    
+                    </div>
+                </div>),
+                {
+                    icon: '💧',
+                    position: "top-center",
+                    autoClose: 5000,
+                    style: {
+                        background: "#80DAEB",
+                        color: "black",
+                    }
                 }
-            }
-        )
+            )
+            setNotificationShown(false)
+        }
+        
     }
 
     return (

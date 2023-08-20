@@ -9,6 +9,24 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 40px; /* Ajusta el espaciado a tu preferencia */
+}
+
+.mostrar-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Ajusta la posición horizontal a tu preferencia */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
 .info-card {
     display: flex;
     flex-direction: column;
@@ -283,6 +301,18 @@ h4 {
   font-size: 14px;
 }
 
+.menu {
+  color: white ;
+}
+
+.datetime-input{
+  padding: 0px;
+}
+
+.navbar-toggler{
+  color: white;
+}
+
 .table-responsive{
   padding: 20px;
 }
@@ -323,6 +353,10 @@ h4 {
 
 }
 
+.container4{
+  padding: 25px;
+}
+
 .navbar {
   background: linear-gradient(to right, #c9ecf3, #92c0eb, #2e517c, #253f70, #1d326d);
 }
@@ -330,6 +364,12 @@ h4 {
 .footerfinal {
   background: linear-gradient(to right, #c9ecf3, #92c0eb, #2e517c, #253f70, #1d326d);
   color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0; /* Ajusta el espacio interno del footer según tus preferencias */
+  text-align: center;
 }
 
 .download-button {
@@ -406,13 +446,11 @@ h4 {
 }
 
 .imageniconohumedad {
-  max-width: 40%;
+  max-width: 30%;
   padding: 10px 0px;
   height: auto;
   display: block;
-  /* Asegura que la imagen mantenga su espacio incluso si cambia de tamaño */
   margin: 0 auto;
-  /* Centra horizontalmente la imagen en su contenedor */
 }
 
 .container2{

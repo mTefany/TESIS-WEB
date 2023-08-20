@@ -364,25 +364,13 @@ export default function SensorList() {
               {currentData.map((reading, index) => (
                 <tr key={index}>
                   <td scope="row" className='filas'> {epochToDateTime(reading.timestamp)} </td>
-                  <td
-                    scope="row"
-                    className="filas"
-                    style={{ backgroundColor: getColorForValue(reading.sensor1Value) }}
-                  >
+                  <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor1Value) }}>
                     {reading.sensor1Value}
                   </td>
-                  <td
-                    scope="row"
-                    className="filas"
-                    style={{ backgroundColor: getColorForValue(reading.sensor2Value) }}
-                  >
+                  <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor2Value) }}>
                     {reading.sensor2Value}
                   </td>
-                  <td
-                    scope="row"
-                    className="filas"
-                    style={{ backgroundColor: getColorForValue(reading.sensor3Value) }}
-                  >
+                  <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor3Value) }}>
                     {reading.sensor3Value}
                   </td>
                 </tr>
@@ -392,6 +380,7 @@ export default function SensorList() {
           <div className="pagination">
             {renderPaginationButtons()}
           </div>
+          <div className="container3"></div>
           <div className="table table-hover">
             <table>
               <thead>
@@ -410,11 +399,9 @@ export default function SensorList() {
               </tbody>
             </table>
           </div>
-
         </div >
-
-      )
-      }
+      )}
+       <div className="container4"> </div>
       <Footer />
     </div >
   );

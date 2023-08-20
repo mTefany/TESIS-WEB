@@ -32,6 +32,26 @@ export default function Tarjeta() {
         }
     }, [uidUser]);
 
+    function getColorForValue(value) {
+        const numericValue = parseFloat(value);
+    
+        if (numericValue >= 0 && numericValue <= 19) {
+          return "#FCB3A3"; // No color
+        } else if (numericValue >= 20 && numericValue <= 30) {
+          return "#FCF5A3";
+        } else if (numericValue >= 31 && numericValue <= 49) {
+          return "#A3DFFC";
+        } else if (numericValue >= 50 && numericValue <= 60) {
+          return "#ffffff";
+        } else if (numericValue >= 61 && numericValue <= 80) {
+          return "#A3DFFC";
+        } else if (numericValue >= 81 && numericValue <= 100) {
+          return "#FCB3A3";
+        } else {
+          return ""; // Maneja otros casos según sea necesario
+        }
+      }
+
     const graphStyle = {
         flex: '1',
     };
@@ -169,11 +189,11 @@ export default function Tarjeta() {
 
             <div className="superior">
 
-                <div class="card"> 
+                <div class="card">
                     <div class="card-body tarjetaflex text-center ">
-                    <div className="card-header">
-                                <h5>Bienvenido {nombre} </h5>
-                            </div><br />
+                        <div className="card-header">
+                            <h5>Bienvenido {nombre} </h5>
+                        </div><br />
                         <h5>Última Actualización {epochToDateTime(lastData.timestamp || 0)}</h5>
                     </div>
                 </div>
@@ -182,14 +202,16 @@ export default function Tarjeta() {
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="card">
-                            <div className="row g-0">
+                            <div className="row g-0" style={{ backgroundColor: getColorForValue(lastData.sensor1Value) }}>
                                 <div className="col-md-6 iconoagua">
                                     <img className='imageniconohumedad img-fluid' src={humedad} alt="" />
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6" >
                                     <div className="card-body reading">
                                         <h5 className="card-title"><span className="reading">{lastData.sensor1Value} %</span></h5>
-                                        <p className="card-text">Humedad Área 1</p>
+
+                                        <h7 className="card-text centered-text">Humedad Área 1</h7>
+
                                     </div>
                                 </div>
                             </div>
@@ -197,14 +219,14 @@ export default function Tarjeta() {
                     </div>
                     <div className="col-sm-4">
                         <div className="card">
-                            <div className="row g-0">
+                            <div className="row g-0" style={{ backgroundColor: getColorForValue(lastData.sensor2Value) }}>
                                 <div className="col-md-6">
                                     <img className='imageniconohumedad img-fluid' src={humedad} alt="" />
                                 </div>
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title "><span >{lastData.sensor2Value} %</span></h5>
-                                        <p className="card-text">Humedad Área 2</p>
+                                        <h7 className="card-text centered-text">Humedad Área 2</h7>
                                     </div>
                                 </div>
                             </div>
@@ -212,14 +234,14 @@ export default function Tarjeta() {
                     </div>
                     <div className="col-sm-4">
                         <div className="card">
-                            <div className="row g-0">
+                            <div className="row g-0" style={{ backgroundColor: getColorForValue(lastData.sensor3Value) }}>
                                 <div className="col-md-6">
                                     <img className='imageniconohumedad img-fluid' src={humedad} alt="" />
                                 </div>
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title"><span className="reading">{lastData.sensor3Value} %</span></h5>
-                                        <p className="card-text">Humedad Área 3</p>
+                                        <h7 className="card-text centered-text">Humedad Área 3</h7>
                                     </div>
                                 </div>
                             </div>

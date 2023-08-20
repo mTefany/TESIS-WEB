@@ -73,9 +73,6 @@ function Tablero() {
     return canvas.toDataURL('image/png');
   };
 
-
-
-
   const handleDownloadPDF = async () => {
     const pdf = new jsPDF();
 
@@ -267,7 +264,6 @@ function Tablero() {
       text: ' '
     },
     xAxis: {
-      // categories: categories,
       title: {
         text: 'Total de datos de humedad relativa '
       }
@@ -295,17 +291,12 @@ function Tablero() {
     ]
   };
 
-
-
-
   return (
     <div>
       <Nav />
-
       <div className="container tarjetaflex bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
         <div>
           <div className="superior">
-
             <div class="card">
               <div class="card-body tarjetaflex text-center ">
                 <h5>Consulta de Datos</h5>
@@ -325,7 +316,6 @@ function Tablero() {
                         onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
                       />
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -340,7 +330,6 @@ function Tablero() {
                         onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
                       />
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -453,6 +442,7 @@ function Tablero() {
                       <div className="pagination">
                         {renderPaginationButtons()}
                       </div>
+                      <div className="container3"></div>
                     </div>
                   </div>
                 </div>

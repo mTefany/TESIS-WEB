@@ -35,7 +35,7 @@ function Nav() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span><i className="material-icons">menu</i></span>
+            <span><i className="material-icons menu">menu</i></span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">

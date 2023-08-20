@@ -13,6 +13,8 @@ function Login() {
   const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+
 
   //actualizar el estado
   const handleChange = ({ target: { name, value } }) => {
@@ -76,17 +78,28 @@ function Login() {
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="***********"
-              onChange={handleChange}
-              className="form-control"
-              autoComplete="off" // Agrega esta línea
-            />
-            <span class="mostrar-btn"><i class="fas fa-eye"></i></span>
-
+            <div className="password-input">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="***********"
+                value={user.password}
+                onChange={handleChange}
+                className="form-control"
+                autoComplete="off"
+              />
+              <span
+                className="mostrar-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <i className="fas fa-eye-slash"></i>
+                ) : (
+                  <i className="fas fa-eye"></i>
+                )}
+              </span>
+            </div>
           </div>
           <div className="form-group">
             <a
