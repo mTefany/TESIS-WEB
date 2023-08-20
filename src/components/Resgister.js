@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import logo from '../image/logo.jpeg'
+import { Link } from "react-router-dom";
 
 import { firestore, auth } from '../firebase';
-import { createUserWithEmailAndPassword} from 'firebase/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { collection, doc, setDoc } from "firebase/firestore";
 
 function Register() {
@@ -15,7 +16,7 @@ function Register() {
     cargo: '',
     email: '',
     password: '',
-    nombre:'',
+    nombre: '',
   });
 
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ function Register() {
       setError('Por favor ingresa tu contraseña')
       return
     }
-    if (!user.nombre.trim()){
+    if (!user.nombre.trim()) {
       setError("Por favor ingrese su Nombre")
       return;
     }
@@ -86,6 +87,10 @@ function Register() {
   return (
     <div className="containerform">
       <div className="form-container">
+        <Link to="/usuarios" className="float-end">
+          <button type="button" className="btn-close" aria-label="Close"></button>
+        </Link>
+
         {error && <Alert message={error} />}
         <div className="text-center">
           <img src={logo} alt="Logo" width="250x" />

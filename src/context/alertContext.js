@@ -5,12 +5,17 @@ const AlertContext = createContext();
 export function AlertProvider({ children }) {
   const [alerts, setAlerts] = useState([]);
 
-  const addAlert = (alertMessage) => {
-    setAlerts((prevAlerts) => [...prevAlerts, alertMessage]);
+  const addAlert = (alertMessage, timestamp) => {
+    setAlerts((prevAlerts) => [...prevAlerts, { message: alertMessage, timestamp }]);
+  };
+
+  const removeAlert = (index) => {
+    const newAlerts = alerts.filter((_, i) => i !== index);
+    setAlerts(newAlerts);
   };
 
   return (
-    <AlertContext.Provider value={{ alerts, addAlert }}>
+    <AlertContext.Provider value={{ alerts, addAlert, removeAlert }}>
       {children}
     </AlertContext.Provider>
   );
@@ -19,4 +24,3 @@ export function AlertProvider({ children }) {
 export function useAlert() {
   return useContext(AlertContext); 
 }
-

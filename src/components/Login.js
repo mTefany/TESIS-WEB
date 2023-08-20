@@ -49,6 +49,7 @@ function Login() {
     }
   };
 
+
   return (
     <div className="containerform">
       <div className="form-container">
@@ -58,7 +59,7 @@ function Login() {
         </div>
         <h3 className="form-title">Formulario de ingreso</h3>
         <form onSubmit={handleSubmit}>
-          
+
           <div className="form-group">
             <label htmlFor="email" className="form-label">
               Email
@@ -84,6 +85,8 @@ function Login() {
               className="form-control"
               autoComplete="off" // Agrega esta línea
             />
+            <span class="mostrar-btn"><i class="fas fa-eye"></i></span>
+
           </div>
           <div className="form-group">
             <a
@@ -99,29 +102,6 @@ function Login() {
               Iniciar sesión
             </button>
           </div>
-
-          {/* <div className="d-grid gap-2">
-            <Link to={'/register'} className="btn btn-outline-secondary">
-              Registrate
-            </Link>
-          </div> */}
-
-          {/* <div className="text-center">
-            <p className="btn-sm">
-              Si no tienes una cuenta!
-              <div className="  card-group">
-                <div className=" card ">
-                  <Link to="/register" className="opcionregistro">
-                    <i class="material-icons">note_add</i>
-                  </Link>
-                </div>
-                <div className=" card opcionregistro">
-                  <a href="#" onClick={handleGoogleSignin}>
-                    <i className="material-icons">mail</i></a>
-                </div>
-              </div>
-            </p>
-          </div> */}
         </form>
       </div>
     </div>

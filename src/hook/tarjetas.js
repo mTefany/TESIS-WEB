@@ -9,11 +9,12 @@ import { epochToDateTime } from '../context/dateTime'
 import humedad from '../image/icono-humedad.png'
 
 export default function Tarjeta() {
-
     const { user } = useAuth();
+    const nombre = (user.firestoreData.nombre);
     const uidUser = user?.uid;
     const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
     const dbRef = ref(db, dbPath);
+
 
     const [lastData, setLastData] = useState({});
     const [lastTenData, setLastTenData] = useState([]);
@@ -34,9 +35,6 @@ export default function Tarjeta() {
     const graphStyle = {
         flex: '1',
     };
-
-
-
 
     const categories = lastTenData.map(item => epochToDateTime(item.timestamp)); // Obtener las fechas de los datos
     const seriesData1 = lastTenData.map(item => parseFloat(item.sensor1Value)); // Obtener los valores de los datos
@@ -133,17 +131,17 @@ export default function Tarjeta() {
         series: [
             {
                 type: 'column',
-                name: 'Area 1',
+                name: 'Área 1',
                 data: seriesData1
             },
             {
                 type: 'column',
-                name: 'Area 2',
+                name: 'Área 2',
                 data: seriesData2
             },
             {
                 type: 'column',
-                name: 'Area 3',
+                name: 'Área 3',
                 data: seriesData3
             },
             {
@@ -171,14 +169,15 @@ export default function Tarjeta() {
 
             <div className="superior">
 
-                <div class="card">
-                    <div class="card-body tarjetaflex text-center text-uppercase ">
-                        ÚLTIMA ACTUALIZACIÓN<strong>{epochToDateTime(lastData.timestamp || 0)}</strong>
+                <div class="card"> 
+                    <div class="card-body tarjetaflex text-center ">
+                    <div className="card-header">
+                                <h5>Bienvenido {nombre} </h5>
+                            </div><br />
+                        <h5>Última Actualización {epochToDateTime(lastData.timestamp || 0)}</h5>
                     </div>
                 </div>
             </div>
-
-
             <div className="container2">
                 <div className="row">
                     <div className="col-sm-4">

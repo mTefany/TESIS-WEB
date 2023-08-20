@@ -13,6 +13,22 @@
   text-align: center;
 }
 
+.color1{
+  background-color: #ffffff;
+}
+
+.color2{
+  background-color: #A3DFFC;
+}
+
+.color3{
+  background-color: #FCF5A3
+}
+
+.color4{
+  background-color: #FCB3A3
+}
+
 .input-group-text{
   background: linear-gradient(to right,  #c1d3d6,#a2acbe);
   color: rgb(0, 0, 0);
@@ -50,7 +66,36 @@
 }
 
 .superior{
-  padding: 10px 0px 30px 0px;
+  padding: 10px 0px 3px 0px;
+}
+
+.container3{
+  padding: 3px 0px 3px 0px;
+}
+
+.card-body{
+  padding: 5px 0px 3px 0px;
+}
+
+.inicio {
+  padding: 0px 0px 10px 0px;
+}
+
+.fin{
+  padding: 0px 0px 10px 0px;
+}
+
+.botones{
+  padding: 0px 0px 10px 0px;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 0px; /* Ajusta este valor según tus preferencias */
+}
+
+.button-container button {
+  margin-right: 25px; /* Ajusta este valor para establecer el espacio entre los botones */
 }
 
 .EditarUsuarioContainer {
@@ -172,11 +217,51 @@ h4 {
   width: 150px;
 }
 
+/* Usuarios.css */
+.btn-editar {
+  background-color: #9fa8df;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn-editar:hover {
+  background-color: #2c3e50;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: #f1958a;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn-eliminar:hover {
+  background-color: #c0392b;
+  font-weight: bold;
+  color: white;
+}
+
+
 .table {
   width: 100%;
+  justify-content: center;
+  align-items: center;
   border-collapse: collapse;
   border: 1px solid #ccc;
   font-size: 14px;
+}
+
+.table-responsive{
+  padding: 20px;
 }
 
 .table th,
@@ -308,7 +393,7 @@ h4 {
 }
 
 .container2{
- padding: 20px 0px;
+ padding: 10px 0px;
  display: flex;
 }
 
@@ -333,7 +418,6 @@ h4 {
   border-radius: 4px;
   cursor: pointer;
 }
-
 
 /* Estilos para los botones de paginación */
 .pagination {

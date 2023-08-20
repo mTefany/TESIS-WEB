@@ -47,134 +47,153 @@ export default function Notify() {
 
     const checkSensorValues = (sensor1Value, sensor2Value, sensor3Value) => {
 
-        if (sensor1Value > 49 && sensor1Value < 61) {
+        let bandera = false
+
+
+        if (sensor1Value > 42 && sensor1Value < 49) {
             console.log("Humedad normal")
         } else {
-            if (sensor1Value > 60 && sensor1Value < 70) {
+            if (sensor1Value > 50 && sensor1Value < 70) {
                 mensajeárea1 = "Poco exceso de humedad en el Área 1"
-                addAlert("Poco exceso de humedad en el Área 1")
+                addAlert(mensajeárea1)
                 notify()
-            } 
-            // else {
-            //     if (sensor1Value > 69 && sensor1Value < 81) {
-            //         mensajeárea1 = "Exceso de humedad en el Área 1"
-            //         addAlert("Exceso de humedad en el Área 1")
-            //         notify()
-            //     } else {
-            //         if (sensor1Value > 80 && sensor1Value < 101) {
-            //             mensajeárea1 = "La humedad en el Área 1 supera los límites"
-            //             addAlert("Exceso de humedad en el Área 1")
-            //             notify()
-            //         } else {
-            //             if (sensor1Value < 50 && sensor1Value > 39) {
-            //                 mensajeárea1 = "El suelo del Área 1 esta comenzando a secarse"
-            //                 addAlert()
-            //             } else {
-            //                 if (sensor1Value < 40 && sensor1Value > 29) {
-            //                     mensajeárea1 = "EL suelo del Área 1 se encuentra seco"
-            //                     notify()
-            //                 } else {
-            //                     if (sensor1Value < 30 && sensor1Value > 10) {
-            //                         mensajeárea1 = "El seuelo del Área 1 se encuentra con exceso de sequía"
-            //                         notify()
-            //                     } else {
-            //                         if (sensor1Value < 11 && sensor1Value > -1) {
-            //                             mensajeárea1 = "El sensor del Área 1 se encuentra desconectado"
-            //                             notify()
-            //                         }
-            //                     }
-            //                 }
+            }
+            else {
+                if (sensor1Value > 69 && sensor1Value < 81) {
+                    mensajeárea1 = "Exceso de humedad en el Área 1"
+                    addAlert(mensajeárea1)
+                    notify()
+                } else {
+                    if (sensor1Value > 80 && sensor1Value < 101) {
+                        mensajeárea1 = "La humedad en el Área 1 supera los límites"
+                        addAlert(mensajeárea1)
+                        notify()
+                    } else {
+                        if (sensor1Value < 50 && sensor1Value > 39) {
+                            mensajeárea1 = "El suelo del Área 1 esta comenzando a secarse"
+                            addAlert(mensajeárea1)
+                            addAlert()
+                        } else {
+                            if (sensor1Value < 40 && sensor1Value > 29) {
+                                mensajeárea1 = "EL suelo del Área 1 se encuentra seco"
+                                addAlert(mensajeárea1)
+                                notify()
+                            } else {
+                                if (sensor1Value < 30 && sensor1Value > 10) {
+                                    mensajeárea1 = "El seuelo del Área 1 se encuentra con exceso de sequía"
+                                    addAlert(mensajeárea1)
+                                    notify()
+                                } else {
+                                    if (sensor1Value < 11 && sensor1Value > -1) {
+                                        mensajeárea1 = "El sensor del Área 1 se encuentra desconectado"
+                                        addAlert(mensajeárea1)
+                                        notify()
+                                    }
+                                }
+                            }
 
-            //             }
+                        }
 
-            //         }
-            //     }
-            // }
+                    }
+                }
+            }
         }
-        if (sensor2Value > 57 && sensor2Value < 60) {
+        if (sensor2Value > 49 && sensor2Value < 52) {
             console.log("Humedad normal")
         } else {
-            if (sensor2Value > 49 && sensor2Value < 58) {
+            if (sensor2Value > 52 && sensor2Value < 70) {
                 mensajeárea2 = "Poco exceso de humedad en el Área 2"
                 addAlert("Poco exceso de humedad en el Área 2")
                 notify2()
-            } 
-            // else {
-            //     if (sensor2Value > 69 && sensor2Value < 81) {
-            //         mensajeárea2 = "Exceso de humedad en el Área 2"
-            //         notify2()
-            //     } else {
-            //         if (sensor2Value > 80 && sensor2Value < 101) {
-            //             mensajeárea2 = "La humedad en el Área 2 supera los límites"
-            //             notify2()
-            //         } else {
-            //             if (sensor2Value < 50 && sensor2Value > 39) {
-            //                 mensajeárea2 = "El suelo esta comenzando a secarse en el Área 2"
-            //                 notify2()
-            //             } else {
-            //                 if (sensor2Value < 40 && sensor2Value > 29) {
-            //                     mensajeárea2 = "El suelo del Área 2 se encuentra seco"
-            //                     notify2()
-            //                 } else {
-            //                     if (sensor2Value < 30 && sensor2Value > 10) {
-            //                         mensajeárea2 = "El suelo del Área 2 se encuentra con exceso de sequía"
-            //                         notify2()
-            //                     } else {
-            //                         if (sensor2Value < 11 && sensor2Value > -1) {
-            //                             mensajeárea2 = "El sensor del Área 2 se encuentra desconectado"
-            //                             notify2()
-            //                         }
-            //                     }
-            //                 }
+            }
+            else {
+                if (sensor2Value > 69 && sensor2Value < 81) {
+                    mensajeárea2 = "Exceso de humedad en el Área 2"
+                    addAlert(mensajeárea2)
+                    notify2()
+                } else {
+                    if (sensor2Value > 80 && sensor2Value < 101) {
+                        mensajeárea2 = "La humedad en el Área 2 supera los límites"
+                        addAlert(mensajeárea2)
+                        notify2()
+                    } else {
+                        if (sensor2Value < 50 && sensor2Value > 39) {
+                            mensajeárea2 = "El suelo esta comenzando a secarse en el Área 2"
+                            addAlert(mensajeárea2)
+                            notify2()
+                        } else {
+                            if (sensor2Value < 40 && sensor2Value > 29) {
+                                mensajeárea2 = "El suelo del Área 2 se encuentra seco"
+                                addAlert(mensajeárea2)
+                                notify2()
+                            } else {
+                                if (sensor2Value < 30 && sensor2Value > 10) {
+                                    mensajeárea2 = "El suelo del Área 2 se encuentra con exceso de sequía"
+                                    addAlert(mensajeárea2)
+                                    notify2()
+                                } else {
+                                    if (sensor2Value < 11 && sensor2Value > -1) {
+                                        mensajeárea2 = "El sensor del Área 2 se encuentra desconectado"
+                                        addAlert(mensajeárea2)
+                                        notify2()
+                                    }
+                                }
+                            }
 
-            //             }
+                        }
 
-            //         }
-            //     }
-            // }
+                    }
+                }
+            }
         }
 
-        if (sensor3Value > 57 && sensor3Value < 60) {
+        if (sensor3Value > 49 && sensor3Value < 61) {
             console.log("Humedad normal")
         } else {
-            if (sensor3Value > 49 && sensor3Value < 58) {
+            if (sensor3Value > 60 && sensor3Value < 70) {
                 mensajeárea3 = "Poco exceso de humedad en el Área 3"
-                addAlert("Poco exceso de humedad en el Área ")
+                addAlert(mensajeárea3)
                 notify3()
-            } 
-            // else {
-            //     if (sensor3Value > 69 && sensor3Value < 81) {
-            //         mensajeárea3 = "Exceso de humedad en el Área 3"
-            //         notify3()
-            //     } else {
-            //         if (sensor3Value > 80 && sensor3Value < 101) {
-            //             mensajeárea3 = "La humedad en el Área 3 supera los límites"
-            //             notify3()
-            //         } else {
-            //             if (sensor3Value < 50 && sensor3Value > 39) {
-            //                 mensajeárea3 = "El suelo esta comenzando a secarse en el Área 3"
-            //                 notify3()
-            //             } else {
-            //                 if (sensor3Value < 40 && sensor3Value > 29) {
-            //                     mensajeárea3 = "El suelo del Área 3 se encuentra seco"
-            //                     notify3()
-            //                 } else {
-            //                     if (sensor3Value < 30 && sensor3Value > 10) {
-            //                         mensajeárea3 = "El suelo del Área 3 se encuentra con exceso de sequía"
-            //                         notify3()
-            //                     } else {
-            //                         if (sensor3Value < 11 && sensor3Value > -1) {
-            //                             mensajeárea3 = "El sensor del Área 3 se encuentra desconectado"
-            //                             notify3()
-            //                         }
-            //                     }
-            //                 }
+            }
+            else {
+                if (sensor3Value > 69 && sensor3Value < 81) {
+                    mensajeárea3 = "Exceso de humedad en el Área 3"
+                    addAlert(mensajeárea3)
+                    notify3()
+                } else {
+                    if (sensor3Value > 80 && sensor3Value < 101) {
+                        mensajeárea3 = "La humedad en el Área 3 supera los límites"
+                        addAlert(mensajeárea3)
+                        notify3()
+                    } else {
+                        if (sensor3Value < 50 && sensor3Value > 39) {
+                            mensajeárea3 = "El suelo esta comenzando a secarse en el Área 3"
+                            addAlert(mensajeárea3)
+                            notify3()
+                        } else {
+                            if (sensor3Value < 40 && sensor3Value > 29) {
+                                mensajeárea3 = "El suelo del Área 3 se encuentra seco"
+                                addAlert(mensajeárea3)
+                                notify3()
+                            } else {
+                                if (sensor3Value < 30 && sensor3Value > 10) {
+                                    mensajeárea3 = "El suelo del Área 3 se encuentra con exceso de sequía"
+                                    addAlert(mensajeárea3)
+                                    notify3()
+                                } else {
+                                    if (sensor3Value < 11 && sensor3Value > -1) {
+                                        mensajeárea3 = "El sensor del Área 3 se encuentra desconectado"
+                                        addAlert(mensajeárea3)
+                                        notify3()
+                                    }
+                                }
+                            }
 
-            //             }
+                        }
 
-            //         }
-            //     }
-            // }
+                    }
+                }
+            }
         }
 
     };
@@ -182,7 +201,8 @@ export default function Notify() {
 
 
     const notify = (message) => {
-        setAlerts((prevAlerts) => [...prevAlerts, message]);
+        const currentTimestamp = new Date().toLocaleString();
+        setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
         toast.custom((t) => (
             <div
                 className={`${t.visible ? 'animate-enter' : 'animate-leave'
@@ -197,18 +217,26 @@ export default function Notify() {
                                     src="https://blogquimobasicos.files.wordpress.com/2012/06/gota-de-agua.jpeg"
                                     alt=""></img>
 
+                                 
+                                Fecha: {currentTimestamp}
+                                <br />
                                 {mensajeárea1}
+                               
+                              
                             </p>
                         </div>
                     </div>
                 </div>
                 <div className="border-l border-gray-200 ">
-                    <button
-                        onClick={() => toast.dismiss(t.id)}
-                        className="btn boton-alerta"
-                    >
-                        Close
-                    </button>
+                    <center>
+                        <button
+                            onClick={() => toast.dismiss(t.id)}
+                            className="btn boton-alerta"
+                        >
+                            Close
+                        </button>
+                    </center>
+
                 </div>
             </div>),
             {
@@ -224,7 +252,8 @@ export default function Notify() {
         )
     }
     const notify2 = (message) => {
-        setAlerts((prevAlerts) => [...prevAlerts, message]);
+        const currentTimestamp = new Date().toLocaleString();
+        setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
         toast.custom((t) => (
             <div
                 className={`${t.visible ? 'animate-enter' : 'animate-leave'
@@ -240,6 +269,8 @@ export default function Notify() {
                                     alt=""></img>
 
                                 {mensajeárea2}
+                                <br />
+                                <small>Fecha: {currentTimestamp}</small>
                             </p>
                         </div>
                     </div>
@@ -265,7 +296,8 @@ export default function Notify() {
         )
     }
     const notify3 = (message) => {
-        setAlerts((prevAlerts) => [...prevAlerts, message]);
+        const currentTimestamp = new Date().toLocaleString();
+        setAlerts((prevAlerts) => [...prevAlerts, { message, timestamp: currentTimestamp }]);
         toast.custom((t) => (
             <div
                 className={`${t.visible ? 'animate-enter' : 'animate-leave'
@@ -281,6 +313,8 @@ export default function Notify() {
                                     alt=""></img>
 
                                 {mensajeárea3}
+                                <br />
+                                <small>Fecha: {currentTimestamp}</small>
 
                             </p>
                         </div>

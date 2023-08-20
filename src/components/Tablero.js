@@ -302,52 +302,79 @@ function Tablero() {
     <div>
       <Nav />
 
-      <div className="container bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
+      <div className="container tarjetaflex bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
         <div>
           <div className="superior">
 
             <div class="card">
-              <div class="card-body tarjetaflex text-center text-uppercase ">
-                ÚLTIMA ACTUALIZACIÓN<strong>{epochToDateTime(lastData.timestamp || 0)}</strong>
+              <div class="card-body tarjetaflex text-center ">
+                <h5>Consulta de Datos</h5>
               </div>
             </div>
           </div>
-          <div id="pdf-content">
-            {/* Add date and time picker here */}
-            <div class="input-group">
-              <span class="input-group-text">Inicio</span>
-              <input
-                className="datetime-input form-control"
-                type="datetime-local"
-                onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
-              />
-              <span class="input-group-text">Fin</span>
-              <input
-                className="datetime-input form-control"
-                type="datetime-local"
-                onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
-              />
-              <button
-                type="button"
-                className="btn btn-sm confirmarfecha"
-                onClick={() => {
-                  setSelectedTimestamp({ start: startDate, end: endDate });
-                  // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
-                  const filteredData = lastTenData.filter(
-                    item =>
-                      item.timestamp >= startDate && item.timestamp <= endDate
-                  );
-                  setLastTenData(filteredData);
-                }}
-              >
-                Confirmar
-              </button>
-              <button type="button" className="btn btn-sm descargardato" onClick={handleDownloadPDF}>
-                Descargar PDF
-              </button>
+          <div className="container3">
+            <div class="row">
+              <div class="col-sm-6 ">
+                <div >
+                  <div class="card-body inicio">
+                    <div className="input-group">
+                      <span class="input-group-text">Inicio</span>
+                      <input
+                        className="datetime-input form-control"
+                        type="datetime-local"
+                        onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
+                      />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div>
+                  <div class="card-body fin">
+                    <div className="input-group">
+                      <span class="input-group-text">Fin</span>
+                      <input
+                        className="datetime-input form-control"
+                        type="datetime-local"
+                        onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
+                      />
+                    </div>
+
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div>
+            <div class="card-body">
+              <div className="button-container">
+                <center>
+                  <button
+                    type="button"
+                    className="btn btn-sm confirmarfecha"
+                    onClick={() => {
+                      setSelectedTimestamp({ start: startDate, end: endDate });
+                      // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
+                      const filteredData = lastTenData.filter(
+                        item =>
+                          item.timestamp >= startDate && item.timestamp <= endDate
+                      );
+                      setLastTenData(filteredData);
+                    }}
+                  >
+                    Consultar
+                  </button>
+                  <button type="button" className="btn btn-sm descargardato" onClick={handleDownloadPDF}>
+                    Descargar PDF
+                  </button>
+                </center>
+              </div>
 
 
+            </div>
+          </div>
+          <div id="pdf-content">
             <div className="container2">
               <div className="row">
                 <div className="col-lg-6 col-md-6" >

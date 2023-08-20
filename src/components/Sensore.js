@@ -106,16 +106,22 @@ export default function SensorList() {
   }
 
   function getColorForValue(value) {
-    if (value >= 50 && value <= 60) {
-      return ""; // No color
-    } else if (value >= 20 && value <= 49) {
-      return "rgba(255, 255, 0, 0.5)";
-    } else if (value >= 61 && value <= 80) {
-      return "green";
-    } else if ((value >= 0 && value <= 19) || (value >= 81 && value <= 100)) {
-      return "red";
+    const numericValue = parseFloat(value);
+
+    if (numericValue >= 0 && numericValue <= 19) {
+      return "#FCB3A3"; // No color
+    } else if (numericValue >= 20 && numericValue <= 30) {
+      return "#FCF5A3";
+    } else if (numericValue >= 3 && numericValue <= 49) {
+      return "#A3DFFC";
+    } else if (numericValue >= 50 && numericValue <= 60) {
+      return "#ffffff";
+    } else if (numericValue >= 61 && numericValue <= 80) {
+      return "#A3DFFC";
+    } else if (numericValue >= 81 && numericValue <= 100) {
+      return "#FCB3A3";
     } else {
-      return ""; // Default color
+      return ""; // Maneja otros casos según sea necesario
     }
   }
 
@@ -264,6 +270,43 @@ export default function SensorList() {
             </button>
           </div>
 
+          <div class="row superior">
+            <div class="col-sm-3">
+              <div class="card  color1">
+                <div className="card-body">
+                  Valores Normales.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card color2">
+                <div className="card-body">
+                  Valores medios.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card color3">
+                <div className="header">
+
+                </div>
+                <div className="card-body">
+                  Valores altos.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card color4">
+                <div className="header">
+
+                </div>
+                <div className="card-body">
+                Valores preocupantes.
+                </div>
+              </div>
+            </div>
+          </div>
+
           <table className="table table-hover">
             <thead>
               <tr>
@@ -280,14 +323,14 @@ export default function SensorList() {
                   <td
                     scope="row"
                     className="filas"
-                    style={{ backgroundColor: getColorForValue(reading.sensor2Value) }}
+                    style={{ backgroundColor: getColorForValue(reading.sensor1Value) }}
                   >
                     {reading.sensor1Value}
                   </td>
                   <td
                     scope="row"
                     className="filas"
-                    style={{ backgroundColor: getColorForValue(reading.sensor3Value) }}
+                    style={{ backgroundColor: getColorForValue(reading.sensor2Value) }}
                   >
                     {reading.sensor2Value}
                   </td>
@@ -305,13 +348,25 @@ export default function SensorList() {
           <div className="pagination">
             {renderPaginationButtons()}
           </div>
-          <div className="page-container">
-            {/* ... */}
-            {alerts.map((alert, index) => (
-              <div key={index}>{alert}</div>
-            ))}
-            {/* ... */}
+          <div className="table table-hover">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Mensaje</th>
+                </tr>
+              </thead>
+              <tbody>
+                {alerts.map((alert, index) => (
+                  <tr key={index}>
+                    <td>{alert.timestamp}</td>
+                    <td>{alert.message}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+
         </div>
 
       )}
