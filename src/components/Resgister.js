@@ -21,6 +21,8 @@ function Register() {
 
   const navigate = useNavigate();
   const [error, setError] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+
 
   //actualizar el estado 
   const handleChange = ({ target: { name, value } }) => {
@@ -131,14 +133,28 @@ function Register() {
             <label htmlFor="password" className="form-label">
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="***********"
-              onChange={handleChange}
-              className="form-control"
-            />
+            <div className="password-input">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="***********"
+                value={user.password}
+                onChange={handleChange}
+                className="form-control"
+                autoComplete="off"
+              />
+              <span
+                className="mostrar-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <i className="fas fa-eye-slash"></i>
+                ) : (
+                  <i className="fas fa-eye"></i>
+                )}
+              </span>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="text" className="form-label">

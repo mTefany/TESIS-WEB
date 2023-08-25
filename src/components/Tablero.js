@@ -204,7 +204,7 @@ function Tablero() {
       }
     },
     tooltip: {
-      valueSuffix: ''
+      valueSuffix: ' %'
     },
     plotOptions: {
       areaspline: {
@@ -213,7 +213,7 @@ function Tablero() {
     },
     series: [
       {
-        name: 'Sensor 1',
+        name: 'Área 1',
         data: seriesData1,
         color: '#20AD8D'
       },
@@ -239,7 +239,7 @@ function Tablero() {
       }
     },
     tooltip: {
-      valueSuffix: ''
+      valueSuffix: ' %'
     },
     plotOptions: {
       areaspline: {
@@ -249,7 +249,7 @@ function Tablero() {
     series: [
 
       {
-        name: 'Sensor 2',
+        name: 'Área 2',
         data: seriesData2,
         color: '#396ABF'
       },
@@ -275,7 +275,7 @@ function Tablero() {
       }
     },
     tooltip: {
-      valueSuffix: ''
+      valueSuffix: ' %'
     },
     plotOptions: {
       areaspline: {
@@ -284,7 +284,7 @@ function Tablero() {
     },
     series: [
       {
-        name: 'Sensor 3',
+        name: 'Área 3',
         data: seriesData3,
         color: '#7839BF'
       }
@@ -294,6 +294,7 @@ function Tablero() {
   return (
     <div>
       <Nav />
+      <div className="superior">
       <div className="container tarjetaflex bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
         <div>
           <div className="superior">
@@ -432,9 +433,9 @@ function Tablero() {
                           {currentData.map(item => (
                             <tr key={item.timestamp}>
                               <td scope="row" className='filas' >{epochToDateTime(item.timestamp)}</td>
-                              <td scope="row" className='filas' >{item.sensor1Value}</td>
-                              <td scope="row" className='filas' >{item.sensor2Value}</td>
-                              <td scope="row" className='filas' >{item.sensor3Value}</td>
+                              <td scope="row" className='filas' >{item.sensor1Value} %</td>
+                              <td scope="row" className='filas' >{item.sensor2Value} %</td>
+                              <td scope="row" className='filas' >{item.sensor3Value} %</td>
                             </tr>
                           ))}
                         </tbody>
@@ -451,6 +452,8 @@ function Tablero() {
           </div>
         </div>
       </div>
+      </div>
+      
       <Footer />
     </div>
   );

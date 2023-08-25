@@ -22,10 +22,14 @@ const Home = () => {
   return (
     <div >
       <Nav />
-      <Notify />
-      <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-        <Tarjeta />
+      {/* <Notify /> */}
+      <div className="superior">
+        <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
+          <Tarjeta />
+        </div>
+        <div className="container4"></div>
       </div>
+
       <Footer />
     </div >
   );

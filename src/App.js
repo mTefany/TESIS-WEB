@@ -4,19 +4,21 @@ import Sensorlist from './components/Sensore'
 import Login from './components/Login';
 import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
-import { AlertProvider } from './context/alertContext';
+// import { AlertProvider } from './context/alertContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Tablero from './components/Tablero';
 import Usuarios from './components/Usuarios';
 import EditarUsuario from "./components/EditarUsuario";
 import IoT from './components/IoT'
+import Notify from './components/Notificacion';
 
 function App() {
   return (
     <div >
 
       <AuthProvider>
-        <AlertProvider>
+        {/* <AlertProvider> */}
+        < Notify />
           <Routes>
             <Route path='/' element={
               <ProtectedRoute>
@@ -64,7 +66,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
-        </AlertProvider>
+        {/* </AlertProvider> */}
       </AuthProvider>
     </div>
   )

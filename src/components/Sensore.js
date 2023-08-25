@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { ref, onValue } from 'firebase/database';
 import { db } from "../firebase";
 import { useState, useEffect } from 'react';
@@ -9,13 +11,13 @@ import { saveAs } from "file-saver";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
-import { useAlert } from '../context/alertContext';
+// import { useAlert } from '../context/alertContext';
 
 
 export default function SensorList() {
 
   const { user } = useAuth();
-  const { alerts } = useAlert();
+  // const { alerts } = useAlert();
   const uidUser = user?.uid;
   //const dbPath = 'UsersData/' + uidUser + "/readings";
   const dbPath = 'UsersData/' + 'NOnpj85jxhdS3SZw7dTXdLyLqz82' + "/readings";
@@ -23,6 +25,8 @@ export default function SensorList() {
 
 
   const [loading, setLoading] = useState(true);
+  const [alerts, setAlerts] = useState([]);
+
   const [lastData, setLastData] = useState({});
   const [lastTenData, setLastTenData] = useState([]);
   const [selectedTimestamp, setSelectedTimestamp] = useState([]);
@@ -84,7 +88,7 @@ export default function SensorList() {
     ]);
 
     // Agregar encabezado de la página
-    pdf.text("Reporte de Datos de los sensores", 10, 10);
+    pdf.text("Reporte de Datos por Área", 10, 10);
 
     // Agregar tabla
     pdf.autoTable({
@@ -92,6 +96,33 @@ export default function SensorList() {
       body: tableData,
       startY: 20
     });
+
+
+    // Agregar tabla de alertas
+    const tableHeadersAlerta = ["Fecha", "Área", "Mensaje"];
+    const tableDataAlerta = [];
+    currentData.forEach(reading => {
+      const alertsForReading = checkSensorValues(reading);
+      alertsForReading.forEach(alert => {
+        tableDataAlerta.push([
+          epochToDateTime(alert.timestamp),
+          alert.area,
+          alert.mensaje
+        ]);
+      });
+    });
+
+    if (tableDataAlerta.length > 0) {
+      pdf.addPage();
+      // Agregar encabezado de página
+      pdf.text("Reporte de Alertas en las Áreas donde se ubican los sensores.", 10, 10);
+
+      pdf.autoTable({
+        head: [tableHeadersAlerta],
+        body: tableDataAlerta,
+        startY: 20
+      });
+    }
 
     pdf.save('Datos-sensores.pdf');
   };
@@ -112,18 +143,65 @@ export default function SensorList() {
       return "#FCB3A3"; // No color
     } else if (numericValue >= 20 && numericValue <= 30) {
       return "#FCF5A3";
-    } else if (numericValue >= 3 && numericValue <= 49) {
+    } else if (numericValue >= 31 && numericValue <= 49) {
       return "#A3DFFC";
     } else if (numericValue >= 50 && numericValue <= 60) {
       return "#ffffff";
-    } else if (numericValue >= 61 && numericValue <= 80) {
+    } else if (numericValue >= 61 && numericValue <= 70) {
       return "#A3DFFC";
-    } else if (numericValue >= 81 && numericValue <= 100) {
+    } else if (numericValue >= 71 && numericValue <= 80) {
+      return "#FCF5A3";
+    }else if (numericValue >= 81 && numericValue <= 100) {
       return "#FCB3A3";
     } else {
       return ""; // Maneja otros casos según sea necesario
     }
   }
+
+  const checkSensorValues = (reading) => {
+    const newAlerts = [];
+
+    const checkSensor = (area, sensorValue) => {
+      // Lógica de verificación de valores de sensores
+      let mensaje = '';
+
+      if (sensorValue > 49 && sensorValue < 61) {
+        console.log("normal")
+      } else if (sensorValue > 60 && sensorValue < 70) {
+        mensaje = `Poco exceso de humedad`;
+        // newAlerts.push({ mensaje, area });
+      } else if (sensorValue > 69 && sensorValue < 81) {
+        mensaje = `Exceso de humedad`;
+        // newAlerts.push({ mensaje, area });
+      } else if (sensorValue > 80 && sensorValue < 101) {
+        mensaje = `La humedad supera los límites`;
+        // newAlerts.push({ mensaje, area });
+      } else if (sensorValue < 50 && sensorValue > 39) {
+        mensaje = `El suelo está comenzando a secarse`;
+        // newAlerts.push({ mensaje, area });
+      } else if (sensorValue < 40 && sensorValue > 29) {
+        mensaje = `El suelo se encuentra seco`;
+        // newAlerts.push({ mensaje, area });
+      } else if (sensorValue < 30 && sensorValue > 10) {
+        mensaje = `El suelo se encuentra con exceso de sequía`;
+        // newAlerts.push({ mensaje, area });
+      } else if (sensorValue < 11 && sensorValue > -1) {
+        mensaje = `El sensor se encuentra desconectado`;
+        // newAlerts.push({ mensaje, area });
+      }
+
+      if (mensaje.length > 0) {
+        newAlerts.push({ mensaje, area, timestamp: reading.timestamp }); // Incluye el timestamp en las alertas
+      }
+    };
+
+    checkSensor('Área 1', reading.sensor1Value);
+    checkSensor('Área 2', reading.sensor2Value);
+    checkSensor('Área 3', reading.sensor3Value);
+
+    return newAlerts; // Devolver el array de alertas
+  };
+
 
   const renderPaginationButtons = () => {
     const totalPages = Math.ceil(lastTenData.length / itemsPerPage);
@@ -216,6 +294,10 @@ export default function SensorList() {
     return buf;
   };
 
+  const currentDataWithAlerts = currentData.filter(reading => {
+    const alerts = checkSensorValues(reading);
+    return alerts.length > 0; // Filtrar solo los datos con alertas
+  });
 
 
 
@@ -225,183 +307,212 @@ export default function SensorList() {
       {loading ? (
         <div>Cargando...</div>
       ) : (
-
-        <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-          <div className="superior">
+        <div className="superior">
+          <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
             <div class="card">
               <div class="card-body tarjetaflex text-center ">
                 <h5>Datos obtenidos desde {displayHeaderDateTime}</h5>
               </div>
-
             </div>
-          </div>
+            <div className="container3"></div>
+            <div className="container3">
+              <div class="row">
+                <div class="col-sm-6 ">
+                  <div >
+                    <div class="card-body inicio">
+                      <div className="input-group">
+                        <span class="input-group-text">Inicio</span>
+                        <input
+                          className="datetime-input form-control"
+                          type="datetime-local"
+                          onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
+                        />
+                      </div>
 
-          <div className="container3">
-            <div class="row">
-              <div class="col-sm-6 ">
-                <div >
-                  <div class="card-body inicio">
-                    <div className="input-group">
-                      <span class="input-group-text">Inicio</span>
-                      <input
-                        className="datetime-input form-control"
-                        type="datetime-local"
-                        onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
-                      />
                     </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <div class="card-body fin">
+                      <div className="input-group">
+                        <span class="input-group-text">Fin</span>
+                        <input
+                          className="datetime-input form-control"
+                          type="datetime-local"
+                          onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
+                        />
+                      </div>
 
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card-body">
+                  <div className="button-container">
+                    <center>
+                      <button
+                        type="button"
+                        className="btn btn-sm col-sm-2 descargardato"
+                        onClick={() => {
+                          setSelectedTimestamp({ start: startDate, end: endDate });
+                          // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
+                          const filteredData = lastTenData.filter(
+                            item =>
+                              item.timestamp >= startDate && item.timestamp <= endDate
+                          );
+                          setLastTenData(filteredData);
+                        }}
+                      >
+                        <div className="input-group ">
+                          Consultar
+                          <i className="material-icons pdf">search</i>
+                        </div>
+                      </button>
+                      <button type="button" className="btn btn-sm descargardato " onClick={handleDownloadExcel} >
+                        <div className="input-group ">
+                          Descargar Excel
+                          <i className="material-icons pdf">download</i>
+                        </div>
+                      </button>
+                      <button type="button" className="btn btn-sm col-sm-2 descargardato" onClick={handleDownloadPDF}>
+                        <div className="input-group ">
+                          Descargar
+                          <i className="material-icons pdf">picture_as_pdf</i>
+                        </div>
+
+                      </button>
+                    </center>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="container3 ">
+              <div class="row ">
+                <div class="col-sm-3">
+                  <div class="card  color1">
+                    <div className="card-body">
+                      Valores Normales.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card color2">
+                    <div className="card-body">
+                      Valores medios.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card color3">
+                    <div className="header">
+
+                    </div>
+                    <div className="card-body">
+                      Valores altos.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="card color4">
+                    <div className="header">
+
+                    </div>
+                    <div className="card-body">
+                      Valores preocupantes.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div className="container3"></div>
+              <div className="container3"></div>
+              <div className="container3"></div>
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <div className="card-header">
+                  <h5>Valores de cada área en una determada fecha</h5>
+                </div>
+                <div className='card-body'>
+                  <table className="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col" className='text-uppercase'>Fecha</th>
+                        <th scope="col" className='text-uppercase'>Area 1</th>
+                        <th scope="col" className='text-uppercase'>Area 2</th>
+                        <th scope="col" className='text-uppercase'>Area 3</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentData.map((reading, index) => (
+                        <tr key={index}>
+                          <td scope="row" className='filas'> {epochToDateTime(reading.timestamp)} </td>
+                          <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor1Value) }}>
+                            {reading.sensor1Value} %
+                          </td>
+                          <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor2Value) }}>
+                            {reading.sensor2Value} %
+                          </td>
+                          <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor3Value) }}>
+                            {reading.sensor3Value} %
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="pagination">
+                    {renderPaginationButtons()}
                   </div>
                 </div>
               </div>
               <div class="col-sm-6">
-                <div>
-                  <div class="card-body fin">
-                    <div className="input-group">
-                      <span class="input-group-text">Fin</span>
-                      <input
-                        className="datetime-input form-control"
-                        type="datetime-local"
-                        onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
-                      />
-                    </div>
+                <div className="card-header">
+                  <h5>Alertas mostradas</h5>
+                </div>
+                <div className='card-body'>
+                  <table className="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Fecha</th>
+                        <th>Área</th>
+                        <th>Mensaje</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentDataWithAlerts.map((reading, index) => {
+                        const alertsForReading = checkSensorValues(reading); // Obtener alertas para esta lectura
 
-                  </div>
+                        if (alertsForReading.length > 0) {
+                          return (
+                            <React.Fragment key={index}>
+                              {alertsForReading.map((alert, alertIndex) => (
+                                <tr key={`${index}-${alertIndex}`}>
+                                  {alertIndex === 0 && (
+                                    <td rowSpan={alertsForReading.length}>
+                                      {epochToDateTime(reading.timestamp)}
+                                    </td>
+                                  )}
+                                  <td>{alert.area}</td>
+                                  <td>{alert.mensaje}</td>
+                                </tr>
+                              ))}
+                            </React.Fragment>
+                          );
+                        }
+                        return null; // Si no hay alertas para esta lectura, retornar null
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-            <div>
-              <div class="card-body">
-                <div className="button-container">
-                  <center>
-                    <button
-                      type="button"
-                      className="btn btn-sm col-sm-2 descargardato"
-                      onClick={() => {
-                        setSelectedTimestamp({ start: startDate, end: endDate });
-                        // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
-                        const filteredData = lastTenData.filter(
-                          item =>
-                            item.timestamp >= startDate && item.timestamp <= endDate
-                        );
-                        setLastTenData(filteredData);
-                      }}
-                    >
-                      <div className="input-group ">
-                        Consultar
-                        <i className="material-icons pdf">search</i>
-                      </div>
-                    </button>
-                    <button type="button" className="btn btn-sm descargardato " onClick={handleDownloadExcel} >
-                      <div className="input-group ">
-                        Descargar Excel
-                        <i className="material-icons pdf">download</i>
-                      </div>
-                    </button>
-                    <button type="button" className="btn btn-sm col-sm-2 descargardato" onClick={handleDownloadPDF}>
-                      <div className="input-group ">
-                        Descargar
-                        <i className="material-icons pdf">picture_as_pdf</i>
-                      </div>
 
-                    </button>
-                  </center>
-                </div>
-
-
-              </div>
-            </div>
           </div>
-          <div className="container3 ">
-            <div class="row superior">
-              <div class="col-sm-3">
-                <div class="card  color1">
-                  <div className="card-body">
-                    Valores Normales.
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card color2">
-                  <div className="card-body">
-                    Valores medios.
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card color3">
-                  <div className="header">
+        </div>
 
-                  </div>
-                  <div className="card-body">
-                    Valores altos.
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card color4">
-                  <div className="header">
-
-                  </div>
-                  <div className="card-body">
-                    Valores preocupantes.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col" className='text-uppercase'>Fecha</th>
-                <th scope="col" className='text-uppercase'>Area 1</th>
-                <th scope="col" className='text-uppercase'>Area 2</th>
-                <th scope="col" className='text-uppercase'>Area 3</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentData.map((reading, index) => (
-                <tr key={index}>
-                  <td scope="row" className='filas'> {epochToDateTime(reading.timestamp)} </td>
-                  <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor1Value) }}>
-                    {reading.sensor1Value}
-                  </td>
-                  <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor2Value) }}>
-                    {reading.sensor2Value}
-                  </td>
-                  <td scope="row" className="filas" style={{ backgroundColor: getColorForValue(reading.sensor3Value) }}>
-                    {reading.sensor3Value}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="pagination">
-            {renderPaginationButtons()}
-          </div>
-          <div className="container3"></div>
-          <div className="table table-hover">
-            <table>
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Mensaje</th>
-                </tr>
-              </thead>
-              <tbody>
-                {alerts.map((alert, index) => (
-                  <tr key={index}>
-                    <td>{alert.timestamp}</td>
-                    <td>{alert.message}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div >
       )}
-       <div className="container4"> </div>
+      <div className="container4"> </div>
       <Footer />
     </div >
   );

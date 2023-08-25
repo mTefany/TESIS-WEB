@@ -9,6 +9,21 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.border{
+  color: none;
+}
+
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros elementos */
+  background-color: #fff; /* Cambia esto según tu diseño */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrega sombra si es necesario */
+}
+
+
 
 .password-input {
   position: relative;
@@ -105,8 +120,16 @@
   font-weight: bold;
 }
 
-.superior{
-  padding: 10px 0px 3px 0px;
+/* Estilos por defecto */
+.superior {
+  margin-top: 150px; /* Ajusta este valor según la altura de tu barra de navegación */
+}
+
+/* Estilos para pantallas aún más grandes */
+@media (min-width: 1200px) {
+  .superior {
+    margin-top: 100px; /* Ajusta este valor según tus necesidades */
+  }
 }
 
 .container3{

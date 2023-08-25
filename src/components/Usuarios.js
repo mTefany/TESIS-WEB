@@ -24,7 +24,7 @@ function Usuarios() {
             try {
                 const usuarioRef = doc(usuariosCollection, uid);
                 await deleteDoc(usuarioRef);
-    
+
                 const nuevosUsuarios = usuarios.filter((usuario) => usuario.uid !== uid);
                 setUsuarios(nuevosUsuarios);
             } catch (error) {
@@ -56,7 +56,7 @@ function Usuarios() {
             });
     }, []);
 
-    
+
 
 
 
@@ -64,7 +64,7 @@ function Usuarios() {
 
         <div className="page-container">
             <Nav />
-            <div className="usuarios-container">
+            <div className="superior">
                 <div className="container">
                     <div className="container">
                         <div className="d-flex justify-content-end mb-3">
@@ -73,47 +73,57 @@ function Usuarios() {
                             </Link>
                         </div>
                     </div>
-
-                    <div className="table-responsive">
-                        <table className="table table-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col" className='text-uppercase'>Nombre</th>
-                                    <th scope="col" className='text-uppercase'>Correo</th>
-                                    <th scope="col" className='text-uppercase'>Cargo</th>
-                                    <th scope="col" className='text-uppercase'>Rol</th>
-                                    <th scope="col" className='text-uppercase'>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {usuarios.map((usuario, index) => (
-                                    <tr key={index}>
-                                        <td scope="row" className='filas'>{usuario.nombre}</td>
-                                        <td scope="row" className='filas'>{usuario.email}</td>
-                                        <td scope="row" className='filas'>{usuario.cargo}</td>
-                                        <td scope="row" className='filas'>{usuario.rol}</td>
-                                        <td scope="row" className='filas'>
-                                            <div >
-                                                <div class="row g-0 ">
-                                                    <div class="col-md-6">
-                                                        <button onClick={() => handleEditarUsuario(usuario.uid)} className="btn btn-editar">Editar</button>
+                    <div>
+                        <div class="card-body">
+                            <div className="table-responsive">
+                                <table className="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" className='text-uppercase'>Nombre</th>
+                                            <th scope="col" className='text-uppercase'>Correo</th>
+                                            <th scope="col" className='text-uppercase'>Cargo</th>
+                                            <th scope="col" className='text-uppercase'>Rol</th>
+                                            <th scope="col" className='text-uppercase'>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {usuarios.map((usuario, index) => (
+                                            <tr key={index}>
+                                                <td scope="row" className='filas'>{usuario.nombre}</td>
+                                                <td scope="row" className='filas'>{usuario.email}</td>
+                                                <td scope="row" className='filas'>{usuario.cargo}</td>
+                                                <td scope="row" className='filas'>{usuario.rol}</td>
+                                                <td scope="row" className='filas'>
+                                                    <div >
+                                                        <div class="row g-0 ">
+                                                            <div class="col-md-6">
+                                                                <button onClick={() => handleEditarUsuario(usuario.uid)}  className='border'>
+                                                                <i className="material-icons  btn-editar" >edit</i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <button onClick={() => handleEliminarUsuario(usuario.uid)} className='border'>
+                                                                <i className="material-icons  btn-eliminar">delete</i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <button onClick={() => handleEliminarUsuario(usuario.uid)} className="btn btn-eliminar">Eliminar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
+
+
+
 
                 </div>
             </div>
+
             <Footer />
         </div>
     );

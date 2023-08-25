@@ -34,23 +34,23 @@ export default function Tarjeta() {
 
     function getColorForValue(value) {
         const numericValue = parseFloat(value);
-    
+
         if (numericValue >= 0 && numericValue <= 19) {
-          return "#FCB3A3"; // No color
+            return "#FCB3A3"; // No color
         } else if (numericValue >= 20 && numericValue <= 30) {
-          return "#FCF5A3";
+            return "#FCF5A3";
         } else if (numericValue >= 31 && numericValue <= 49) {
-          return "#A3DFFC";
+            return "#A3DFFC";
         } else if (numericValue >= 50 && numericValue <= 60) {
-          return "#ffffff";
+            return "#ffffff";
         } else if (numericValue >= 61 && numericValue <= 80) {
-          return "#A3DFFC";
+            return "#A3DFFC";
         } else if (numericValue >= 81 && numericValue <= 100) {
-          return "#FCB3A3";
+            return "#FCB3A3";
         } else {
-          return ""; // Maneja otros casos según sea necesario
+            return ""; // Maneja otros casos según sea necesario
         }
-      }
+    }
 
     const graphStyle = {
         flex: '1',
@@ -187,15 +187,13 @@ export default function Tarjeta() {
     return (
         <div>
 
-            <div className="superior">
 
-                <div class="card">
-                    <div class="card-body tarjetaflex text-center ">
-                        <div className="card-header">
-                            <h5>Bienvenido {nombre} </h5>
-                        </div><br />
-                        <h5>Última Actualización {epochToDateTime(lastData.timestamp || 0)}</h5>
-                    </div>
+            <div class="card">
+                <div class="card-body tarjetaflex text-center ">
+                    <div className="card-header">
+                        <h5>Bienvenido/a {nombre} </h5>
+                    </div><br />
+                    <h5>Última Actualización {epochToDateTime(lastData.timestamp || 0)}</h5>
                 </div>
             </div>
             <div className="container2">
