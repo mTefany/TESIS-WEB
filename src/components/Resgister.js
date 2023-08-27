@@ -92,7 +92,6 @@ function Register() {
         <Link to="/usuarios" className="float-end">
           <button type="button" className="btn-close" aria-label="Close"></button>
         </Link>
-
         {error && <Alert message={error} />}
         <div className="text-center">
           <img src={logo} alt="Logo" width="250x" />

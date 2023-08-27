@@ -7,12 +7,10 @@ function EditarUsuario() {
   const { userId } = useParams();
   const db = getFirestore();
   const usuarioRef = doc(db, "usuarios", userId);
-
   const [cargo, setCargo] = useState("");
   const [rol, setRol] = useState("");
-
   const [user, setUser] = useState({});
-
+  
   const handleGuardarCambios = async () => {
     try {
       await updateDoc(usuarioRef, {

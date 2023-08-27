@@ -4,7 +4,6 @@ import { useAuth } from "../context/authContext";
 import Nav from "../partials/Nav";
 import Footer from "../partials/footer";
 import Tarjeta from "../hook/tarjetas";
-import Notify from "./Notificacion";
 
 const Home = () => {
   const { user } = useAuth();
@@ -29,7 +28,6 @@ const Home = () => {
         </div>
         <div className="container4"></div>
       </div>
-
       <Footer />
     </div >
   );

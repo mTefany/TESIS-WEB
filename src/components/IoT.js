@@ -19,7 +19,6 @@ function IoT() {
                 </div>
                 <img className='transmision img-fluid' src={Transmision} alt="" />
               </center>
-
               <div class="card-body">
                 <h6>Valores de transmisión</h6>
                 <div className="containertabla">
@@ -48,9 +47,6 @@ function IoT() {
                 </div>
               </div>
             </div>
-
-
-
             <div class="col-sm-6 mb-3 mb-sm-0">
               <h5 class="card-header">Emisor</h5>
               <div class="card mb-3 " >

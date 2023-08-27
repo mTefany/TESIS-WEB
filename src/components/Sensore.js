@@ -166,29 +166,23 @@ export default function SensorList() {
       let mensaje = '';
 
       if (sensorValue > 49 && sensorValue < 61) {
-        console.log("normal")
-      } else if (sensorValue > 60 && sensorValue < 70) {
-        mensaje = `Poco exceso de humedad`;
-        // newAlerts.push({ mensaje, area });
+      } 
+      else if (sensorValue > 60 && sensorValue < 70) {
+          mensaje = `Poco exceso de humedad en el suelo`;
       } else if (sensorValue > 69 && sensorValue < 81) {
-        mensaje = `Exceso de humedad`;
-        // newAlerts.push({ mensaje, area });
+          mensaje = `Exceso de humedad en el suelo`;
       } else if (sensorValue > 80 && sensorValue < 101) {
-        mensaje = `La humedad supera los límites`;
-        // newAlerts.push({ mensaje, area });
+          mensaje = `La humedad supera los límites`;
       } else if (sensorValue < 50 && sensorValue > 39) {
-        mensaje = `El suelo está comenzando a secarse`;
-        // newAlerts.push({ mensaje, area });
+          mensaje = `El suelo está comenzando a secarse`;
       } else if (sensorValue < 40 && sensorValue > 29) {
-        mensaje = `El suelo se encuentra seco`;
-        // newAlerts.push({ mensaje, area });
+          mensaje = `El suelo se encuentra seco`;
       } else if (sensorValue < 30 && sensorValue > 10) {
-        mensaje = `El suelo se encuentra con exceso de sequía`;
-        // newAlerts.push({ mensaje, area });
+          mensaje = `El suelo cuenta con exceso de sequía`;
       } else if (sensorValue < 11 && sensorValue > -1) {
-        mensaje = `El sensor se encuentra desconectado`;
-        // newAlerts.push({ mensaje, area });
+          mensaje = `El sensor se encuentra desconectado`;
       }
+
 
       if (mensaje.length > 0) {
         newAlerts.push({ mensaje, area, timestamp: reading.timestamp }); // Incluye el timestamp en las alertas
@@ -432,7 +426,7 @@ export default function SensorList() {
               <div className="container3"></div>
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <div className="card-header">
-                  <h5>Valores de cada área en una determada fecha</h5>
+                  <h5>Valores de cada área en una determinada fecha</h5>
                 </div>
                 <div className='card-body'>
                   <table className="table table-hover">
@@ -500,17 +494,15 @@ export default function SensorList() {
                             </React.Fragment>
                           );
                         }
-                        return null; // Si no hay alertas para esta lectura, retornar null
+                        return null; // 
                       })}
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
       )}
       <div className="container4"> </div>
       <Footer />

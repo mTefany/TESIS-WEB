@@ -56,12 +56,7 @@ function Usuarios() {
             });
     }, []);
 
-
-
-
-
     return (
-
         <div className="page-container">
             <Nav />
             <div className="superior">
@@ -97,13 +92,13 @@ function Usuarios() {
                                                     <div >
                                                         <div class="row g-0 ">
                                                             <div class="col-md-6">
-                                                                <button onClick={() => handleEditarUsuario(usuario.uid)}  className='border'>
-                                                                <i className="material-icons  btn-editar" >edit</i>
+                                                                <button onClick={() => handleEditarUsuario(usuario.uid)} className='border'>
+                                                                    <i className="material-icons  btn-editar" >edit</i>
                                                                 </button>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <button onClick={() => handleEliminarUsuario(usuario.uid)} className='border'>
-                                                                <i className="material-icons  btn-eliminar">delete</i>
+                                                                    <i className="material-icons  btn-eliminar">delete</i>
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -116,14 +111,8 @@ function Usuarios() {
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
             </div>
-
             <Footer />
         </div>
     );

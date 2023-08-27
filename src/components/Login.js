@@ -16,11 +16,10 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  //actualizar el estado
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
-  //mostrar lo que tiene
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -39,8 +38,6 @@ function Login() {
     }
   };
 
-
-
   const handleResetPassword = async () => {
     if (!user.email) return setError("Por favor ingresa tu email");
     try {
@@ -50,7 +47,6 @@ function Login() {
       setError(error.message);
     }
   };
-
 
   return (
     <div className="containerform">

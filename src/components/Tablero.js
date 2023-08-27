@@ -295,155 +295,150 @@ function Tablero() {
     <div>
       <Nav />
       <div className="superior">
-      <div className="container tarjetaflex bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
-        <div>
-          <div className="superior">
-            <div class="card">
-              <div class="card-body tarjetaflex text-center ">
-                <h5>Consulta de Datos</h5>
-              </div>
-            </div>
-          </div>
-          <div className="container3">
-            <div class="row">
-              <div class="col-sm-6 ">
-                <div >
-                  <div class="card-body inicio">
-                    <div className="input-group">
-                      <span class="input-group-text">Inicio</span>
-                      <input
-                        className="datetime-input form-control"
-                        type="datetime-local"
-                        onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div>
-                  <div class="card-body fin">
-                    <div className="input-group">
-                      <span class="input-group-text">Fin</span>
-                      <input
-                        className="datetime-input form-control"
-                        type="datetime-local"
-                        onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="container tarjetaflex bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
           <div>
-            <div class="card-body">
-              <div className="button-container">
-                <center>
-                  <button
-                    type="button"
-                    className="btn btn-sm col-sm-2 descargardato"
-                    onClick={() => {
-                      setSelectedTimestamp({ start: startDate, end: endDate });
-                      // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
-                      const filteredData = lastTenData.filter(
-                        item =>
-                          item.timestamp >= startDate && item.timestamp <= endDate
-                      );
-                      setLastTenData(filteredData);
-                    }}
-                  >
-                    <div className="input-group ">
-                      Consultar
-                      <i className="material-icons pdf">search</i>
-                    </div>
-                  </button>
-
-
-
-                  <button type="button" className="btn btn-sm col-sm-2 descargardato" onClick={handleDownloadPDF}>
-                    <div className="input-group ">
-                      Descargar
-                      <i className="material-icons pdf">picture_as_pdf</i>
-                    </div>
-
-                  </button>
-                </center>
+            <div className="superior">
+              <div class="card">
+                <div class="card-body tarjetaflex text-center ">
+                  <h5>Consulta de Datos</h5>
+                </div>
               </div>
-
-
             </div>
-          </div>
-          <div id="pdf-content">
-            <div className="container2">
-              <div className="row">
-                <div className="col-lg-6 col-md-6" >
-                  <div className="card border-light  mb-3" id="sensor2-chart">
-                    <div className="card-header">
-                      <h5>Área 1</h5>
-                    </div>
-                    <div style={graphStyle}>
-                      <HighchartsReact highcharts={Highcharts} options={sensor1AreaChart} />
-                    </div>
-                    <div className="card-footer bg-transparent border-light">
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <div className="card border-light  mb-3" id="sensor1-chart" >
-                    <div className="card-header">
-                      <h5>Área 2</h5>
-                    </div>
-                    <div style={graphStyle}>
-                      <HighchartsReact highcharts={Highcharts} options={sensor2AreaChart} />
-                    </div>
-                    <div className="card-footer bg-transparent border-light">
-
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <div className="card border-light  mb-3" id="sensor3-chart"  >
-                    <div className="card-header">
-                      <h5>Área 3</h5>
-                    </div>
-                    <div style={graphStyle}>
-                      <HighchartsReact highcharts={Highcharts} options={sensor3AreaChart} />
-                    </div>
-                    <div className="card-footer bg-transparent border-light">
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <div className="card border-light  mb-3" id="data-table">
-                    <div className="card-header">
-                      <p>Datos obtenidos desde {displayHeaderDateTime}</p>
-                    </div>
-                    <div className="table-container">
-                      <table className="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col" className='text-uppercase'>Fecha</th>
-                            <th scope="col" className='text-uppercase'>Área 1</th>
-                            <th scope="col" className='text-uppercase'>Área 2</th>
-                            <th scope="col" className='text-uppercase'>Área 3</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {currentData.map(item => (
-                            <tr key={item.timestamp}>
-                              <td scope="row" className='filas' >{epochToDateTime(item.timestamp)}</td>
-                              <td scope="row" className='filas' >{item.sensor1Value} %</td>
-                              <td scope="row" className='filas' >{item.sensor2Value} %</td>
-                              <td scope="row" className='filas' >{item.sensor3Value} %</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      <div className="pagination">
-                        {renderPaginationButtons()}
+            <div className="container3">
+              <div class="row">
+                <div class="col-sm-6 ">
+                  <div >
+                    <div class="card-body inicio">
+                      <div className="input-group">
+                        <span class="input-group-text">Inicio</span>
+                        <input
+                          className="datetime-input form-control"
+                          type="datetime-local"
+                          onChange={(e) => setStartDate(new Date(e.target.value).getTime() / 1000)}
+                        />
                       </div>
-                      <div className="container3"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div>
+                    <div class="card-body fin">
+                      <div className="input-group">
+                        <span class="input-group-text">Fin</span>
+                        <input
+                          className="datetime-input form-control"
+                          type="datetime-local"
+                          onChange={(e) => setEndDate(new Date(e.target.value).getTime() / 1000)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="card-body">
+                <div className="button-container">
+                  <center>
+                    <button
+                      type="button"
+                      className="btn btn-sm col-sm-2 descargardato"
+                      onClick={() => {
+                        setSelectedTimestamp({ start: startDate, end: endDate });
+                        // Actualizar la lista de últimos datos usando la nueva fecha seleccionada
+                        const filteredData = lastTenData.filter(
+                          item =>
+                            item.timestamp >= startDate && item.timestamp <= endDate
+                        );
+                        setLastTenData(filteredData);
+                      }}
+                    >
+                      <div className="input-group ">
+                        Consultar
+                        <i className="material-icons pdf">search</i>
+                      </div>
+                    </button>
+                    <button type="button" className="btn btn-sm col-sm-2 descargardato" onClick={handleDownloadPDF}>
+                      <div className="input-group ">
+                        Descargar
+                        <i className="material-icons pdf">picture_as_pdf</i>
+                      </div>
+
+                    </button>
+                  </center>
+                </div>
+              </div>
+            </div>
+            <div id="pdf-content">
+              <div className="container2">
+                <div className="row">
+                  <div className="col-lg-6 col-md-6" >
+                    <div className="card border-light  mb-3" id="sensor2-chart">
+                      <div className="card-header">
+                        <h5>Área 1</h5>
+                      </div>
+                      <div style={graphStyle}>
+                        <HighchartsReact highcharts={Highcharts} options={sensor1AreaChart} />
+                      </div>
+                      <div className="card-footer bg-transparent border-light">
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6">
+                    <div className="card border-light  mb-3" id="sensor1-chart" >
+                      <div className="card-header">
+                        <h5>Área 2</h5>
+                      </div>
+                      <div style={graphStyle}>
+                        <HighchartsReact highcharts={Highcharts} options={sensor2AreaChart} />
+                      </div>
+                      <div className="card-footer bg-transparent border-light">
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6">
+                    <div className="card border-light  mb-3" id="sensor3-chart"  >
+                      <div className="card-header">
+                        <h5>Área 3</h5>
+                      </div>
+                      <div style={graphStyle}>
+                        <HighchartsReact highcharts={Highcharts} options={sensor3AreaChart} />
+                      </div>
+                      <div className="card-footer bg-transparent border-light">
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6">
+                    <div className="card border-light  mb-3" id="data-table">
+                      <div className="card-header">
+                        <p>Datos obtenidos desde {displayHeaderDateTime}</p>
+                      </div>
+                      <div className="table-container">
+                        <table className="table table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col" className='text-uppercase'>Fecha</th>
+                              <th scope="col" className='text-uppercase'>Área 1</th>
+                              <th scope="col" className='text-uppercase'>Área 2</th>
+                              <th scope="col" className='text-uppercase'>Área 3</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {currentData.map(item => (
+                              <tr key={item.timestamp}>
+                                <td scope="row" className='filas' >{epochToDateTime(item.timestamp)}</td>
+                                <td scope="row" className='filas' >{item.sensor1Value} %</td>
+                                <td scope="row" className='filas' >{item.sensor2Value} %</td>
+                                <td scope="row" className='filas' >{item.sensor3Value} %</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        <div className="pagination">
+                          {renderPaginationButtons()}
+                        </div>
+                        <div className="container3"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -452,8 +447,6 @@ function Tablero() {
           </div>
         </div>
       </div>
-      </div>
-      
       <Footer />
     </div>
   );
