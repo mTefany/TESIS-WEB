@@ -1,7 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth'
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+    sendPasswordResetEmail,
+    setPersistence,
+    browserLocalPersistence
+} from 'firebase/auth'
 import { collection, doc, getDoc } from "firebase/firestore";
-import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 import { auth, firestore } from '../firebase'
 
 const authContext = createContext();
@@ -20,7 +27,7 @@ function AuthProvider({ children }) {
 
     const signup = (email, password) => createUserWithEmailAndPassword(auth, email, password);
     const login = async (email, password) => {
-        setPersistence(auth, browserSessionPersistence)
+        setPersistence(auth, browserLocalPersistence)
             .then(() => {
                 return signInWithEmailAndPassword(auth, email, password);
             })
@@ -28,7 +35,16 @@ function AuthProvider({ children }) {
                 console.log(error);
             });
     }
-    const logout = () => signOut(auth)
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                localStorage.removeItem('user__app');
+                setUser(null);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     const resetPassword = (email) => sendPasswordResetEmail(auth, email)
 

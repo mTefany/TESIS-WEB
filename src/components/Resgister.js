@@ -4,8 +4,8 @@ import Alert from "./Alert";
 import logo from '../image/logo.jpeg'
 import { Link } from "react-router-dom";
 
-import { firestore, auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { firestore, secondAuth } from '../firebase';
+import { createUserWithEmailAndPassword, signOut } from 'firebase/auth'
 import { collection, doc, setDoc } from "firebase/firestore";
 
 function Register() {
@@ -57,7 +57,7 @@ function Register() {
     }
 
     try {
-      const infoUsuario = await createUserWithEmailAndPassword(auth, user.email, user.password);
+      const infoUsuario = await createUserWithEmailAndPassword(secondAuth, user.email, user.password);
       const docuRef = doc(usuariosCollection, infoUsuario.user.uid);
       setDoc(docuRef, {
         rol: user.rol,
@@ -68,6 +68,7 @@ function Register() {
         uid: infoUsuario.user.uid
       });
 
+      await signOut(secondAuth);
       navigate('/usuarios')
     } catch (error) {
       if (error.code === "auth/invalid-email") {
