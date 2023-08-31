@@ -45,7 +45,7 @@ export default function Notify() {
         let mensaje = '';
 
         if (sensorValue > 49 && sensorValue < 61) {
-        } 
+        }
         else if (sensorValue > 60 && sensorValue < 70) {
             mensaje = `Poco exceso de humedad en el suelo`;
         } else if (sensorValue > 69 && sensorValue < 81) {
@@ -92,11 +92,11 @@ export default function Notify() {
                                 Fecha: {currentTimestamp}
                                 <br />
 
-                                <center>
+                                <div className="text-center">
                                     {area}
                                     <br />
                                     {mensaje}
-                                </center>
+                                </div>
 
 
                             </p>

@@ -69,7 +69,7 @@ function Usuarios() {
                         </div>
                     </div>
                     <div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <div className="table-responsive">
                                 <table className="table table-hover">
                                     <thead>
@@ -90,13 +90,13 @@ function Usuarios() {
                                                 <td scope="row" className='filas'>{usuario.rol}</td>
                                                 <td scope="row" className='filas'>
                                                     <div >
-                                                        <div class="row g-0 ">
-                                                            <div class="col-md-6">
+                                                        <div className="row g-0 ">
+                                                            <div className="col-md-6">
                                                                 <button onClick={() => handleEditarUsuario(usuario.uid)} className='border'>
                                                                     <i className="material-icons  btn-editar" >edit</i>
                                                                 </button>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div className="col-md-6">
                                                                 <button onClick={() => handleEliminarUsuario(usuario.uid)} className='border'>
                                                                     <i className="material-icons  btn-eliminar">delete</i>
                                                                 </button>

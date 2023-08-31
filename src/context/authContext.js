@@ -15,7 +15,7 @@ const authContext = createContext();
 
 const useAuth = () => {
     const context = useContext(authContext);
-    if (!context) throw new Error('Este no es una aurtenticacion');
+    if (!context) throw new Error('Esto no es una autenticacion');
     return context;
 };
 

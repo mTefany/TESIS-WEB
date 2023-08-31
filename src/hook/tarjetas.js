@@ -188,8 +188,8 @@ export default function Tarjeta() {
         <div>
 
 
-            <div class="card">
-                <div class="card-body tarjetaflex text-center ">
+            <div className="card">
+                <div className="card-body tarjetaflex text-center ">
                     <div className="card-header">
                         <h5>Bienvenido/a {nombre} </h5>
                     </div><br />
@@ -208,7 +208,7 @@ export default function Tarjeta() {
                                     <div className="card-body reading">
                                         <h5 className="card-title"><span className="reading">{lastData.sensor1Value} %</span></h5>
 
-                                        <h7 className="card-text centered-text">Humedad Área 1</h7>
+                                        <h6 className="card-text centered-text">Humedad Área 1</h6>
 
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ export default function Tarjeta() {
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title "><span >{lastData.sensor2Value} %</span></h5>
-                                        <h7 className="card-text centered-text">Humedad Área 2</h7>
+                                        <h6 className="card-text centered-text">Humedad Área 2</h6>
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@ export default function Tarjeta() {
                                 <div className="col-md-6">
                                     <div className="card-body reading">
                                         <h5 className="card-title"><span className="reading">{lastData.sensor3Value} %</span></h5>
-                                        <h7 className="card-text centered-text">Humedad Área 3</h7>
+                                        <h6 className="card-text centered-text">Humedad Área 3</h6>
                                     </div>
                                 </div>
                             </div>

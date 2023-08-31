@@ -13,6 +13,7 @@ import 'jspdf-autotable'; // Importa el complemento
 
 import Nav from '../partials/Nav';
 import Footer from "../partials/footer";
+import membrete from '../image/membrete.jpeg'
 
 function Tablero() {
 
@@ -76,6 +77,13 @@ function Tablero() {
   const handleDownloadPDF = async () => {
     const pdf = new jsPDF();
 
+    // Agregar membrete con dibujo y logo
+    const pageWidth = pdf.internal.pageSize.getWidth(); // Ancho de la página
+
+    const imgWidth = pageWidth; // Ancho de la imagen igual al ancho de la página
+    const img = new Image();
+    img.src = membrete;
+
     // Agregar encabezado de tabla
     const tableHeaders = ["Fecha", "Área 1", "Área 2", "Área 3"];
     const tableData = lastTenData.map(item => [
@@ -84,14 +92,18 @@ function Tablero() {
       item.sensor2Value,
       item.sensor3Value
     ]);
+
+    pdf.addImage(img, 'JPEG', 0, 0, imgWidth, 30); // Agregar imagen a toda la página
+
+
     // Agregar encabezado de la página
-    pdf.text("Reporte de Datos", 10, 10);
+    pdf.text("Reporte de Datos", 30, 33);
 
     // Agregar tabla
     pdf.autoTable({
       head: [tableHeaders],
       body: tableData,
-      startY: 20
+      startY: 38
     });
 
     // Capturar imágenes de los gráficos y la tabla
@@ -100,13 +112,17 @@ function Tablero() {
     const sensor3ChartImage = await captureChartImage('sensor3-chart');
 
     pdf.addPage();
-    pdf.text("Gráficos por área", 10, 10);
-    // Generar PDF a partir de las imágenes capturadas
-    pdf.addImage(sensor1ChartImage, 'PNG', 10, 160, 190, 150);
-    pdf.addImage(sensor2ChartImage, 'PNG', 10, 15, 190, 150);
-    pdf.addPage();
-    pdf.addImage(sensor3ChartImage, 'PNG', 10, 15, 190, 150);
+    pdf.addImage(img, 'JPEG', 0, 0, imgWidth, 30);
+    pdf.text("Gráficos por área", 30, 35);
+    const startY = 38; // Posición vertical inicial para los gráficos
+    const chartHeight = 130; // Altura de los gráficos
+    pdf.addImage(sensor2ChartImage, 'PNG', 20, startY, 170, chartHeight);
+    pdf.addImage(sensor1ChartImage, 'PNG', 20, startY + chartHeight + 10, 170, chartHeight);
 
+    // Segunda página
+    pdf.addPage();
+    pdf.addImage(img, 'JPEG', 0, 0, imgWidth, 30);
+    pdf.addImage(sensor3ChartImage, 'PNG', 20, startY, 170, chartHeight);
 
     pdf.save('reporte.pdf');
   };
@@ -298,19 +314,19 @@ function Tablero() {
         <div className="container tarjetaflex bg-white rounded shadow-md px-12 pt-6 pb-12 mb-4 mt-3">
           <div>
             <div className="superior">
-              <div class="card">
-                <div class="card-body tarjetaflex text-center ">
+              <div className="card">
+                <div className="card-body tarjetaflex text-center ">
                   <h5>Consulta de Datos</h5>
                 </div>
               </div>
             </div>
             <div className="container3">
-              <div class="row">
-                <div class="col-sm-6 ">
+              <div className="row">
+                <div className="col-sm-6 ">
                   <div >
-                    <div class="card-body inicio">
+                    <div className="card-body inicio">
                       <div className="input-group">
-                        <span class="input-group-text">Inicio</span>
+                        <span className="input-group-text">Inicio</span>
                         <input
                           className="datetime-input form-control"
                           type="datetime-local"
@@ -320,11 +336,11 @@ function Tablero() {
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <div>
-                    <div class="card-body fin">
+                    <div className="card-body fin">
                       <div className="input-group">
-                        <span class="input-group-text">Fin</span>
+                        <span className="input-group-text">Fin</span>
                         <input
                           className="datetime-input form-control"
                           type="datetime-local"
@@ -337,7 +353,7 @@ function Tablero() {
               </div>
             </div>
             <div>
-              <div class="card-body">
+              <div className="card-body">
                 <div className="button-container">
                   <center>
                     <button

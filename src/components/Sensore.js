@@ -11,6 +11,8 @@ import { saveAs } from "file-saver";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
+import Colores from '../hook/colores'
+import membrete from '../image/membrete.jpeg'
 // import { useAlert } from '../context/alertContext';
 
 
@@ -87,14 +89,26 @@ export default function SensorList() {
       item.sensor3Value
     ]);
 
+    // Agregar membrete con dibujo y logo
+    const pageWidth = pdf.internal.pageSize.getWidth(); // Ancho de la página
+
+    const imgWidth = pageWidth; // Ancho de la imagen igual al ancho de la página
+
+
+    const img = new Image();
+    img.src = membrete;
+    pdf.addImage(img, 'JPEG', 0, 0, imgWidth, 30); // Agregar imagen a toda la página
+
+
     // Agregar encabezado de la página
-    pdf.text("Reporte de Datos por Área", 10, 10);
+    pdf.text("Reporte de Datos por Área", 30, 35); // Ajustar posición vertical del título
+
 
     // Agregar tabla
     pdf.autoTable({
       head: [tableHeaders],
       body: tableData,
-      startY: 20
+      startY: 40
     });
 
 
@@ -114,13 +128,16 @@ export default function SensorList() {
 
     if (tableDataAlerta.length > 0) {
       pdf.addPage();
+      pdf.addImage(img, 'JPEG', 0, 0, imgWidth, 30); // Agregar imagen a toda la página
+
       // Agregar encabezado de página
-      pdf.text("Reporte de Alertas en las Áreas donde se ubican los sensores.", 10, 10);
+
+      pdf.text("Reporte de Alertas en las Áreas donde se ubican los sensores.", 30, 35);
 
       pdf.autoTable({
         head: [tableHeadersAlerta],
         body: tableDataAlerta,
-        startY: 20
+        startY: 40
       });
     }
 
@@ -151,7 +168,7 @@ export default function SensorList() {
       return "#A3DFFC";
     } else if (numericValue >= 71 && numericValue <= 80) {
       return "#FCF5A3";
-    }else if (numericValue >= 81 && numericValue <= 100) {
+    } else if (numericValue >= 81 && numericValue <= 100) {
       return "#FCB3A3";
     } else {
       return ""; // Maneja otros casos según sea necesario
@@ -166,21 +183,21 @@ export default function SensorList() {
       let mensaje = '';
 
       if (sensorValue > 49 && sensorValue < 61) {
-      } 
+      }
       else if (sensorValue > 60 && sensorValue < 70) {
-          mensaje = `Poco exceso de humedad en el suelo`;
+        mensaje = `Poco exceso de humedad en el suelo`;
       } else if (sensorValue > 69 && sensorValue < 81) {
-          mensaje = `Exceso de humedad en el suelo`;
+        mensaje = `Exceso de humedad en el suelo`;
       } else if (sensorValue > 80 && sensorValue < 101) {
-          mensaje = `La humedad supera los límites`;
+        mensaje = `La humedad supera los límites`;
       } else if (sensorValue < 50 && sensorValue > 39) {
-          mensaje = `El suelo está comenzando a secarse`;
+        mensaje = `El suelo está comenzando a secarse`;
       } else if (sensorValue < 40 && sensorValue > 29) {
-          mensaje = `El suelo se encuentra seco`;
+        mensaje = `El suelo se encuentra seco`;
       } else if (sensorValue < 30 && sensorValue > 10) {
-          mensaje = `El suelo cuenta con exceso de sequía`;
+        mensaje = `El suelo cuenta con exceso de sequía`;
       } else if (sensorValue < 11 && sensorValue > -1) {
-          mensaje = `El sensor se encuentra desconectado`;
+        mensaje = `El sensor se encuentra desconectado`;
       }
 
 
@@ -303,19 +320,19 @@ export default function SensorList() {
       ) : (
         <div className="superior">
           <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-            <div class="card">
-              <div class="card-body tarjetaflex text-center ">
+            <div className="card">
+              <div className="card-body tarjetaflex text-center ">
                 <h5>Datos obtenidos desde {displayHeaderDateTime}</h5>
               </div>
             </div>
             <div className="container3"></div>
             <div className="container3">
-              <div class="row">
-                <div class="col-sm-6 ">
+              <div className="row">
+                <div className="col-sm-6 ">
                   <div >
-                    <div class="card-body inicio">
+                    <div className="card-body inicio">
                       <div className="input-group">
-                        <span class="input-group-text">Inicio</span>
+                        <span className="input-group-text">Inicio</span>
                         <input
                           className="datetime-input form-control"
                           type="datetime-local"
@@ -326,11 +343,11 @@ export default function SensorList() {
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <div>
-                    <div class="card-body fin">
+                    <div className="card-body fin">
                       <div className="input-group">
-                        <span class="input-group-text">Fin</span>
+                        <span className="input-group-text">Fin</span>
                         <input
                           className="datetime-input form-control"
                           type="datetime-local"
@@ -343,7 +360,7 @@ export default function SensorList() {
                 </div>
               </div>
               <div>
-                <div class="card-body">
+                <div className="card-body">
                   <div className="button-container">
                     <center>
                       <button
@@ -383,48 +400,13 @@ export default function SensorList() {
               </div>
             </div>
             <div className="container3 ">
-              <div class="row ">
-                <div class="col-sm-3">
-                  <div class="card  color1">
-                    <div className="card-body">
-                      Valores Normales.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="card color2">
-                    <div className="card-body">
-                      Valores medios.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="card color3">
-                    <div className="header">
-
-                    </div>
-                    <div className="card-body">
-                      Valores altos.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="card color4">
-                    <div className="header">
-
-                    </div>
-                    <div className="card-body">
-                      Valores preocupantes.
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Colores />
             </div>
-            <div class="row">
+            <div className="row">
               <div className="container3"></div>
               <div className="container3"></div>
               <div className="container3"></div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
+              <div className="col-sm-6 mb-3 mb-sm-0">
                 <div className="card-header">
                   <h5>Valores de cada área en una determinada fecha</h5>
                 </div>
@@ -460,7 +442,7 @@ export default function SensorList() {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div className="col-sm-6">
                 <div className="card-header">
                   <h5>Alertas mostradas</h5>
                 </div>

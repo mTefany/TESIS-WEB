@@ -1,72 +1,71 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './components/Home';
 import Sensorlist from './components/Sensore'
 import Login from './components/Login';
 import Register from './components/Resgister';
 import { AuthProvider } from './context/authContext'
-// import { AlertProvider } from './context/alertContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Tablero from './components/Tablero';
 import Usuarios from './components/Usuarios';
 import EditarUsuario from "./components/EditarUsuario";
 import IoT from './components/IoT'
-import Notify from './components/Notificacion';
+import Notify from './components/Notificacion'
 
 function App() {
+  const location = useLocation();
+
+  // Verificar si no estamos en la ruta de login
+  const shouldShowNotify = location.pathname !== '/login';
+  console.log(shouldShowNotify)
+
   return (
     <div >
 
       <AuthProvider>
-        {/* <AlertProvider> */}
-        < Notify />
-          <Routes>
-            <Route path='/' element={
-              <ProtectedRoute>
-                <Home />
+        {shouldShowNotify && <Notify />}
 
-              </ProtectedRoute>
-            } />
-            <Route path='/iot' element={
-              <ProtectedRoute>
-                <IoT />
+        <Routes>
 
-              </ProtectedRoute>
-            } />
-            {/* <Route path='/register' element={
+          <Route path='/' element={
             <ProtectedRoute>
-              <Register />
+              <Home />
 
             </ProtectedRoute>
-          } /> */}
-            <Route path='/sensores' element={
-              <ProtectedRoute>
-                <Sensorlist />
+          } />
+          <Route path='/iot' element={
+            <ProtectedRoute>
+              <IoT />
+            </ProtectedRoute>
+          } />
+          <Route path='/sensores' element={
+            <ProtectedRoute>
+              <Sensorlist />
+            </ProtectedRoute>
+          } />
+          <Route path='/tablero' element={
+            <ProtectedRoute>
+              <Tablero />
+            </ProtectedRoute>
+          } />
+          <Route path='/usuarios' element={
+            <ProtectedRoute>
+              <Usuarios />
+            </ProtectedRoute>
+          } />
+          <Route path='/editar-usuario/:userId' element={
+            <ProtectedRoute>
+              <EditarUsuario />
+            </ProtectedRoute>
+          } />
+          <Route path='/register' element={
+            <ProtectedRoute>
+              <Register />
+            </ProtectedRoute>
+          } />
 
-              </ProtectedRoute>
-            } />
-            <Route path='/tablero' element={
-              <ProtectedRoute>
-                <Tablero />
+          <Route path="/login" element={<Login />} />
+        </Routes>
 
-              </ProtectedRoute>
-            } />
-            <Route path='/usuarios' element={
-              <ProtectedRoute>
-                <Usuarios />
-
-              </ProtectedRoute>
-            } />
-            <Route path='/editar-usuario/:userId' element={
-              <ProtectedRoute>
-                <EditarUsuario />
-
-              </ProtectedRoute>
-            } />
-
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        {/* </AlertProvider> */}
       </AuthProvider>
     </div>
   )

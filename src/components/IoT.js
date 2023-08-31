@@ -11,15 +11,15 @@ function IoT() {
       <Nav />
       <div className="superior">
         <div className="container bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4 mt-3">
-          <div class="row ">
-            <div class="card text-center">
+          <div className="row ">
+            <div className="card text-center">
               <center>
-                <div class="card-header">
+                <div className="card-header">
                   <h5>Transmisión de datos</h5>
                 </div>
                 <img className='transmision img-fluid' src={Transmision} alt="" />
               </center>
-              <div class="card-body">
+              <div className="card-body">
                 <h6>Valores de transmisión</h6>
                 <div className="containertabla">
                   <table className="table table-hover ">
@@ -47,16 +47,16 @@ function IoT() {
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <h5 class="card-header">Emisor</h5>
-              <div class="card mb-3 " >
-                <div class="row g-0">
-                  <div class="col-md-5">
+            <div className="col-sm-6 mb-3 mb-sm-0">
+              <h5 className="card-header">Emisor</h5>
+              <div className="card mb-3 " >
+                <div className="row g-0">
+                  <div className="col-md-5">
                     <img className='emisorimagen img-fluid' src={Emisor} alt="" />
                   </div>
-                  <div class="col-md-6">
-                    <div class="card-body info-card">
-                      <p class="card-text">
+                  <div className="col-md-6">
+                    <div className="card-body info-card">
+                      <p className="card-text">
                         El módulo emisor cuenta con tres sensores ubicados en tres áreas diferentes dentro de los cultivos de pitahaya.
                       </p>
                     </div>
@@ -64,16 +64,16 @@ function IoT() {
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <h5 class="card-header">Receptor</h5>
-              <div class="card mb-3 " >
-                <div class="row g-0">
-                  <div class="col-md-6">
+            <div className="col-sm-6 mb-3 mb-sm-0">
+              <h5 className="card-header">Receptor</h5>
+              <div className="card mb-3 " >
+                <div className="row g-0">
+                  <div className="col-md-6">
                     <img className=' img-fluid' src={Receptor} alt="" />
                   </div>
-                  <div class="col-md-6">
-                    <div class="card-body info-card">
-                      <p class="card-text">
+                  <div className="col-md-6">
+                    <div className="card-body info-card">
+                      <p className="card-text">
                         El módulo receptor recibe los datos cada <strong>30 segundos</strong>. Este módulo se encuentra a 50 m del módulo emisor
                       </p>
                     </div>

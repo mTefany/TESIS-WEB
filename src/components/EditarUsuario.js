@@ -63,7 +63,7 @@ function EditarUsuario() {
             <option value="admin">Administrador</option>
           </select>
         </div>
-        <div class="d-grid gap-2">
+        <div className="d-grid gap-2">
           <button onClick={handleGuardarCambios} className="btn btn-success">Guardar</button>
           <button onClick={handleCancelar}  className="btn btn-secondary">Cancelar</button>
         </div>
