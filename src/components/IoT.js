@@ -32,7 +32,7 @@ function IoT() {
                     <tbody>
                       <tr>
                         <td scope="row" className="filas" >Frecuencia de transmisión de datos</td>
-                        <td scope="row" className="filas" >30 segundos</td>
+                        <td scope="row" className="filas" >15 segundos</td>
                       </tr>
                       <tr>
                         <td scope="row" className="filas" >Intensidad de la señal recibida</td>
@@ -74,7 +74,7 @@ function IoT() {
                   <div className="col-md-6">
                     <div className="card-body info-card">
                       <p className="card-text">
-                        El módulo receptor recibe los datos cada <strong>30 segundos</strong>. Este módulo se encuentra a 50 m del módulo emisor
+                        El módulo receptor recibe los datos cada <strong>15 segundos</strong>. Este módulo se encuentra a 50 m del módulo emisor
                       </p>
                     </div>
                   </div>
