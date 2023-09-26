@@ -5,7 +5,7 @@ import { useAuth } from "../context/authContext";
 //Importa una función de enrutamiento para redirigir dentro de la aplicación.
 import { useNavigate } from "react-router-dom";
 //Importacion de imagenes 
-import logo from "../image/logo.jpeg";
+import logo from "../image/logohome.png";
 //importacion de componentes
 import Alert from "./Alert";
 

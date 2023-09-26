@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
-import logo from '../image/logo.jpeg'
+import logo from '../image/logohome.png'
 import { Link } from "react-router-dom";
 
 import { firestore, secondAuth } from '../firebase';
